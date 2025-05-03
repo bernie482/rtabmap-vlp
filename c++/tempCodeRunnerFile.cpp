@@ -1,0 +1,1 @@
+void MatrixMultiply(int arrA[M][N], int arrB[N][P], int arrC[M][P]
