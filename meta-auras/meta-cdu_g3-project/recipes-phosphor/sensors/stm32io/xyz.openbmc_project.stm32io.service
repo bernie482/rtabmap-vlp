@@ -1,0 +1,14 @@
+[Unit]
+Description=Auras STM32 IO app
+StopWhenUnneeded=false
+Requires=xyz.openbmc_project.EntityManager.service xyz.openbmc_project.ioService.service
+After=xyz.openbmc_project.EntityManager.service xyz.openbmc_project.ioService.service
+
+[Service]
+Restart=always
+RestartSec=5
+ExecStartPre=/bin/bash -c 'sleep 3'
+ExecStart=/usr/bin/stm32io -dvs
+
+[Install]
+WantedBy=multi-user.target

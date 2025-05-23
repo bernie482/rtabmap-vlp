@@ -1,0 +1,48 @@
+From 8cb701ff574ca266f9d56b5d0739bc678bbf9a3c Mon Sep 17 00:00:00 2001
+From: Godspeed Tzeng <godspeed.tzeng@insyde.com>
+Date: Wed, 6 Sep 2023 22:53:37 +0800
+Subject: [PATCH] Add sensor type for fan status
+
+Issue#: IB17580000
+Severity: Normal
+Category: platform
+Symptom: N/A
+RootCause: N/A
+Description: As title.
+Solution: N/A
+SolutionDependency: no dependency
+Reviewer: gerrit
+
+Signed-off-by: Godspeed Tzeng <godspeed.tzeng@insyde.com>
+---
+ include/sdrutils.hpp   | 1 +
+ src/sensorcommands.cpp | 1 +
+ 2 files changed, 2 insertions(+)
+
+diff --git a/include/sdrutils.hpp b/include/sdrutils.hpp
+index 829d67e..a4cc50a 100644
+--- a/include/sdrutils.hpp
++++ b/include/sdrutils.hpp
+@@ -422,6 +422,7 @@ const static boost::container::flat_map<const char*, SensorTypeCodes, CmpStr>
+                     {"flowrate", SensorTypeCodes::other},
+                     {"state", SensorTypeCodes::other},
+                     {"level", SensorTypeCodes::other},
++                    {"pump_fan_state", SensorTypeCodes::other},
+                 }};
+ 
+ inline static std::string getSensorTypeStringFromPath(const std::string& path)
+diff --git a/src/sensorcommands.cpp b/src/sensorcommands.cpp
+index 41d5685..33188f7 100644
+--- a/src/sensorcommands.cpp
++++ b/src/sensorcommands.cpp
+@@ -219,6 +219,7 @@ const static boost::container::flat_map<const char*, SensorUnits, CmpStr>
+                     {"flowrate", SensorUnits::unspecified},
+                     {"state", SensorUnits::unspecified},
+                     {"level", SensorUnits::unspecified},
++                    {"pump_fan_state", SensorUnits::unspecified},
+                 }};
+ 
+ void registerSensorFunctions() __attribute__((constructor));
+-- 
+2.17.1
+

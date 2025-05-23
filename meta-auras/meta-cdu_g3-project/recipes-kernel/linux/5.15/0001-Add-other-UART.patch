@@ -1,0 +1,139 @@
+--- a/arch/arm/boot/dts/aspeed-g6.dtsi
++++ b/arch/arm/boot/dts/aspeed-g6.dtsi
+@@ -43,6 +43,16 @@
+ 		serial4 = &uart5;
+ 		serial5 = &vuart1;
+ 		serial6 = &vuart2;
++		serial7 = &uart8;
++		serial8 = &uart9;
++		serial9 = &uart10;
++		serial10 = &uart11;
++		serial11 = &uart12;
++		serial12 = &uart13;
++		serial13 = &uart6;
++		serial14 = &uart7;
++		serial15 = &vuart3;
++		serial16 = &vuart4;
+ 	};
+ 
+ 
+@@ -752,6 +762,24 @@
+ 				status = "disabled";
+ 			};
+ 
++			vuart3: serial@1e787800 {
++				compatible = "aspeed,ast2600-uart";
++				reg = <0x1e787800 0x40>;
++				interrupts = <GIC_SPI 180 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&syscon ASPEED_CLK_APB1>;
++				virtual;
++				status = "disabled";
++			};
++
++			vuart4: serial@1e788800 {
++				compatible = "aspeed,ast2600-uart";
++				reg = <0x1e788800 0x40>;
++				interrupts = <GIC_SPI 181 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&syscon ASPEED_CLK_APB2>;
++				virtual;
++				status = "disabled";
++			};
++
+ 			uart2: serial@1e78d000 {
+ 				compatible = "aspeed,ast2600-uart";
+ 				reg = <0x1e78d000 0x20>;
+@@ -808,6 +836,94 @@
+ 				ranges = <0 0x1e78a000 0x1000>;
+ 			};
+ 
++			uart6: serial@1e790000 {
++				compatible = "aspeed,ast2600-uart";
++				reg = <0x1e790000 0x20>;
++				interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&syscon ASPEED_CLK_GATE_UART6CLK>;
++				pinctrl-names = "default";
++				pinctrl-0 = <&pinctrl_uart6_default>;
++				no-loopback-test;
++				status = "disabled";
++			};
++
++			uart7: serial@1e790100 {
++				compatible = "aspeed,ast2600-uart";
++				reg = <0x1e790100 0x20>;
++				interrupts = <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&syscon ASPEED_CLK_GATE_UART7CLK>;
++				pinctrl-names = "default";
++				pinctrl-0 = <&pinctrl_uart7_default>;
++				no-loopback-test;
++				status = "disabled";
++			};
++
++			uart8: serial@1e790200 {
++				compatible = "aspeed,ast2600-uart";
++				reg = <0x1e790200 0x20>;
++				interrupts = <GIC_SPI 59 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&syscon ASPEED_CLK_GATE_UART8CLK>;
++				pinctrl-names = "default";
++				pinctrl-0 = <&pinctrl_uart8_default>;
++				no-loopback-test;
++				status = "disabled";
++			};
++
++			uart9: serial@1e790300 {
++				compatible = "aspeed,ast2600-uart";
++				reg = <0x1e790300 0x20>;
++				interrupts = <GIC_SPI 60 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&syscon ASPEED_CLK_GATE_UART9CLK>;
++				pinctrl-names = "default";
++				pinctrl-0 = <&pinctrl_uart9_default>;
++				no-loopback-test;
++				status = "disabled";
++			};
++
++			uart10: serial@1e790400 {
++				compatible = "aspeed,ast2600-uart";
++				reg = <0x1e790400 0x20>;
++				interrupts = <GIC_SPI 61 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&syscon ASPEED_CLK_GATE_UART10CLK>;
++				pinctrl-names = "default";
++				pinctrl-0 = <&pinctrl_uart10_default>;
++				no-loopback-test;
++				status = "disabled";
++			};
++
++			uart11: serial@1e790500 {
++				compatible = "aspeed,ast2600-uart";
++				reg = <0x1e790500 0x20>;
++				interrupts = <GIC_SPI 62 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&syscon ASPEED_CLK_GATE_UART11CLK>;
++				pinctrl-names = "default";
++				pinctrl-0 = <&pinctrl_uart11_default>;
++				no-loopback-test;
++				status = "disabled";
++			};
++
++			uart12: serial@1e790600 {
++				compatible = "aspeed,ast2600-uart";
++				reg = <0x1e790600 0x20>;
++				interrupts = <GIC_SPI 63 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&syscon ASPEED_CLK_GATE_UART12CLK>;
++				pinctrl-names = "default";
++				pinctrl-0 = <&pinctrl_uart12g1_default>;
++				no-loopback-test;
++				status = "disabled";
++			};
++
++			uart13: serial@1e790700 {
++				compatible = "aspeed,ast2600-uart";
++				reg = <0x1e790700 0x20>;
++				interrupts = <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&syscon ASPEED_CLK_GATE_UART13CLK>;
++				pinctrl-names = "default";
++				pinctrl-0 = <&pinctrl_uart13g1_default>;
++				no-loopback-test;
++				status = "disabled";
++			};
++
+ 			fsim0: fsi@1e79b000 {
+ 				compatible = "aspeed,ast2600-fsi-master", "fsi-master";
+ 				reg = <0x1e79b000 0x94>;

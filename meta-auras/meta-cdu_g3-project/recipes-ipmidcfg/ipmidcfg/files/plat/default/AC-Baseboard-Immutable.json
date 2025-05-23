@@ -1,0 +1,1903 @@
+{
+	"Exposes": [
+		{
+			"SensorNumber": "0x3D",
+			"Name": "PSU1_Input_Current",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x3E",
+			"Name": "PSU1_Output_Current",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x3F",
+			"Name": "Pwm_PSU1_Fan_1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x40",
+			"Name": "Pwm_PSU1_Fan_2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x41",
+			"Name": "PSU1_Fan_Speed_1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x42",
+			"Name": "PSU1_Fan_Speed_2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x43",
+			"Name": "Cpu_Power_Average_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x44",
+			"Name": "Cpu_Power_Average_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x45",
+			"Name": "Cpu_Power_Cap_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x46",
+			"Name": "Cpu_Power_Cap_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x47",
+			"Name": "Dimm_Power_Average_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x48",
+			"Name": "Dimm_Power_Average_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x49",
+			"Name": "Dimm_Power_Cap_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x4A",
+			"Name": "Dimm_Power_Cap_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x4B",
+			"Name": "PSU1_Input_Power",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x4C",
+			"Name": "PSU1_Output_Power",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x4D",
+			"Name": "Platform_Power_Average_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x4E",
+			"Name": "Platform_Power_Cap_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x4F",
+			"Name": "Core_16_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x52",
+			"Name": "Core_17_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x53",
+			"Name": "Core_11_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x54",
+			"Name": "Core_11_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x55",
+			"Name": "Core_21_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x56",
+			"Name": "Core_24_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x57",
+			"Name": "Core_25_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x58",
+			"Name": "Core_28_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x59",
+			"Name": "Core_1_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x5A",
+			"Name": "Core_1_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x5B",
+			"Name": "Core_29_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x5C",
+			"Name": "Core_22_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x5D",
+			"Name": "Core_22_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x5E",
+			"Name": "Core_30_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x5F",
+			"Name": "Core_31_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x60",
+			"Name": "Core_26_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x61",
+			"Name": "Core_26_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x62",
+			"Name": "Core_27_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x63",
+			"Name": "Core_27_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x64",
+			"Name": "Core_34_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x65",
+			"Name": "Core_35_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x66",
+			"Name": "Core_38_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x67",
+			"Name": "Core_41_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x68",
+			"Name": "Core_48_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x69",
+			"Name": "Core_51_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x6A",
+			"Name": "Core_54_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x6B",
+			"Name": "Core_36_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x6C",
+			"Name": "Core_36_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x6D",
+			"Name": "Core_37_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x6E",
+			"Name": "Core_37_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x6F",
+			"Name": "Core_57_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x72",
+			"Name": "Core_39_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x73",
+			"Name": "Core_39_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x74",
+			"Name": "Core_3_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x77",
+			"Name": "Core_58_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x78",
+			"Name": "Core_43_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x7B",
+			"Name": "Core_43_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x7E",
+			"Name": "Core_45_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x7F",
+			"Name": "Core_45_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x84",
+			"Name": "Core_59_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x86",
+			"Name": "Core_49_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x87",
+			"Name": "Core_49_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x8A",
+			"Name": "Core_50_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x8B",
+			"Name": "Core_50_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x8D",
+			"Name": "Core_53_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x8E",
+			"Name": "Core_53_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x90",
+			"Name": "Core_57_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x91",
+			"Name": "Core_58_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x92",
+			"Name": "Core_59_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x93",
+			"Name": "Core_5_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x94",
+			"Name": "Core_5_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x95",
+			"Name": "Core_6_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x96",
+			"Name": "Core_8_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x97",
+			"Name": "DIMM_A1_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x98",
+			"Name": "Die_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x99",
+			"Name": "Die_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x9A",
+			"Name": "Core_10_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x9B",
+			"Name": "Core_14_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x9C",
+			"Name": "Core_15_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x9D",
+			"Name": "HBM_Logic_4_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x9E",
+			"Name": "HBM_Logic_4_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0x9F",
+			"Name": "HBM_DRAM_1_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0xA0",
+			"Name": "HBM_DRAM_1_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0xA1",
+			"Name": "HBM_DRAM_2_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0xA2",
+			"Name": "HBM_DRAM_2_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0xA3",
+			"Name": "HBM_DRAM_3_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0xA4",
+			"Name": "HBM_DRAM_3_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0xA5",
+			"Name": "HBM_DRAM_4_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0xA6",
+			"Name": "HBM_DRAM_4_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0xA7",
+			"Name": "HBM_Logic_1_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0xA8",
+			"Name": "HBM_Logic_1_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0xA9",
+			"Name": "HBM_Logic_2_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0xAA",
+			"Name": "HBM_Logic_2_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0xAB",
+			"Name": "HBM_Logic_3_CPU1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"SensorNumber": "0xAC",
+			"Name": "HBM_Logic_3_CPU2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"Name": "DIMM_A2_CPU1",
+			"SensorNumber": "0x26",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"Name": "DIMM_B1_CPU1",
+			"SensorNumber": "0x27",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"Name": "DIMM_B2_CPU1",
+			"SensorNumber": "0x28",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"Name": "DIMM_C1_CPU1",
+			"SensorNumber": "0x29",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"Name": "DIMM_C2_CPU1",
+			"SensorNumber": "0x2A",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"Name": "DIMM_D1_CPU1",
+			"SensorNumber": "0x2B",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"Name": "DIMM_D2_CPU1",
+			"SensorNumber": "0x2C",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"Name": "DIMM_E1_CPU1",
+			"SensorNumber": "0x2D",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"Name": "DIMM_E2_CPU1",
+			"SensorNumber": "0x2E",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"Name": "DIMM_F1_CPU1",
+			"SensorNumber": "0x2F",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"Name": "DIMM_F2_CPU1",
+			"SensorNumber": "0x30",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"Name": "DIMM_A1_CPU2",
+			"SensorNumber": "0x31",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"Name": "DIMM_A2_CPU2",
+			"SensorNumber": "0x32",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"Name": "DIMM_B1_CPU2",
+			"SensorNumber": "0x33",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"Name": "DIMM_B2_CPU2",
+			"SensorNumber": "0x34",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"Name": "DIMM_C1_CPU2",
+			"SensorNumber": "0x35",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"Name": "DIMM_C2_CPU2",
+			"SensorNumber": "0x36",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"Name": "DIMM_D1_CPU2",
+			"SensorNumber": "0x37",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"Name": "DIMM_D2_CPU2",
+			"SensorNumber": "0x38",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"Name": "DIMM_E1_CPU2",
+			"SensorNumber": "0x39",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"Name": "DIMM_E2_CPU2",
+			"SensorNumber": "0x3A",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"Name": "DIMM_F1_CPU2",
+			"SensorNumber": "0x3B",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"Name": "DIMM_F2_CPU2",
+			"SensorNumber": "0x3C",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"Name": "PSU2_Input_Current",
+			"SensorNumber": "0x21",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"Name": "PSU2_Output_Current",
+			"SensorNumber": "0x22",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"Name": "Pwm_PSU2_Fan_1",
+			"SensorNumber": "0x23",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"Name": "Pwm_PSU2_Fan_2",
+			"SensorNumber": "0x24",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"Name": "PSU2_Fan_Speed_1",
+			"SensorNumber": "0x25",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"Name": "PSU2_Fan_Speed_2",
+			"SensorNumber": "0xBE",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"Name": "PSU2_Input_Power",
+			"SensorNumber": "0xBF",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"Name": "PSU2_Output_Power",
+			"SensorNumber": "0xC0",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"Name": "PSU2_Input_Voltage",
+			"SensorNumber": "0xC1",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"Name": "Core_0_CPU1",
+			"SensorNumber": "0xC2",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"Name": "Core_2_CPU2",
+			"SensorNumber": "0xC3",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"Name": "Core_3_CPU1",
+			"SensorNumber": "0xC4",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"Name": "Core_4_CPU2",
+			"SensorNumber": "0xC5",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"Name": "Core_6_CPU1",
+			"SensorNumber": "0xC6",
+			"Type": "SensorNumConfig"
+		},
+		{
+			"Name": "Core_8_CPU2",
+			"SensorNumber": "0xC7",
+			"Type": "SensorNumConfig"
+		},
+        {
+            "Name": "A_P12V_PSU_SCALED",
+            "SensorNumber": "0xAD",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "Name": "P12V_AUX",
+            "SensorNumber": "0xAE",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "Name": "P3V3",
+            "SensorNumber": "0xAF",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "Name": "P5V",
+            "SensorNumber": "0xB0",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "Name": "PVNN_PCH_AUX",
+            "SensorNumber": "0xB1",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "Name": "P105_PCH_AUX",
+            "SensorNumber": "0xB3",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "Name": "P1V8_AUX",
+            "SensorNumber": "0xB4",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "Name": "P3VBAT",
+            "SensorNumber": "0xB5",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "Name": "PVCCIN_CPU1",
+            "SensorNumber": "0xB6",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "Name": "PVCCIN_CPU2",
+            "SensorNumber": "0xB7",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "Name": "PVCCINFAON_CPU1",
+            "SensorNumber": "0xB8",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "Name": "PVCCINFAON_CPU2",
+            "SensorNumber": "0xB9",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "Name": "PVCCFA_EHV_FIVRA_CPU1",
+            "SensorNumber": "0xBA",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "Name": "PVCCFA_EHV_FIVRA_CPU2",
+            "SensorNumber": "0xBB",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "Name": "PVCCD_HV_CPU1",
+            "SensorNumber": "0xBC",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "Name": "PVCCD_HV_CPU2",
+            "SensorNumber": "0xBD",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "Name": "SSB Temp",
+            "SensorNumber": "0xC8",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "Name": "CPU1 VCCIN VR Temp",
+            "SensorNumber": "0xC9",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "Name": "CPU1 PVCCFA_EHV_FIVRA VR Temp",
+            "SensorNumber": "0xCA",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "Name": "CPU1 PVCCD VR Temp",
+            "SensorNumber": "0xCB",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "Name": "CPU2 PVCCIN VR Temp",
+            "SensorNumber": "0xCC",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "Name": "CPU2 PVCCFA_EHV_FIVRA VR Temp",
+            "SensorNumber": "0xCD",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "Name": "CPU2 PVCCD VR Temp",
+            "SensorNumber": "0xCE",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "Name": "DTS CPU1",
+            "SensorNumber": "0xCF",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "Name": "DTS CPU2",
+            "SensorNumber": "0xD0",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "Name": "BMC Temp",
+            "SensorNumber": "0xD2",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "Name": "CPU1 North VR Temp",
+            "SensorNumber": "0xD3",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "Name": "CPU1 South VR Temp",
+            "SensorNumber": "0xD4",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "Name": "CPU2 North VR Temp",
+            "SensorNumber": "0xD5",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "Name": "CPU2 South VR Temp",
+            "SensorNumber": "0xD6",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "Name": "Right Rear Board Temp",
+            "SensorNumber": "0xD8",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "Name": "Left Rear Board Temp",
+            "SensorNumber": "0xD9",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "Name": "PCH M.2 Temp",
+            "SensorNumber": "0xDA",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "Name": "Inlet BRD Temp",
+            "SensorNumber": "0xDB",
+            "Type": "SensorNumConfig"
+        },
+		{
+			"BMC_DEBUG_EN_N": {
+				"PinType": "PIN_NONE"
+			},
+			"BMC_PWR_DEBUG_N": {
+				"PinName": "FM_BMC_CPU_FBRK_OUT_R_N"
+			},
+			"BMC_RSMRST_B": {
+				"PinType": "PIN_NONE"
+			},
+			"BMC_SYSPWROK": {
+				"PinType": "PIN_NONE"
+			},
+			"BMC_XDP_PRST_IN": {
+				"PinName": "DBP_PRESENT_IN_R2_N"
+			},
+			"Name": "ASD",
+			"Type": "ASD"
+		},
+		{
+			"BindConnector": "System Fan connector 1",
+			"Index": 0,
+			"LED": "fan1_fault",
+			"Name": "Fan 1",
+			"Type": "AspeedFan"
+		},
+		{
+			"BindConnector": "System Fan connector 2",
+			"Index": 1,
+			"LED": "fan2_fault",
+			"Name": "Fan 2",
+			"Type": "AspeedFan"
+		},
+		{
+			"BindConnector": "System Fan connector 3",
+			"Index": 2,
+			"LED": "fan3_fault",
+			"Name": "Fan 3",
+			"Type": "AspeedFan"
+		},
+		{
+			"BindConnector": "System Fan connector 4",
+			"Index": 3,
+			"LED": "fan4_fault",
+			"Name": "Fan 4",
+			"Type": "AspeedFan"
+		},
+		{
+			"BindConnector": "System Fan connector 5",
+			"Index": 4,
+			"LED": "fan5_fault",
+			"Name": "Fan 5",
+			"Type": "AspeedFan"
+		},
+		{
+			"BindConnector": "System Fan connector 6",
+			"Index": 5,
+			"LED": "fan6_fault",
+			"Name": "Fan 6",
+			"Type": "AspeedFan"
+		},
+		{
+			"BindConnector": "System Fan connector 7",
+			"Index": 6,
+			"LED": "fan7_fault",
+			"Name": "Fan 7",
+			"Type": "AspeedFan"
+		},
+		{
+			"BindConnector": "System Fan connector 8",
+			"Index": 7,
+			"LED": "fan8_fault",
+			"Name": "Fan 8",
+			"Type": "AspeedFan"
+		},
+		{
+			"BindConnector": "System Fan connector 9",
+			"Index": 8,
+			"Name": "Fan 9",
+			"Type": "AspeedFan"
+		},
+		{
+			"BindConnector": "System Fan connector 10",
+			"Index": 9,
+			"Name": "Fan 10",
+			"Type": "AspeedFan"
+		},
+		{
+			"C1": 92.16,
+			"C2": 107.52,
+			"MaxCFM": 17.5,
+			"Name": "System Airflow",
+			"TachMaxPercent": 100,
+			"TachMinPercent": 20,
+			"Tachs": [
+				"Fan 1",
+				"Fan 2",
+				"Fan 3",
+				"Fan 4",
+				"Fan 5",
+				"Fan 6",
+				"Fan 7",
+				"Fan 8",
+				"Fan 9",
+				"Fan 10"
+			],
+			"Type": "CFMSensor"
+		},
+		{
+			"Name": "CUPS",
+			"Polling": {
+				"AveragingPeriod": 3000,
+				"Interval": 1000
+			},
+			"Type": "CupsSensor"
+		},
+		{
+			"AllowedFailures": 1,
+			"Name": "FanRedundancy",
+			"Type": "FanRedundancy"
+		},
+		{
+			"Name": "System Fan connector 1",
+			"Pwm": 0,
+			"Tachs": [
+				0
+			],
+			"Type": "IntelFanConnector"
+		},
+		{
+			"Name": "System Fan connector 2",
+			"Pwm": 1,
+			"Tachs": [
+				1
+			],
+			"Type": "IntelFanConnector"
+		},
+		{
+			"Name": "System Fan connector 3",
+			"Pwm": 2,
+			"Tachs": [
+				2
+			],
+			"Type": "IntelFanConnector"
+		},
+		{
+			"Name": "System Fan connector 4",
+			"Pwm": 3,
+			"Tachs": [
+				3
+			],
+			"Type": "IntelFanConnector"
+		},
+		{
+			"Name": "System Fan connector 5",
+			"Pwm": 4,
+			"Tachs": [
+				4
+			],
+			"Type": "IntelFanConnector"
+		},
+		{
+			"Name": "System Fan connector 6",
+			"Pwm": 5,
+			"Tachs": [
+				5
+			],
+			"Type": "IntelFanConnector"
+		},
+		{
+			"Name": "System Fan connector 7",
+			"Pwm": 12,
+			"Tachs": [
+				6
+			],
+			"Type": "IntelFanConnector"
+		},
+		{
+			"Name": "System Fan connector 8",
+			"Pwm": 13,
+			"Tachs": [
+				7
+			],
+			"Type": "IntelFanConnector"
+		},
+		{
+			"Name": "System Fan connector 9",
+			"Pwm": 14,
+			"Tachs": [
+				8
+			],
+			"Type": "IntelFanConnector"
+		},
+		{
+			"Name": "System Fan connector 10",
+			"Pwm": 15,
+			"Tachs": [
+				9
+			],
+			"Type": "IntelFanConnector"
+		},
+		{
+			"ARPOwnerSupport": false,
+			"BMCReceiverAddress": 20,
+			"BindingType": "MctpSMBus",
+			"Bus": "/dev/i2c-8",
+			"DefaultEID": 8,
+			"EIDPool": [
+				9,
+				10,
+				11,
+				12,
+				13,
+				14,
+				15,
+				16,
+				17,
+				18,
+				19,
+				20
+			],
+			"Index": 0,
+			"Name": "MCTP SMBus PCIe slot",
+			"PhysicalMediumID": "Smbus3OrI2c400khzCompatible",
+			"ReqRetryCount": 2,
+			"ReqToRespTimeMs": 100,
+			"Role": "BusOwner",
+			"TopMostBusOwner": false,
+			"OwnEidPool": true,
+			"Type": "MctpConfiguration"
+		},
+		{
+			"BDF": 0,
+			"BindingType": "MctpPCIe",
+			"DefaultEID": 0,
+			"Index": 1,
+			"Name": "MCTP PCIe",
+			"PhysicalMediumID": "Pcie2",
+			"ReqRetryCount": 2,
+			"ReqToRespTimeMs": 120,
+			"GetRoutingInterval": 5,
+			"Role": "Endpoint",
+			"Type": "MctpConfiguration"
+		},
+		{
+			"Address": "0x71",
+			"Bus": 8,
+			"ChannelNames": [
+				"M2Slot1",
+				"M2Slot2"
+			],
+			"Name": "M2 Mux",
+			"Type": "PCA9543Mux"
+		},
+		{
+			"Address": "0x72",
+			"Bus": 8,
+			"ChannelNames": [
+				"Pcie_Slot_1",
+				"Pcie_Slot_2",
+				"",
+				"FruChannel"
+			],
+			"Name": "Riser 1 Mux",
+			"Type": "PCA9546Mux"
+		},
+		{
+			"Address": "0x73",
+			"Bus": 8,
+			"ChannelNames": [
+				"Pcie_Slot_1",
+				"Pcie_Slot_2",
+				"",
+				"FruChannel"
+			],
+			"Name": "Riser 2 Mux",
+			"Type": "PCA9546Mux"
+		},
+		{
+			"Address": "0x70",
+			"Bus": 8,
+			"ChannelNames": [
+				"Pcie_Slot_1",
+				"Pcie_Slot_2",
+				"Pcie_Slot_3",
+				"Pcie_Slot_4"
+			],
+			"Name": "PCIE Mux",
+			"Type": "PCA9546Mux"
+		},
+		{
+			"Address": "0x38",
+			"Bus": 4,
+			"Name": "PFR",
+			"Type": "PFR"
+		},
+		{
+			"Class": "fan",
+			"FFGainCoefficient": 1.0,
+			"FFOffCoefficient": 0.0,
+			"ICoefficient": 0.0,
+			"ILimitMax": 0.0,
+			"ILimitMin": 0.0,
+			"Inputs": [
+				"Fan 1"
+			],
+			"Name": "Fan 1",
+			"NegativeHysteresis": 0.0,
+			"OutLimitMax": 100.0,
+			"OutLimitMin": 30.0,
+			"Outputs": [
+				"Pwm 1"
+			],
+			"PCoefficient": 0.0,
+			"PositiveHysteresis": 0.0,
+			"SlewNeg": 0.0,
+			"SlewPos": 0.0,
+			"Type": "Pid",
+			"Zones": [
+				"Left"
+			]
+		},
+		{
+			"Class": "fan",
+			"FFGainCoefficient": 1.0,
+			"FFOffCoefficient": 0.0,
+			"ICoefficient": 0.0,
+			"ILimitMax": 0.0,
+			"ILimitMin": 0.0,
+			"Inputs": [
+				"Fan 2"
+			],
+			"Name": "Fan 2",
+			"NegativeHysteresis": 0.0,
+			"OutLimitMax": 100.0,
+			"OutLimitMin": 30.0,
+			"Outputs": [
+				"Pwm 2"
+			],
+			"PCoefficient": 0.0,
+			"PositiveHysteresis": 0.0,
+			"SlewNeg": 0.0,
+			"SlewPos": 0.0,
+			"Type": "Pid",
+			"Zones": [
+				"Left"
+			]
+		},
+		{
+			"Class": "fan",
+			"FFGainCoefficient": 1.0,
+			"FFOffCoefficient": 0.0,
+			"ICoefficient": 0.0,
+			"ILimitMax": 0.0,
+			"ILimitMin": 0.0,
+			"Inputs": [
+				"Fan 3"
+			],
+			"Name": "Fan 3",
+			"NegativeHysteresis": 0.0,
+			"OutLimitMax": 100.0,
+			"OutLimitMin": 30.0,
+			"Outputs": [
+				"Pwm 3"
+			],
+			"PCoefficient": 0.0,
+			"PositiveHysteresis": 0.0,
+			"SlewNeg": 0.0,
+			"SlewPos": 0.0,
+			"Type": "Pid",
+			"Zones": [
+				"Left"
+			]
+		},
+		{
+			"Class": "fan",
+			"FFGainCoefficient": 1.0,
+			"FFOffCoefficient": 0.0,
+			"ICoefficient": 0.0,
+			"ILimitMax": 0.0,
+			"ILimitMin": 0.0,
+			"Inputs": [
+				"Fan 4"
+			],
+			"Name": "Fan 4",
+			"NegativeHysteresis": 0.0,
+			"OutLimitMax": 100.0,
+			"OutLimitMin": 30.0,
+			"Outputs": [
+				"Pwm 4"
+			],
+			"PCoefficient": 0.0,
+			"PositiveHysteresis": 0.0,
+			"SlewNeg": 0.0,
+			"SlewPos": 0.0,
+			"Type": "Pid",
+			"Zones": [
+				"Left"
+			]
+		},
+		{
+			"Class": "fan",
+			"FFGainCoefficient": 1.0,
+			"FFOffCoefficient": 0.0,
+			"ICoefficient": 0.0,
+			"ILimitMax": 0.0,
+			"ILimitMin": 0.0,
+			"Inputs": [
+				"Fan 5"
+			],
+			"Name": "Fan 5",
+			"NegativeHysteresis": 0.0,
+			"OutLimitMax": 100.0,
+			"OutLimitMin": 30.0,
+			"Outputs": [
+				"Pwm 5"
+			],
+			"PCoefficient": 0.0,
+			"PositiveHysteresis": 0.0,
+			"SlewNeg": 0.0,
+			"SlewPos": 0.0,
+			"Type": "Pid",
+			"Zones": [
+				"Right"
+			]
+		},
+		{
+			"Class": "fan",
+			"FFGainCoefficient": 1.0,
+			"FFOffCoefficient": 0.0,
+			"ICoefficient": 0.0,
+			"ILimitMax": 0.0,
+			"ILimitMin": 0.0,
+			"Inputs": [
+				"Fan 6"
+			],
+			"Name": "Fan 6",
+			"NegativeHysteresis": 0.0,
+			"OutLimitMax": 100.0,
+			"OutLimitMin": 30.0,
+			"Outputs": [
+				"Pwm 6"
+			],
+			"PCoefficient": 0.0,
+			"PositiveHysteresis": 0.0,
+			"SlewNeg": 0.0,
+			"SlewPos": 0.0,
+			"Type": "Pid",
+			"Zones": [
+				"Right"
+			]
+		},
+		{
+			"Class": "fan",
+			"FFGainCoefficient": 1.0,
+			"FFOffCoefficient": 0.0,
+			"ICoefficient": 0.0,
+			"ILimitMax": 0.0,
+			"ILimitMin": 0.0,
+			"Inputs": [
+				"Fan 7"
+			],
+			"Name": "Fan 7",
+			"NegativeHysteresis": 0.0,
+			"OutLimitMax": 100.0,
+			"OutLimitMin": 30.0,
+			"Outputs": [
+				"Pwm 13"
+			],
+			"PCoefficient": 0.0,
+			"PositiveHysteresis": 0.0,
+			"SlewNeg": 0.0,
+			"SlewPos": 0.0,
+			"Type": "Pid",
+			"Zones": [
+				"Right"
+			]
+		},
+		{
+			"Class": "fan",
+			"FFGainCoefficient": 1.0,
+			"FFOffCoefficient": 0.0,
+			"ICoefficient": 0.0,
+			"ILimitMax": 0.0,
+			"ILimitMin": 0.0,
+			"Inputs": [
+				"Fan 8"
+			],
+			"Name": "Fan 8",
+			"NegativeHysteresis": 0.0,
+			"OutLimitMax": 100.0,
+			"OutLimitMin": 30.0,
+			"Outputs": [
+				"Pwm 14"
+			],
+			"PCoefficient": 0.0,
+			"PositiveHysteresis": 0.0,
+			"SlewNeg": 0.0,
+			"SlewPos": 0.0,
+			"Type": "Pid",
+			"Zones": [
+				"Right"
+			]
+		},
+		{
+			"Class": "fan",
+			"FFGainCoefficient": 1.0,
+			"FFOffCoefficient": 0.0,
+			"ICoefficient": 0.0,
+			"ILimitMax": 0.0,
+			"ILimitMin": 0.0,
+			"Inputs": [
+				"Fan 9"
+			],
+			"Name": "Fan 9",
+			"NegativeHysteresis": 0.0,
+			"OutLimitMax": 100.0,
+			"OutLimitMin": 30.0,
+			"Outputs": [
+				"Pwm 15"
+			],
+			"PCoefficient": 0.0,
+			"PositiveHysteresis": 0.0,
+			"SlewNeg": 0.0,
+			"SlewPos": 0.0,
+			"Type": "Pid",
+			"Zones": [
+				"Right"
+			]
+		},
+		{
+			"Class": "fan",
+			"FFGainCoefficient": 1.0,
+			"FFOffCoefficient": 0.0,
+			"ICoefficient": 0.0,
+			"ILimitMax": 0.0,
+			"ILimitMin": 0.0,
+			"Inputs": [
+				"Fan 10"
+			],
+			"Name": "Fan 10",
+			"NegativeHysteresis": 0.0,
+			"OutLimitMax": 100.0,
+			"OutLimitMin": 30.0,
+			"Outputs": [
+				"Pwm 16"
+			],
+			"PCoefficient": 0.0,
+			"PositiveHysteresis": 0.0,
+			"SlewNeg": 0.0,
+			"SlewPos": 0.0,
+			"Type": "Pid",
+			"Zones": [
+				"Left"
+			]
+		},
+		{
+			"Class": "temp",
+			"FFGainCoefficient": 0.0,
+			"FFOffCoefficient": 0.0,
+			"ICoefficient": -1.0,
+			"ILimitMax": 100,
+			"ILimitMin": 30,
+			"Inputs": [
+				"BMC Temp"
+			],
+			"Name": "BMC Temp",
+			"NegativeHysteresis": 5.0,
+			"OutLimitMax": 100,
+			"OutLimitMin": 30,
+			"Outputs": [],
+			"PCoefficient": -0.15,
+			"PositiveHysteresis": 0.0,
+			"SetPoint": 80.0,
+			"SlewNeg": -1,
+			"SlewPos": 0.0,
+			"Type": "Pid",
+			"Zones": [
+				"Left"
+			]
+		},
+		{
+			"Class": "temp",
+			"FFGainCoefficient": 0.0,
+			"FFOffCoefficient": 0.0,
+			"ICoefficient": -1.0,
+			"ILimitMax": 100,
+			"ILimitMin": 30,
+			"Inputs": [
+				"CPU1 North VR Temp"
+			],
+			"Name": "CPU1 North VR Temp",
+			"NegativeHysteresis": 5.0,
+			"OutLimitMax": 100,
+			"OutLimitMin": 30,
+			"Outputs": [],
+			"PCoefficient": -0.15,
+			"PositiveHysteresis": 0.0,
+			"SetPoint": 80.0,
+			"SlewNeg": -1,
+			"SlewPos": 0.0,
+			"Type": "Pid",
+			"Zones": [
+				"Left"
+			]
+		},
+		{
+			"Class": "temp",
+			"FFGainCoefficient": 0.0,
+			"FFOffCoefficient": 0.0,
+			"ICoefficient": -1.0,
+			"ILimitMax": 100,
+			"ILimitMin": 30,
+			"Inputs": [
+				"CPU1 South VR Temp"
+			],
+			"Name": "CPU1 South VR Temp",
+			"NegativeHysteresis": 5.0,
+			"OutLimitMax": 100,
+			"OutLimitMin": 30,
+			"Outputs": [],
+			"PCoefficient": -0.15,
+			"PositiveHysteresis": 0.0,
+			"SetPoint": 80.0,
+			"SlewNeg": -1,
+			"SlewPos": 0.0,
+			"Type": "Pid",
+			"Zones": [
+				"Left"
+			]
+		},
+		{
+			"Class": "temp",
+			"FFGainCoefficient": 0.0,
+			"FFOffCoefficient": 0.0,
+			"ICoefficient": -1.0,
+			"ILimitMax": 100,
+			"ILimitMin": 30,
+			"Inputs": [
+				"CPU2 North VR Temp"
+			],
+			"Name": "CPU2 North VR Temp",
+			"NegativeHysteresis": 5.0,
+			"OutLimitMax": 100,
+			"OutLimitMin": 30,
+			"Outputs": [],
+			"PCoefficient": -0.15,
+			"PositiveHysteresis": 0.0,
+			"SetPoint": 80.0,
+			"SlewNeg": -1,
+			"SlewPos": 0.0,
+			"Type": "Pid",
+			"Zones": [
+				"Right"
+			]
+		},
+		{
+			"Class": "temp",
+			"FFGainCoefficient": 0.0,
+			"FFOffCoefficient": 0.0,
+			"ICoefficient": -1.0,
+			"ILimitMax": 100,
+			"ILimitMin": 30,
+			"Inputs": [
+				"CPU2 South VR Temp"
+			],
+			"Name": "CPU2 South VR Temp",
+			"NegativeHysteresis": 5.0,
+			"OutLimitMax": 100,
+			"OutLimitMin": 30,
+			"Outputs": [],
+			"PCoefficient": -0.15,
+			"PositiveHysteresis": 0.0,
+			"SetPoint": 80.0,
+			"SlewNeg": -1,
+			"SlewPos": 0.0,
+			"Type": "Pid",
+			"Zones": [
+				"Right"
+			]
+		},
+		{
+			"Class": "temp",
+			"FFGainCoefficient": 0.0,
+			"FFOffCoefficient": 0.0,
+			"ICoefficient": -1.0,
+			"ILimitMax": 100,
+			"ILimitMin": 30,
+			"Inputs": [
+				"DIMM [ABC]\\d+ CPU1"
+			],
+			"Name": "CPU1 DIMM ABC",
+			"NegativeHysteresis": 5.0,
+			"OutLimitMax": 100,
+			"OutLimitMin": 30,
+			"Outputs": [],
+			"PCoefficient": -0.15,
+			"PositiveHysteresis": 0.0,
+			"SetPoint": 80.0,
+			"SlewNeg": -1,
+			"SlewPos": 0.0,
+			"Type": "Pid",
+			"Zones": [
+				"Left",
+				"Right"
+			]
+		},
+		{
+			"Class": "temp",
+			"FFGainCoefficient": 0.0,
+			"FFOffCoefficient": 0.0,
+			"ICoefficient": -1.0,
+			"ILimitMax": 100,
+			"ILimitMin": 30,
+			"Inputs": [
+				"DIMM [DEF]\\d+ CPU1"
+			],
+			"Name": "CPU1 DIMM DEF",
+			"NegativeHysteresis": 5.0,
+			"OutLimitMax": 100,
+			"OutLimitMin": 30,
+			"Outputs": [],
+			"PCoefficient": -0.15,
+			"PositiveHysteresis": 0.0,
+			"SetPoint": 80.0,
+			"SlewNeg": -1,
+			"SlewPos": 0.0,
+			"Type": "Pid",
+			"Zones": [
+				"Left"
+			]
+		},
+		{
+			"Class": "temp",
+			"FFGainCoefficient": 0.0,
+			"FFOffCoefficient": 0.0,
+			"ICoefficient": -1.0,
+			"ILimitMax": 100,
+			"ILimitMin": 30,
+			"Inputs": [
+				"DIMM [ABC]\\d+ CPU2"
+			],
+			"Name": "CPU2 DIMM ABC",
+			"NegativeHysteresis": 5.0,
+			"OutLimitMax": 100,
+			"OutLimitMin": 30,
+			"Outputs": [],
+			"PCoefficient": -0.15,
+			"PositiveHysteresis": 0.0,
+			"SetPoint": 80.0,
+			"SlewNeg": -1,
+			"SlewPos": 0.0,
+			"Type": "Pid",
+			"Zones": [
+				"Right",
+				"PSU"
+			]
+		},
+		{
+			"Class": "temp",
+			"FFGainCoefficient": 0.0,
+			"FFOffCoefficient": 0.0,
+			"ICoefficient": -1.0,
+			"ILimitMax": 100,
+			"ILimitMin": 30,
+			"Inputs": [
+				"DIMM [DEF]\\d+ CPU2"
+			],
+			"Name": "CPU2 DIMM DEF",
+			"NegativeHysteresis": 5.0,
+			"OutLimitMax": 100,
+			"OutLimitMin": 30,
+			"Outputs": [],
+			"PCoefficient": -0.15,
+			"PositiveHysteresis": 0.0,
+			"SetPoint": 80.0,
+			"SlewNeg": -1,
+			"SlewPos": 0.0,
+			"Type": "Pid",
+			"Zones": [
+				"Left",
+				"Right"
+			]
+		},
+		{
+			"Class": "temp",
+			"FFGainCoefficient": 0.0,
+			"FFOffCoefficient": 0.0,
+			"ICoefficient": -0.2,
+			"ILimitMax": 100,
+			"ILimitMin": 30,
+			"Inputs": [
+				"DTS CPU1"
+			],
+			"Name": "DTS CPU1",
+			"NegativeHysteresis": 5.0,
+			"OutLimitMax": 100,
+			"OutLimitMin": 30,
+			"Outputs": [],
+			"PCoefficient": -0.1,
+			"PositiveHysteresis": 0.0,
+			"SetPoint": 70.0,
+			"SlewNeg": -1,
+			"SlewPos": 0.0,
+			"Type": "Pid",
+			"Zones": [
+				"Left"
+			]
+		},
+		{
+			"Class": "temp",
+			"FFGainCoefficient": 0.0,
+			"FFOffCoefficient": 0.0,
+			"ICoefficient": -2.0,
+			"ILimitMax": 100,
+			"ILimitMin": 30,
+			"Inputs": [
+				"DTS CPU2"
+			],
+			"Name": "DTS CPU2",
+			"NegativeHysteresis": 5.0,
+			"OutLimitMax": 100,
+			"OutLimitMin": 30,
+			"Outputs": [],
+			"PCoefficient": -0.15,
+			"PositiveHysteresis": 0.0,
+			"SetPoint": 70.0,
+			"SlewNeg": -1,
+			"SlewPos": 0.0,
+			"Type": "Pid",
+			"Zones": [
+				"Right",
+				"PSU"
+			]
+		},
+		{
+			"Class": "temp",
+			"FFGainCoefficient": 0.0,
+			"FFOffCoefficient": 0.0,
+			"ICoefficient": -1.0,
+			"ILimitMax": 100,
+			"ILimitMin": 30,
+			"Inputs": [
+				"Left Rear Temp"
+			],
+			"Name": "Left Rear Temp",
+			"NegativeHysteresis": 5.0,
+			"OutLimitMax": 100,
+			"OutLimitMin": 30,
+			"Outputs": [],
+			"PCoefficient": -0.15,
+			"PositiveHysteresis": 0.0,
+			"SetPoint": 60.0,
+			"SlewNeg": -1,
+			"SlewPos": 0.0,
+			"Type": "Pid",
+			"Zones": [
+				"Left",
+				"Right"
+			]
+		},
+		{
+			"Class": "temp",
+			"FFGainCoefficient": 0.0,
+			"FFOffCoefficient": 0.0,
+			"ICoefficient": -1.0,
+			"ILimitMax": 100,
+			"ILimitMin": 30,
+			"Inputs": [
+				"Right Rear Board"
+			],
+			"Name": "Right Rear Board",
+			"NegativeHysteresis": 5.0,
+			"OutLimitMax": 100,
+			"OutLimitMin": 30,
+			"Outputs": [],
+			"PCoefficient": -0.15,
+			"PositiveHysteresis": 0.0,
+			"SetPoint": 60.0,
+			"SlewNeg": -1,
+			"SlewPos": 0.0,
+			"Type": "Pid",
+			"Zones": [
+				"Left"
+			]
+		},
+		{
+			"Class": "temp",
+			"FFGainCoefficient": 0.0,
+			"FFOffCoefficient": 0.0,
+			"ICoefficient": -1.0,
+			"ILimitMax": 100,
+			"ILimitMin": 30,
+			"Inputs": [
+				"CPU1 VR Mem ABCD Temp",
+				"CPU1 VR Mem ABCD Temp",
+				"CPU1 VR P1V8"
+			],
+			"Name": "CPU 1 VR Temp",
+			"NegativeHysteresis": 5.0,
+			"OutLimitMax": 100,
+			"OutLimitMin": 30,
+			"Outputs": [],
+			"PCoefficient": -0.15,
+			"PositiveHysteresis": 0.0,
+			"SetPoint": 85.0,
+			"SlewNeg": -1,
+			"SlewPos": 0.0,
+			"Type": "Pid",
+			"Zones": [
+				"Left"
+			]
+		},
+		{
+			"Class": "temp",
+			"FFGainCoefficient": 0.0,
+			"FFOffCoefficient": 0.0,
+			"ICoefficient": -1.0,
+			"ILimitMax": 100,
+			"ILimitMin": 30,
+			"Inputs": [
+				"CPU2 VR Mem ABCD Temp",
+				"CPU2 VR Mem ABCD Temp",
+				"CPU2 VR P1V8"
+			],
+			"Name": "CPU 2 VR Temp",
+			"NegativeHysteresis": 5.0,
+			"OutLimitMax": 100,
+			"OutLimitMin": 30,
+			"Outputs": [],
+			"PCoefficient": -0.15,
+			"PositiveHysteresis": 0.0,
+			"SetPoint": 85.0,
+			"SlewNeg": -1,
+			"SlewPos": 0.0,
+			"Type": "Pid",
+			"Zones": [
+				"Right",
+				"PSU"
+			]
+		},
+		{
+			"FailSafePercent": 100,
+			"MinThermalOutput": 30,
+			"Name": "Left",
+			"Type": "Pid.Zone"
+		},
+		{
+			"FailSafePercent": 100,
+			"MinThermalOutput": 30,
+			"Name": "Right",
+			"Type": "Pid.Zone"
+		},
+		{
+			"FailSafePercent": 100,
+			"MinThermalOutput": 30,
+			"Name": "PSU",
+			"Type": "Pid.Zone"
+		},
+		{
+			"Class": "Ceiling",
+			"Inputs": [
+				"Front Panel Temp"
+			],
+			"Name": "Front Panel UCC",
+			"NegativeHysteresis": 2,
+			"Output": [
+				70.0,
+				80.0
+			],
+			"PositiveHysteresis": 0,
+			"Profiles": [
+				"Acoustic"
+			],
+			"Reading": [
+				22.0,
+				32.0
+			],
+			"Type": "Stepwise",
+			"Zones": [
+				"Left",
+				"Right"
+			]
+		},
+		{
+			"Class": "Floor",
+			"Inputs": [
+				"Front Panel Temp"
+			],
+			"Name": "Front Panel LCC",
+			"NegativeHysteresis": 2,
+			"Output": [
+				50.0,
+				60.0
+			],
+			"PositiveHysteresis": 0,
+			"Reading": [
+				20.0,
+				30.0
+			],
+			"Type": "Stepwise",
+			"Zones": [
+				"Left",
+				"Right"
+			]
+		},
+		{
+			"Address": "0x30",
+			"Bus": 0,
+			"CpuID": 1,
+			"Name": "CPU 1",
+			"PiromI2cAddress": "0x50",
+			"PiromI2cBus": 12,
+			"PresenceGpio": [
+				{
+					"Name": "CPU1_PRESENCE",
+					"Polarity": "Low"
+				}
+			],
+			"Type": "XeonCPU"
+		},
+		{
+			"Address": "0x31",
+			"Bus": 0,
+			"CpuID": 2,
+			"Name": "CPU 2",
+			"PiromI2cAddress": "0x51",
+			"PiromI2cBus": 12,
+			"PresenceGpio": [
+				{
+					"Name": "CPU2_PRESENCE",
+					"Polarity": "Low"
+				}
+			],
+			"Type": "XeonCPU"
+		},
+		{
+			"Name": "PCH SMBUS Slave",
+			"PchSmbusSlaveI2cBus": 9,
+			"PchSmbusSlaveI2cAddress": "0x44",
+			"Type": "PchSmbusSlave"
+		},
+		{
+			"Name": "IPMB Channel ME",
+			"IpmbChannelNum": 1,
+			"IpmidChannelNum": 6,
+			"I2CSlaveAddr": "0x2C",
+			"Type": "IpmbChannel"
+		},
+		{
+			"Name": "IPMB Channel PIPMB",
+			"IpmbChannelNum": 0,
+			"IpmidChannelNum": 0,
+			"I2CSlaveAddr": "0x58",
+			"Type": "IpmbChannel"
+		}
+	],
+	"Name": "AC Baseboard",
+	"Probe": [
+		"FALSE"
+	],
+	"Type": "Board",
+	"xyz.openbmc_project.Inventory.Decorator.Asset": {
+		"Manufacturer": "Intel Corporation",
+		"Model": "ArcherCity",
+		"PartNumber": "",
+		"SerialNumber": ""
+	},
+	"xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+		"AssetTag": ""
+	},
+	"xyz.openbmc_project.Inventory.Item.Board.Motherboard": {
+		"ProductId": 156
+	},
+	"xyz.openbmc_project.Inventory.Item.System": {}
+}

@@ -1,0 +1,1 @@
+#define IS_BOOTLOADER_TEST_KEY 1

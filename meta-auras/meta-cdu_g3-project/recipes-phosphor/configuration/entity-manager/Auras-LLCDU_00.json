@@ -1,0 +1,573 @@
+{
+    "Exposes": [
+        {
+            "DBusObj": "/xyz/openbmc_project/stm32io/0/PT100/Temperature",
+            "Name": "Sec_Inlet_T",
+            "MaxReading": 115.0,
+            "MinReading": -40.0,
+            "Thresholds": [
+            ],
+            "Type": "STM32_TEMPERATURE"
+        },
+        {
+            "Name": "Sec_Inlet_T",
+            "SensorNumber": "0x50",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "DBusObj": "/xyz/openbmc_project/stm32io/0/ADC/Temperature1",
+            "Name": "Sec_Outlet_T",
+            "MaxReading": 150.0,
+            "MinReading": -25.0,
+            "Thresholds": [
+            ],
+            "Type": "STM32_TEMPERATURE"
+        },
+        {
+            "Name": "Sec_Outlet_T",
+            "SensorNumber": "0x51",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "DBusObj": "/xyz/openbmc_project/stm32io/0/ADC/Temperature3",
+            "Name": "Pri_Inlet_T",
+            "MaxReading": 150.0,
+            "MinReading": -25.0,
+            "Thresholds": [
+            ],
+            "Type": "STM32_TEMPERATURE"
+        },
+        {
+            "Name": "Pri_Inlet_T",
+            "SensorNumber": "0x52",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "DBusObj": "/xyz/openbmc_project/stm32io/0/ADC/Temperature2",
+            "Name": "Pri_Outlet_T",
+            "MaxReading": 115.0,
+            "MinReading": -40.0,
+            "Thresholds": [
+            ],
+            "Type": "STM32_TEMPERATURE"
+        },
+        {
+            "Name": "Pri_Outlet_T",
+            "SensorNumber": "0x53",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "DBusObj": "/xyz/openbmc_project/stm32io/0/SystemInfo/SysBoardTemperature",
+            "Name": "MCU_T",
+            "MaxReading": 125.0,
+            "MinReading": -55.0,
+            "Thresholds": [
+            ],
+            "Type": "STM32_TEMPERATURE"
+        },
+        {
+            "Name": "MCU_T",
+            "SensorNumber": "0x54",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "DBusObj": "/xyz/openbmc_project/stm32io/0/ADC/PressureDrop",
+            "Name": "Sec_dP",
+            "MaxReading": 1600.0,
+            "MinReading": -1600.0,
+            "Thresholds": [
+            ],
+            "Type": "STM32_PRESSURE"
+        },
+        {
+            "Name": "Sec_dP",
+            "SensorNumber": "0x55",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "DBusObj": "/xyz/openbmc_project/stm32io/0/ADC/Pressure1",
+            "Name": "Sec_inlet_P",
+            "MaxReading": 1500.0,
+            "MinReading": -100.0,
+            "Thresholds": [
+            ],
+            "Type": "STM32_PRESSURE"
+        },
+        {
+            "Name": "Sec_inlet_P",
+            "SensorNumber": "0x56",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "DBusObj": "/xyz/openbmc_project/stm32io/0/ADC/Pressure2",
+            "Name": "Sec_Outlet_P",
+            "MaxReading": 1500.0,
+            "MinReading": -100.0,
+            "Thresholds": [
+            ],
+            "Type": "STM32_PRESSURE"
+        },
+        {
+            "Name": "Sec_Outlet_P",
+            "SensorNumber": "0x57",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "DBusObj": "/xyz/openbmc_project/stm32io/0/ADC/Pressure3",
+            "Name": "Pri_Inlet_P",
+            "MaxReading": 1500.0,
+            "MinReading": -100.0,
+            "Thresholds": [
+            ],
+            "Type": "STM32_PRESSURE"
+        },
+        {
+            "Name": "Pri_Inlet_P",
+            "SensorNumber": "0x58",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "DBusObj": "/xyz/openbmc_project/stm32io/0/ADC/Flow1",
+            "Name": "Sec_Flow",
+            "MaxReading": 9.2,
+            "MinReading": 0.0,
+            "Thresholds": [
+            ],
+            "Type": "STM32_FLOW"
+        },
+        {
+            "Name": "Sec_Flow",
+            "SensorNumber": "0x59",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "DBusObj": "/xyz/openbmc_project/stm32io/0/ADC/Flow2",
+            "Name": "Pri_Flow",
+            "MaxReading": 9.2,
+            "MinReading": 0.0,
+            "Thresholds": [
+            ],
+            "Type": "STM32_FLOW"
+        },
+        {
+            "Name": "Pri_Flow",
+            "SensorNumber": "0x5A",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "DBusObj": "/xyz/openbmc_project/stm32io/0/Pump/PumpSpeed1",
+            "Name": "P1_Speed",
+            "Thresholds": [
+            ],
+            "Type": "STM32_SPEED"
+        },
+        {
+            "Name": "P1_Speed",
+            "SensorNumber": "0x5B",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "DBusObj": "/xyz/openbmc_project/stm32io/0/Pump/PumpSpeed2",
+            "Name": "P2_Speed",
+            "Thresholds": [
+            ],
+            "Type": "STM32_SPEED"
+        },
+        {
+            "Name": "P2_Speed",
+            "SensorNumber": "0x5C",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "DBusObj": "/xyz/openbmc_project/stm32io/0/Pump/PumpSpeed3",
+            "Name": "P3_Speed",
+            "Thresholds": [
+            ],
+            "Type": "STM32_SPEED"
+        },
+        {
+            "Name": "P3_Speed",
+            "SensorNumber": "0x5D",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "DBusObj": "/xyz/openbmc_project/stm32io/0/PSU1/TotalPower",
+            "Name": "PSU1_power",
+            "MaxReading": 4000.0,
+            "MinReading": 0.0,
+            "Thresholds": [
+            ],
+            "Type": "STM32_POWER"
+        },
+        {
+            "Name": "PSU1_power",
+            "SensorNumber": "0x5E",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "DBusObj": "/xyz/openbmc_project/stm32io/0/PSU2/TotalPower",
+            "Name": "PSU2_power",
+            "MaxReading": 4000.0,
+            "MinReading": 0.0,
+            "Thresholds": [
+            ],
+            "Type": "STM32_POWER"
+        },
+        {
+            "Name": "PSU2_power",
+            "SensorNumber": "0x5F",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "DBusObj": "/xyz/openbmc_project/stm32io/0/PSU1/Voltage",
+            "Name": "PSU1_Vout",
+            "MaxReading": 55.0,
+            "MinReading": 0.0,
+            "Thresholds": [
+            ],
+            "Type": "STM32_VOLTAGE"
+        },
+        {
+            "Name": "PSU1_Vout",
+            "SensorNumber": "0x60",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "DBusObj": "/xyz/openbmc_project/stm32io/0/PSU2/Voltage",
+            "Name": "PSU2_Vout",
+            "MaxReading": 55.0,
+            "MinReading": 0.0,
+            "Thresholds": [
+            ],
+            "Type": "STM32_VOLTAGE"
+        },
+        {
+            "Name": "PSU2_Vout",
+            "SensorNumber": "0x61",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "DBusObj": "/xyz/openbmc_project/stm32io/0/PSU1/Current",
+            "Name": "PSU1_Aout",
+            "MaxReading": 90.0,
+            "MinReading": 0.0,
+            "Thresholds": [
+            ],
+            "Type": "STM32_CURRENT"
+        },
+        {
+            "Name": "PSU1_Aout",
+            "SensorNumber": "0x62",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "DBusObj": "/xyz/openbmc_project/stm32io/0/PSU2/Current",
+            "Name": "PSU2_Aout",
+            "MaxReading": 90.0,
+            "MinReading": 0.0,
+            "Thresholds": [
+            ],
+            "Type": "STM32_CURRENT"
+        },
+        {
+            "Name": "PSU2_Aout",
+            "SensorNumber": "0x63",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "DBusObj": "/xyz/openbmc_project/stm32io/0/GPIO/LV1",
+            "Name": "Tank_Level",
+            "Thresholds": [
+            ],
+            "Type": "STM32_BUTTON"
+        },
+        {
+            "Name": "Tank_Level",
+            "SensorNumber": "0x64",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "DBusObj": "/xyz/openbmc_project/stm32io/0/FanWall/Speed01",
+            "Name": "Fan1_Speed",
+            "Thresholds": [
+            ],
+            "Type": "STM32_SPEED"
+        },
+        {
+            "Name": "Fan1_Speed",
+            "SensorNumber": "0x65",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "DBusObj": "/xyz/openbmc_project/stm32io/0/FanWall/Speed02",
+            "Name": "Fan2_Speed",
+            "Thresholds": [
+            ],
+            "Type": "STM32_SPEED"
+        },
+        {
+            "Name": "Fan2_Speed",
+            "SensorNumber": "0x66",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "DBusObj": "/xyz/openbmc_project/stm32io/0/FanWall/Speed03",
+            "Name": "Fan3_Speed",
+            "Thresholds": [
+            ],
+            "Type": "STM32_SPEED"
+        },
+        {
+            "Name": "Fan3_Speed",
+            "SensorNumber": "0x67",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "DBusObj": "/xyz/openbmc_project/stm32io/0/FanWall/Speed04",
+            "Name": "Fan4_Speed",
+            "Thresholds": [
+            ],
+            "Type": "STM32_SPEED"
+        },
+        {
+            "Name": "Fan4_Speed",
+            "SensorNumber": "0x68",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "DBusObj": "/xyz/openbmc_project/stm32io/0/FanWall/Speed05",
+            "Name": "Fan5_Speed",
+            "Thresholds": [
+            ],
+            "Type": "STM32_SPEED"
+        },
+        {
+            "Name": "Fan5_Speed",
+            "SensorNumber": "0x69",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "DBusObj": "/xyz/openbmc_project/stm32io/0/FanWall/Pt100",
+            "Name": "Liq_Inlet_T",
+            "Thresholds": [
+            ],
+            "Type": "STM32_TEMPERATURE"
+        },
+        {
+            "Name": "Liq_Inlet_T",
+            "SensorNumber": "0x6A",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "DBusObj": "/xyz/openbmc_project/stm32io/0/FanWall/Status01",
+            "Name": "Fan1_Status",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2
+                }
+            ],
+            "Type": "STM32_PumpFanState"
+        },
+        {
+            "Name": "Fan1_Status",
+            "SensorNumber": "0x6B",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "DBusObj": "/xyz/openbmc_project/stm32io/0/FanWall/Status02",
+            "Name": "Fan2_Status",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2
+                }
+            ],
+            "Type": "STM32_PumpFanState"
+        },
+        {
+            "Name": "Fan2_Status",
+            "SensorNumber": "0x6C",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "DBusObj": "/xyz/openbmc_project/stm32io/0/FanWall/Status03",
+            "Name": "Fan3_Status",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2
+                }
+            ],
+            "Type": "STM32_PumpFanState"
+        },
+        {
+            "Name": "Fan3_Status",
+            "SensorNumber": "0x6D",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "DBusObj": "/xyz/openbmc_project/stm32io/0/FanWall/Status04",
+            "Name": "Fan4_Status",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2
+                }
+            ],
+            "Type": "STM32_PumpFanState"
+        },
+        {
+            "Name": "Fan4_Status",
+            "SensorNumber": "0x6E",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "DBusObj": "/xyz/openbmc_project/stm32io/0/FanWall/Status05",
+            "Name": "Fan5_Status",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2
+                }
+            ],
+            "Type": "STM32_PumpFanState"
+        },
+        {
+            "Name": "Fan5_Status",
+            "SensorNumber": "0x6F",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "DBusObj": "/xyz/openbmc_project/stm32io/0/FanWall/AirFlow01",
+            "Name": "Fan1Air_flow",
+            "MaxReading": 1112.0,
+            "MinReading": 0.0,
+            "Thresholds": [
+            ],
+            "Type": "STM32_AirFlow"
+        },
+        {
+            "Name": "Fan1Air_flow",
+            "SensorNumber": "0x70",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "DBusObj": "/xyz/openbmc_project/stm32io/0/FanWall/AirFlow02",
+            "Name": "Fan2Air_flow",
+            "MaxReading": 1112.0,
+            "MinReading": 0.0,
+            "Thresholds": [
+            ],
+            "Type": "STM32_AirFlow"
+        },
+        {
+            "Name": "Fan2Air_flow",
+            "SensorNumber": "0x71",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "DBusObj": "/xyz/openbmc_project/stm32io/0/FanWall/AirFlow03",
+            "Name": "Fan3Air_flow",
+            "MaxReading": 1112.0,
+            "MinReading": 0.0,
+            "Thresholds": [
+            ],
+            "Type": "STM32_AirFlow"
+        },
+        {
+            "Name": "Fan3Air_flow",
+            "SensorNumber": "0x72",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "DBusObj": "/xyz/openbmc_project/stm32io/0/FanWall/AirFlow04",
+            "Name": "Fan4Air_flow",
+            "MaxReading": 1112.0,
+            "MinReading": 0.0,
+            "Thresholds": [
+            ],
+            "Type": "STM32_AirFlow"
+        },
+        {
+            "Name": "Fan4Air_flow",
+            "SensorNumber": "0x73",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "DBusObj": "/xyz/openbmc_project/stm32io/0/FanWall/AirFlow05",
+            "Name": "Fan5Air_flow",
+            "MaxReading": 1112.0,
+            "MinReading": 0.0,
+            "Thresholds": [
+            ],
+            "Type": "STM32_AirFlow"
+        },
+        {
+            "Name": "Fan5Air_flow",
+            "SensorNumber": "0x74",
+            "Type": "SensorNumConfig"
+        },
+        {
+            "DBusObj": "/xyz/openbmc_project/stm32io/0/FanWall/TotalAirFlow",
+            "Name": "Total_Air_flow",
+            "MaxReading": 5560.0,
+            "MinReading": 0.0,
+            "Thresholds": [
+            ],
+            "Type": "STM32_AirFlow"
+        },
+        {
+            "Name": "Total_Air_flow",
+            "SensorNumber": "0x75",
+            "Type": "SensorNumConfig"
+        },
+        {
+			"A01RecordID": "0x0051",
+			"A02SDRVersion": "0x51",
+			"A03RecordType": "0x11",
+			"A04RecordLength": "0x10",
+			"AccessAddr": "0x20",
+			"SlaveAddr": "0x00",
+			"BusID": "0x80",
+			"ChanNumber": "0x00",
+			"Reserved": "0x00",
+			"DevType": "0x10",
+			"DevModifier": "0x00",
+			"EntityID": "0x00",
+			"EntityInstance": "0x01",
+			"OEM": "0x00",
+			"TypeLengthCode": "0xC5",
+			"Name": "LLCDU",
+			"Type": "IpmiSensor"
+		}
+    ],
+    "Name": "Auras LLCDU",
+    "Probe": [
+        "TRUE"
+    ],
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "Auras Technology",
+        "Model": "LLCDU",
+        "PartNumber": "",
+        "SerialNumber": ""
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": ""
+    },
+    "xyz.openbmc_project.Inventory.Item.Board.Motherboard": {
+        "ProductId": 2
+    },
+    "xyz.openbmc_project.Inventory.Item.System": {}
+}

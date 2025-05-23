@@ -1,0 +1,53 @@
+From 6a1a9221add268aa0263a10e2568ab18c5d728d8 Mon Sep 17 00:00:00 2001
+From: Godspeed Tzeng <godspeed.tzeng@insyde.com>
+Date: Tue, 14 Nov 2023 16:48:17 +0800
+Subject: [PATCH] Update the flowrate & pressure sensor unit
+
+Issue#: IB17580000
+Severity: Normal
+Category: platform
+Symptom: N/A
+RootCause: N/A
+Description: As title.
+Solution: N/A
+SolutionDependency: no dependency
+Reviewer: gerrit
+
+Signed-off-by: Godspeed Tzeng <godspeed.tzeng@insyde.com>
+---
+ redfish-core/lib/sensors.hpp | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
+
+diff --git a/redfish-core/lib/sensors.hpp b/redfish-core/lib/sensors.hpp
+index 10628abf..3ab03612 100644
+--- a/redfish-core/lib/sensors.hpp
++++ b/redfish-core/lib/sensors.hpp
+@@ -155,11 +155,11 @@ inline const char* toReadingUnits(const std::string& sensorType)
+     }
+     if (sensorType == "pressure")
+     {
+-        return "kPA";
++        return "Pa";
+     }
+     if (sensorType == "flowrate")
+     {
+-        return "LPM";
++        return "L/s";
+     }
+     if (sensorType == "level")
+     {
+@@ -1206,6 +1206,11 @@ inline void objectInterfacesToJson(
+                     continue;
+                 }
+                 temp = temp * std::pow(10, scaleMultiplier);
++                if (sensorType == "pressure")
++                {
++                    // The ipmi pressure sensors are in kpa, but redfish wants pa
++                    temp *= 1000;
++                }
+                 if (forceToInt)
+                 {
+                     sensorJson[key] = static_cast<int64_t>(temp);
+-- 
+2.17.1
+

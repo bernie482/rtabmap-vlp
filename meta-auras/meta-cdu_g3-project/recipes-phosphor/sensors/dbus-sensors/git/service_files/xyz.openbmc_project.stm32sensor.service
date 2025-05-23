@@ -1,0 +1,13 @@
+[Unit]
+Description=Auras STM32 sensor app
+StopWhenUnneeded=false
+Requires=xyz.openbmc_project.EntityManager.service xyz.openbmc_project.stm32io.service
+After=xyz.openbmc_project.EntityManager.service xyz.openbmc_project.stm32io.service
+
+[Service]
+Restart=always
+RestartSec=5
+ExecStart=/usr/bin/stm32sensor
+
+[Install]
+WantedBy=multi-user.target

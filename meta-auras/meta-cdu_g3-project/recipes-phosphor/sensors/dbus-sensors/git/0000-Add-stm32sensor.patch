@@ -1,0 +1,47 @@
+--- a/meson_options.txt
++++ b/meson_options.txt
+@@ -3,6 +3,7 @@ option('cpu', type: 'feature', value: 'enabled', description: 'Enable CPU sensor
+ option('exit-air', type: 'feature', value: 'enabled', description: 'Enable exit air sensor.',)
+ option('fan', type: 'feature', value: 'enabled', description: 'Enable fan sensor.',)
+ option('hwmon-temp', type: 'feature', value: 'enabled', description: 'Enable HWMON temperature sensor.',)
++option('stm32-sensor', type: 'feature', value: 'enabled', description: 'Enable STM32 sensor.',)
+ option('intrusion', type: 'feature', value: 'enabled', description: 'Enable intrusion sensor.',)
+ option('ipmb', type: 'feature', value: 'enabled', description: 'Enable IPMB sensor.',)
+ option('mcu', type: 'feature', value: 'enabled', description: 'Enable MCU sensor.',)
+
+--- a/service_files/meson.build
++++ b/service_files/meson.build
+@@ -10,6 +10,7 @@ unit_files = [
+     ['nvme', 'xyz.openbmc_project.nvmesensor.service'],
+     ['psu', 'xyz.openbmc_project.psusensor.service'],
+     ['external', 'xyz.openbmc_project.externalsensor.service'],
++    ['stm32-sensor', 'xyz.openbmc_project.stm32sensor.service'],
+ ]
+ 
+ foreach tuple : unit_files
+
+--- a/src/meson.build
++++ b/src/meson.build
+@@ -88,6 +88,22 @@
+     )
+ endif
+ 
++if get_option('stm32-sensor').enabled()
++    executable(
++        'stm32sensor',
++        'STM32SensorMain.cpp',
++        'STM32Sensor.cpp',
++        dependencies: [
++            default_deps,
++            thresholds_dep,
++            utils_dep,
++        ],
++        implicit_include_directories: false,
++        include_directories: '../include',
++        install: true,
++    )
++endif
++
+ if get_option('intrusion').enabled()
+     executable(
+         'intrusionsensor',

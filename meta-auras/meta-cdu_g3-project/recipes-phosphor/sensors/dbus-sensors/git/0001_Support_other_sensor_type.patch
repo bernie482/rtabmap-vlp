@@ -1,0 +1,14 @@
+diff --git a/include/SensorPaths.hpp b/include/SensorPaths.hpp
+index fa1c3e59..6f81c64d 100644
+--- a/include/SensorPaths.hpp
++++ b/include/SensorPaths.hpp
+@@ -27,7 +27,8 @@ constexpr const char* unitPercent =
+ constexpr const char* unitCFM = "xyz.openbmc_project.Sensor.Value.Unit.CFM";
+ constexpr const char* unitPascals =
+     "xyz.openbmc_project.Sensor.Value.Unit.Pascals";
+-
++constexpr const char* unitUnspecified =
++    "xyz.openbmc_project.Sensor.Value.Unit.Unspecified";
+ std::string getPathForUnits(const std::string& units);
+ 
+ std::string escapePathForDbus(const std::string& name);

@@ -1,0 +1,47 @@
+From 14b147d7d2aabba9d944b729f1d735674320a82c Mon Sep 17 00:00:00 2001
+From: Tommy Yan <tommy.yan@insyde.com>
+Date: Fri, 12 Jul 2024 17:41:06 +0800
+Subject: [PATCH] [RM#147300] Specific ipmi command should not return a value
+
+Issue#: IB22370000
+Severity: Normal
+Category: ipmid
+Symptom: Specific ipmi command should not return a value
+RootCause: Make specific ipmi command unusable
+Description: As title.
+Solution: Set the specific ipmi command response code to 0xc1
+SolutionDependency: no dependency
+Reviewer: gerrit
+
+Signed-off-by: Tommy Yan <tommy.yan@insyde.com>
+---
+ transporthandler.cpp | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/transporthandler.cpp b/transporthandler.cpp
+index 7d27476..e92abcb 100644
+--- a/transporthandler.cpp
++++ b/transporthandler.cpp
+@@ -1707,6 +1707,9 @@ ipmi::RspType<> setSOLConfParams(ipmi::Context::ptr ctx, uint4_t chNum,
+                                  uint8_t configParamData1,
+                                  std::optional<uint8_t> configParamData2)
+ {
++    // override setSOLConfParams completion code for OEM project requirements
++    return ipmi::responseInvalidCommand();
++
+     ipmi::ChannelInfo chInfo;
+     uint8_t channelNum = ipmi::convertCurrentChannelNum(
+         static_cast<uint8_t>(chNum), ctx->channel);
+@@ -1854,6 +1857,9 @@ ipmi::RspType<uint8_t, std::optional<uint8_t>, std::optional<uint8_t>>
+                      bool getParamRev, uint8_t paramSelector,
+                      uint8_t setSelector, uint8_t blockSelector)
+ {
++    // override getSOLConfParams completion code for OEM project requirements
++    return ipmi::responseInvalidCommand();
++
+     ipmi::ChannelInfo chInfo;
+     uint8_t channelNum = ipmi::convertCurrentChannelNum(
+         static_cast<uint8_t>(chNum), ctx->channel);
+--
+2.25.1
+

@@ -1,0 +1,334 @@
+diff --git a/http/routing.hpp b/http/routing.hpp
+index 8a999eb9..8708d879 100644
+--- a/http/routing.hpp
++++ b/http/routing.hpp
+@@ -42,8 +42,8 @@ const std::vector<std::string> insydeRedfishWhiteList = {
+     "/redfish/v1/Systems/system/Memory(/.*)?",
+     "/redfish/v1/Managers/bmc/HostInterfaces(/.*)?",
+     "/redfish/v1/Systems/system/PCIeDevices(/.*)?",
+-    "/redfish/v1/Systems/system/Storage(/.*)?",
+-    "/redfish/v1/StorageServices(/.*)?",
++    // "/redfish/v1/Systems/system/Storage(/.*)?",
++    // "/redfish/v1/StorageServices(/.*)?",
+     "/redfish/v1/Systems/system/Bios(/.*)?",
+     "/redfish/v1/Managers/bmc/Oem/Insyde/IPv4AccessCollection(/.*)?",
+     "/redfish/v1/Managers/bmc/Oem/Insyde/IPv6AccessCollection(/.*)?",
+diff --git a/redfish-core/lib/account_service.hpp b/redfish-core/lib/account_service.hpp
+index acb744da..9c486c33 100644
+--- a/redfish-core/lib/account_service.hpp
++++ b/redfish-core/lib/account_service.hpp
+@@ -1795,6 +1795,8 @@ inline void getUserSPFProperties(std::shared_ptr<bmcweb::AsyncResp> asyncResp, u
+ 
+ 
+     getUserInfo(users);
++    asyncResp->res.jsonValue["Oem"]["InsydeAccount"]["@odata.type"] =
++                        "#OemManagerAccount.InsydeManagerAccount";
+     // IPMI Messaging
+     if (users[id_1 - 1].data_4.rsp_chnl_access & 0x10) // bit[4]: disabled/enabled for IPMI Messaging (ipmi spec Table 22-31, Get User Access Command)
+         asyncResp->res.jsonValue["Oem"]["InsydeAccount"]["IPMIMessaging"] = true;
+@@ -3063,9 +3065,7 @@ inline void requestAccountServiceRoutes(App& app)
+                // Ref: openbmc_dbus_rest.hpp /download/dump/<str>/
+                std::ifstream readFile(PRIVILEGEMAP_PATH);
+                asyncResp->res.addHeader("Content-Type",
+-                                        "application/octet-stream");
+-               std::string contentDispositionParam =
+-                   "attachment; filename=\"" + std::string(PRIVILEGEMAP_PATH) + "\"";
++                                        "application/json");
+                asyncResp->res.body() = {
+                    std::istreambuf_iterator<char>(readFile),
+                    std::istreambuf_iterator<char>()};
+diff --git a/redfish-core/lib/cups_service.hpp b/redfish-core/lib/cups_service.hpp
+index a84815de..5a92b5a0 100644
+--- a/redfish-core/lib/cups_service.hpp
++++ b/redfish-core/lib/cups_service.hpp
+@@ -564,6 +564,8 @@ inline void requestRoutesCupsSensors(App& app)
+                     {"@odata.type", "#CupsSensors.Sensors"},
+                     {"@odata.id", "/redfish/v1/CupsService/Sensors"},
+                     {"Name", "CupsSensorsCollection"},
++                    {"Members", nlohmann::json::array()},
++                    {"Members@odata.count", 0},
+                 };
+ 
+                 CupsSensors::getCupsSensors(asyncResp);
+diff --git a/redfish-core/lib/log_services.hpp b/redfish-core/lib/log_services.hpp
+index 28d65186..2c0a9806 100644
+--- a/redfish-core/lib/log_services.hpp
++++ b/redfish-core/lib/log_services.hpp
+@@ -1887,7 +1887,7 @@ inline void requestRoutesBMCJournalLogService(App& app)
+                     "Open BMC Journal Log Service";
+                 asyncResp->res.jsonValue["Description"] =
+                     "BMC Journal Log Service";
+-                asyncResp->res.jsonValue["Id"] = "BMC Journal";
++                asyncResp->res.jsonValue["Id"] = "Journal";
+                 asyncResp->res.jsonValue["OverWritePolicy"] = "WrapsWhenFull";
+ 
+                 std::pair<std::string, std::string> redfishDateTimeOffset =
+@@ -3131,7 +3131,7 @@ inline void requestRoutesPostCodesLogService(App& app)
+                     {"@odata.type", "#LogService.v1_1_0.LogService"},
+                     {"Name", "POST Code Log Service"},
+                     {"Description", "POST Code Log Service"},
+-                    {"Id", "BIOS POST Code Log"},
++                    {"Id", "PostCodes"},
+                     {"OverWritePolicy", "WrapsWhenFull"},
+                     {"Entries",
+                      {{"@odata.id", "/redfish/v1/Systems/system/LogServices/"
+diff --git a/redfish-core/lib/sensors.hpp b/redfish-core/lib/sensors.hpp
+index 60171daa..86d8c8e9 100644
+--- a/redfish-core/lib/sensors.hpp
++++ b/redfish-core/lib/sensors.hpp
+@@ -1433,6 +1433,12 @@ inline void
+                 if (value != nullptr)
+                 {
+                     *value += std::to_string(count);
++                    nlohmann::json::iterator odata = sensorJson.find("MemberId");
++                    if (odata != sensorJson.end())
++                    {
++                        // Update MemberId to count
++                        sensorJson["MemberId"] = std::to_string(count);
++                    }
+                     count++;
+                     sensorsAsyncResp->updateUri(sensorJson["Name"], *value);
+                 }
+@@ -2688,6 +2694,13 @@ inline void getSensorData(
+                     }
+ #endif
+ 
++                    if ((sensorSchema == sensors::node::thermal) &&
++                        (fieldName == "Voltages"))
++                    {
++                        // There should no object "Voltages" in Thermal schema.
++                        continue;
++                    }
++
+                     nlohmann::json& tempArray =
+                         sensorsAsyncResp->asyncResp->res.jsonValue[fieldName];
+                     if (fieldName == "PowerControl")
+diff --git a/redfish-core/lib/service_root.hpp b/redfish-core/lib/service_root.hpp
+index a692a856..c5ec0d29 100644
+--- a/redfish-core/lib/service_root.hpp
++++ b/redfish-core/lib/service_root.hpp
+@@ -63,7 +63,7 @@ inline void
+     asyncResp->res.jsonValue["TelemetryService"] = {
+         {"@odata.id", "/redfish/v1/TelemetryService"}};
+     asyncResp->res.jsonValue["Oem"]["OpenBmc"]["@odata.type"] =
+-        "#OemServiceRoot.v1_0_0.ServiceRoot";
++        "#OemServiceRoot.v1_0_0.OpenBmc";
+     asyncResp->res.jsonValue["Oem"]["OpenBmc"]["CupsService"] = {
+         {"@odata.id", "/redfish/v1/CupsService"}};
+ #ifdef SPF_REDFISH
+diff --git a/static/redfish/v1/$metadata/index.xml b/static/redfish/v1/$metadata/index.xml
+index 87e9eb7d..01b2de0d 100644
+--- a/static/redfish/v1/$metadata/index.xml
++++ b/static/redfish/v1/$metadata/index.xml
+@@ -2518,21 +2518,14 @@
+     </edmx:Reference>
+     <edmx:Reference Uri="/redfish/v1/schema/NmDomainCollection_v1.xml">
+         <edmx:Include Namespace="NmDomainCollection"/>
+-        <edmx:Include Namespace="NmDomainCollection.v1_0_0"/>
+     </edmx:Reference>
+     <edmx:Reference Uri="/redfish/v1/schema/NmDomain_v1.xml">
+         <edmx:Include Namespace="NmDomain"/>
+         <edmx:Include Namespace="NmDomain.v1_0_0"/>
+-        <edmx:Include Namespace="NmDomain.v1_1_0"/>
+-        <edmx:Include Namespace="NmDomain.v1_2_0"/>
+-        <edmx:Include Namespace="NmDomain.v1_3_0"/>
+-        <edmx:Include Namespace="NmDomain.v1_4_0"/>
+     </edmx:Reference>
+     <edmx:Reference Uri="/redfish/v1/schema/NmPolicy_v1.xml">
+         <edmx:Include Namespace="NmPolicy"/>
+         <edmx:Include Namespace="NmPolicy.v1_0_0"/>
+-        <edmx:Include Namespace="NmPolicy.v1_1_0"/>
+-        <edmx:Include Namespace="NmPolicy.v1_2_0"/>
+     </edmx:Reference>
+     <edmx:Reference Uri="/redfish/v1/schema/NmTrigger_v1.xml">
+         <edmx:Include Namespace="NmTrigger"/>
+@@ -2544,10 +2537,79 @@
+     </edmx:Reference>
+     <edmx:Reference Uri="/redfish/v1/schema/NmPolicyCollection_v1.xml">
+         <edmx:Include Namespace="NmPolicyCollection"/>
+-        <edmx:Include Namespace="NmPolicyCollection.v1_0_0"/>
+     </edmx:Reference>
+     <edmx:Reference Uri="/redfish/v1/schema/NmTriggerCollection_v1.xml">
+         <edmx:Include Namespace="NmTriggerCollection"/>
+-        <edmx:Include Namespace="NmTriggerCollection.v1_0_0"/>
++    </edmx:Reference>
++    <edmx:Reference Uri="/redfish/v1/schema/PowerSupplyMetrics_v1.xml">
++        <edmx:Include Namespace="PowerSupplyMetrics"/>
++        <edmx:Include Namespace="PowerSupplyMetrics.v1_0_1"/>
++    </edmx:Reference>
++    <edmx:Reference Uri="/redfish/v1/schema/PowerSupplyCollection_v1.xml">
++        <edmx:Include Namespace="PowerSupplyCollection"/>
++    </edmx:Reference>
++    <edmx:Reference Uri="/redfish/v1/schema/PowerSupply_v1.xml">
++        <edmx:Include Namespace="PowerSupply"/>
++        <edmx:Include Namespace="PowerSupply.v1_4_0"/>
++    </edmx:Reference>
++    <edmx:Reference Uri="/redfish/v1/schema/InsydeOEMExtensions_v1.xml">
++        <edmx:Include Namespace="InsydeOEMExtensions"/>
++        <edmx:Include Namespace="InsydeOEMExtensions.v1_0_0"/>
++    </edmx:Reference>
++    <edmx:Reference Uri="/redfish/v1/schema/InsydeACDLog_v1.xml">
++        <edmx:Include Namespace="InsydeACDLog"/>
++        <edmx:Include Namespace="InsydeACDLog.v1_0_0"/>
++    </edmx:Reference>
++    <edmx:Reference Uri="/redfish/v1/schema/InsydeACDLogCollection_v1.xml">
++        <edmx:Include Namespace="InsydeACDLogCollection"/>
++    </edmx:Reference>
++    <edmx:Reference Uri="/redfish/v1/schema/InsydeBios_v1.xml">
++        <edmx:Include Namespace="InsydeBios"/>
++        <edmx:Include Namespace="InsydeBios.v1_0_0"/>
++    </edmx:Reference>
++    <edmx:Reference Uri="/redfish/v1/schema/InsydeIPAccessEntry_v1.xml">
++        <edmx:Include Namespace="InsydeIPAccessEntry"/>
++        <edmx:Include Namespace="InsydeIPAccessEntry.v1_0_0"/>
++    </edmx:Reference>
++    <edmx:Reference Uri="/redfish/v1/schema/InsydeNcsi_v1.xml">
++        <edmx:Include Namespace="InsydeNcsi"/>
++        <edmx:Include Namespace="InsydeNcsi.v1_0_0"/>
++    </edmx:Reference>
++    <edmx:Reference Uri="/redfish/v1/schema/InsydeNcsiCollection_v1.xml">
++        <edmx:Include Namespace="InsydeNcsiCollection"/>
++    </edmx:Reference>
++    <edmx:Reference Uri="/redfish/v1/schema/InsydeNcsiPackage_v1.xml">
++        <edmx:Include Namespace="InsydeNcsiPackage"/>
++        <edmx:Include Namespace="InsydeNcsiPackage.v1_0_0"/>
++    </edmx:Reference>
++    <edmx:Reference Uri="/redfish/v1/schema/InsydePCIeFunctions_v1.xml">
++        <edmx:Include Namespace="InsydePCIeFunctions"/>
++        <edmx:Include Namespace="InsydePCIeFunctions.v1_0_0"/>
++    </edmx:Reference>
++    <edmx:Reference Uri="/redfish/v1/schema/InsydePostCode_v1.xml">
++        <edmx:Include Namespace="InsydePostCode"/>
++        <edmx:Include Namespace="InsydePostCode.v1_0_0"/>
++    </edmx:Reference>
++    <edmx:Reference Uri="/redfish/v1/schema/InsydePostCodeCollection_v1.xml">
++        <edmx:Include Namespace="InsydePostCodeCollection"/>
++    </edmx:Reference>
++    <edmx:Reference Uri="/redfish/v1/schema/InsydeSMBIOS_v1.xml">
++        <edmx:Include Namespace="InsydeSMBIOS"/>
++        <edmx:Include Namespace="InsydeSMBIOS.v1_0_0"/>
++    </edmx:Reference>
++    <edmx:Reference Uri="/redfish/v1/schema/AurasCoolingModules_v1.xml">
++        <edmx:Include Namespace="AurasCoolingModules"/>
++        <edmx:Include Namespace="AurasCoolingModules.v1_0_0"/>
++    </edmx:Reference>
++    <edmx:Reference Uri="/redfish/v1/schema/InsydeStorageControllerEvent_v1.xml">
++        <edmx:Include Namespace="InsydeStorageControllerEvent"/>
++        <edmx:Include Namespace="InsydeStorageControllerEvent.v1_0_0"/>
++    </edmx:Reference>
++    <edmx:Reference Uri="/redfish/v1/schema/InsydeStorageControllerEventCollection_v1.xml">
++        <edmx:Include Namespace="InsydeStorageControllerEventCollection"/>
++    </edmx:Reference>
++    <edmx:Reference Uri="/redfish/v1/schema/InsydeStorageControllerTTYLog_v1.xml">
++        <edmx:Include Namespace="InsydeStorageControllerTTYLog"/>
++        <edmx:Include Namespace="InsydeStorageControllerTTYLog.v1_0_0"/>
+     </edmx:Reference>
+ </edmx:Edmx>
+diff --git a/static/redfish/v1/schema/InsydeBios_v1.xml b/static/redfish/v1/schema/InsydeBios_v1.xml
+index 282b606c..0b6c95ab 100755
+--- a/static/redfish/v1/schema/InsydeBios_v1.xml
++++ b/static/redfish/v1/schema/InsydeBios_v1.xml
+@@ -24,6 +24,9 @@
+   </edmx:Reference>
+ 
+   <edmx:DataServices>
++  <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="InsydeBios">
++        <Annotation Term="Redfish.OwningEntity" String="Insyde"/>
++      </Schema>
+       <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="InsydeBios.v1_0_0">
+         <ComplexType Name="BiosId">
+         <Property Name="BiosVersion" Type="Edm.String">
+diff --git a/static/redfish/v1/schema/InsydeOEMExtensions_v1.xml b/static/redfish/v1/schema/InsydeOEMExtensions_v1.xml
+index 74c58d5f..5909b89d 100644
+--- a/static/redfish/v1/schema/InsydeOEMExtensions_v1.xml
++++ b/static/redfish/v1/schema/InsydeOEMExtensions_v1.xml
+@@ -77,7 +77,10 @@
+     <edmx:Include Namespace="Processor.v1_4_0"/>
+   </edmx:Reference>
+     <edmx:DataServices>
+-        <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="InsydeOEMExtensions">
++      <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="InsydeOEMExtensions">
++        <Annotation Term="Redfish.OwningEntity" String="Insyde"/>
++      </Schema>
++        <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="InsydeOEMExtensions.v1_0_0">
+           <Action Name="PushUpdate" IsBound="true">
+             <Annotation Term="OData.Description" String="This action is used to push update software components."/>
+             <Annotation Term="OData.LongDescription" String="This action shall perform a push update of installed software component(s) as contained within a software image file located at a URI referenced by the ImageURI parameter."/>
+diff --git a/static/redfish/v1/schema/InsydePostCodeCollection.xml b/static/redfish/v1/schema/InsydePostCodeCollection_v1.xml
+similarity index 100%
+rename from static/redfish/v1/schema/InsydePostCodeCollection.xml
+rename to static/redfish/v1/schema/InsydePostCodeCollection_v1.xml
+diff --git a/static/redfish/v1/schema/InsydePostCode.xml b/static/redfish/v1/schema/InsydePostCode_v1.xml
+similarity index 100%
+rename from static/redfish/v1/schema/InsydePostCode.xml
+rename to static/redfish/v1/schema/InsydePostCode_v1.xml
+diff --git a/static/redfish/v1/schema/NmDomainCollection_v1.xml b/static/redfish/v1/schema/NmDomainCollection_v1.xml
+index 6b543411..800dc174 100644
+--- a/static/redfish/v1/schema/NmDomainCollection_v1.xml
++++ b/static/redfish/v1/schema/NmDomainCollection_v1.xml
+@@ -25,8 +25,10 @@
+   </edmx:Reference>
+ 
+   <edmx:DataServices>
+-
+-    <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="NmDomainCollection">
++  <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="NmDomainCollection">
++    <Annotation Term="Redfish.OwningEntity" String="DMTF"/>
++  </Schema>
++    <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="NmDomainCollection.v1_0_0">
+       <Annotation Term="Redfish.OwningEntity" String="DMTF"/>
+ 
+       <EntityType Name="NmDomainCollection" BaseType="Resource.v1_0_0.ResourceCollection">
+diff --git a/static/redfish/v1/schema/OemServiceRoot_v1.xml b/static/redfish/v1/schema/OemServiceRoot_v1.xml
+index 83dd491c..6ba94fb4 100644
+--- a/static/redfish/v1/schema/OemServiceRoot_v1.xml
++++ b/static/redfish/v1/schema/OemServiceRoot_v1.xml
+@@ -29,27 +29,24 @@
+       <Annotation Term="Redfish.OwningEntity" String="OpenBMC"/>
+       <Annotation Term="Redfish.Release" String="1.0"/>
+ 
+-        <NavigationProperty Name="CupsService" Type="CupsService.CupsService" Nullable="false">
+-          <Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+-          <Annotation Term="OData.Description" String="The link to the Cups Service."/>
+-          <Annotation Term="OData.LongDescription" String="This property shall contain a link to a Resource of type CupsService."/>
+-          <Annotation Term="OData.AutoExpandReferences"/>
+-        </NavigationProperty>
+-
+-      <EntityContainer Name="ServiceContainer" Extends="ServiceRoot.v1_0_0.ServiceContainer">
+-        <Singleton Name="CupsService" Type="CupsService.CupsService"/>
+-      </EntityContainer>
+-
+-      <EntityType Name="ServiceRoot" BaseType="Resource.OemObject" Abstract="true">
+-        <Annotation Term="OData.Description" String="OEM Extension for ServiceRoot"/>
+-        <Annotation Term="OData.LongDescription" String="OEM Extension for ServiceRoot to support CupsService."/>
+-        <NavigationProperty Name="CupsService" Type="CupsService.CupsService" Nullable="false">
+-          <Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+-          <Annotation Term="OData.Description" String="The link to the Cups Service."/>
+-          <Annotation Term="OData.LongDescription" String="This property shall contain a link to a Resource of type CupsService."/>
+-          <Annotation Term="OData.AutoExpandReferences"/>
+-        </NavigationProperty>
+-      </EntityType>
++        <ComplexType Name="Oem" BaseType="Resource.OemObject">
++            <Annotation Term="OData.AdditionalProperties" Bool="true" />
++            <Annotation Term="OData.Description" String="OemServiceRoot Oem properties." />
++            <Annotation Term="OData.AutoExpand"/>
++            <Property Name="OpenBmc" Type="OemServiceRoot.OpenBmc"/>
++        </ComplexType>
++
++        <ComplexType Name="OpenBmc" BaseType="Resource.OemObject">
++          <Annotation Term="OData.AdditionalProperties" Bool="true" />
++          <Annotation Term="OData.Description" String="Oem properties for OpenBmc." />
++          <Annotation Term="OData.AutoExpand"/>
++          <NavigationProperty Name="CupsService" Type="CupsService.CupsService" Nullable="false">
++            <Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
++            <Annotation Term="OData.Description" String="The link to the Cups Service."/>
++            <Annotation Term="OData.LongDescription" String="This property shall contain a link to a Resource of type CupsService."/>
++            <Annotation Term="OData.AutoExpandReferences"/>
++          </NavigationProperty>
++        </ComplexType>
+     </Schema>
+ 
+   </edmx:DataServices>
+-- 
+2.17.1
+

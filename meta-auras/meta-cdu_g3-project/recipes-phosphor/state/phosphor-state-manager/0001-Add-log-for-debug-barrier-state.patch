@@ -1,0 +1,93 @@
+diff --git a/bmc_state_manager.cpp b/bmc_state_manager.cpp
+index a77b2a1..ba70ec7 100644
+--- a/bmc_state_manager.cpp
++++ b/bmc_state_manager.cpp
+@@ -317,23 +317,37 @@ void BMC::updateCurrentBarrierState()
+     uint8_t u8MinBarrierState = 0;
+     uint8_t u8InitAgentInProcess = 0;
+  
++    std::cerr << __FUNCTION__ << ":" << __LINE__ << " barrierList.size() = " << barrierList.size() << std::endl;
+     for(size_t index = 0; index < barrierList.size(); index++)
+     {
++        std::cerr << __FUNCTION__ << ":" << __LINE__ << " keyObjectPath = " << std::get<std::string>(barrierList[index].find(keyObjectPath)->second) << std::endl;
+         uint8_t tmp = std::get<uint8_t>(barrierList[index].find(keyState)->second);
+-        if (tmp & BARRIER_STATE_INIT_AGENT_IN_PROCESS)
++        std::cerr << __FUNCTION__ << ":" << __LINE__ << " tmp = " << static_cast<int>(tmp) << std::endl;
++        if (tmp & BARRIER_STATE_INIT_AGENT_IN_PROCESS) {
+             u8InitAgentInProcess = BARRIER_STATE_INIT_AGENT_IN_PROCESS;
++        }
+         tmp = tmp & MAX_BARRIER_STATE;
+- 
+-        if (index == 0)
++        if (index == 0) {
++            std::cerr << __FUNCTION__ << ":" << __LINE__ << " index = 0" << std::endl;
+             u8MinBarrierState = tmp;
+-        if (u8MinBarrierState > tmp)
++        }
++        if (u8MinBarrierState > tmp) {
+             u8MinBarrierState = tmp;
++        }
++        std::cerr << __FUNCTION__ << ":" << __LINE__ << " u8MinBarrierState = " << static_cast<int>(u8MinBarrierState) << std::endl;
+     }
+  
++    std::cerr << __FUNCTION__ << ":" << __LINE__ << " u8InitAgentInProcess = " << static_cast<int>(u8InitAgentInProcess) << std::endl;
+     u8MinBarrierState = u8MinBarrierState | u8InitAgentInProcess;
+  
+-    if(u8MinBarrierState != server::Barrier::currentBarrierState())
++    if(u8MinBarrierState != server::Barrier::currentBarrierState()) {
++        std::cerr << __FUNCTION__ << ":" << __LINE__ << " u8MinBarrierState = " << static_cast<int>(u8MinBarrierState) << std::endl;
+         server::Barrier::currentBarrierState(u8MinBarrierState);
++    }
++    else
++    {
++        std::cerr << __FUNCTION__ << ":" << __LINE__ << " u8MinBarrierState = " << static_cast<int>(u8MinBarrierState) << std::endl;
++    }
+     return;
+ }
+ 
+@@ -386,6 +400,7 @@ void BMC::initBarrierList()
+         std::map<std::string, std::variant<std::string, uint8_t>> tmp;
+         tmp[keyServiceName] = ServiceInfo[keyServiceName].get<std::string>();
+         tmp[keyObjectPath] = ServiceInfo[keyObjectPath].get<std::string>();
++        std::cerr << __FUNCTION__ << ":" << __LINE__ << " keyObjectPath = " << ServiceInfo[keyObjectPath].get<std::string>() << std::endl;
+         tmp[keyState] = (uint8_t)0;
+         this->barrierList.push_back(tmp);
+     }
+diff --git a/bmc_state_manager_main.cpp b/bmc_state_manager_main.cpp
+index badc2eb..e93c229 100644
+--- a/bmc_state_manager_main.cpp
++++ b/bmc_state_manager_main.cpp
+@@ -1,5 +1,5 @@
+ #include "config.h"
+-
++#include <fstream>
+ #include "bmc_state_manager.hpp"
+ 
+ #include <sdbusplus/bus.hpp>
+@@ -34,11 +34,11 @@ using DbusBarrierProperties =
+                 u8BarrierState = std::get<std::uint8_t>(prop.second);
+         }
+ 
++        std::cerr << __FUNCTION__ << ":" << __LINE__ << " objectPath = " << objectPath.c_str() << std::endl;
++        std::cerr << __FUNCTION__ << ":" << __LINE__ << " u8BarrierState = " << static_cast<int>(u8BarrierState) << std::endl;
+         pBMCObject->updateServiceBarrierState(objectPath, u8BarrierState);
+     } catch (const SdBusError& e) {
+-        log<level::ERR>("Can't parseing dbus message"
+-                        , entry("OBJECT_PATH=%s", objectPath.c_str())
+-                        , entry("ERROR=%s", e.what()));
++        std::cerr << __LINE__ << " Can't parseing dbus message" << " objectPath = " << objectPath.c_str() << " err = " << e.what() << std::endl;
+     }
+     return;
+ }
+@@ -46,6 +46,8 @@ using DbusBarrierProperties =
+ 
+ int main()
+ {
++    std::ofstream logFile("/var/log/bmcstate");
++    std::cerr.rdbuf(logFile.rdbuf());
+     auto bus = sdbusplus::bus::new_default();
+ 
+     // For now, we only have one instance of the BMC
+-- 
+2.17.1
+

@@ -1,0 +1,11 @@
+[Unit]
+Description=Modbus TCP server
+StopWhenUnneeded=false
+
+[Service]
+Restart=always
+RestartSec=5
+ExecStart=/usr/bin/modbus-tcp-server
+
+[Install]
+WantedBy=multi-user.target

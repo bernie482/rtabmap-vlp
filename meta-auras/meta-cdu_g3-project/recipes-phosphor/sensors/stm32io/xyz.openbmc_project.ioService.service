@@ -1,0 +1,12 @@
+[Unit]
+Description=Auras STM32 IO service
+StopWhenUnneeded=false
+After=xyz.openbmc_project.EntityManager.service
+
+[Service]
+Restart=always
+RestartSec=5
+ExecStart=/usr/bin/ioService
+
+[Install]
+WantedBy=multi-user.target

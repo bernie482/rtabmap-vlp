@@ -1,0 +1,465 @@
+{
+    "Info": "modbus-tcp-server configuration",
+    "list":
+    [
+        {
+            "Address": 0,
+            "Type": "In_Coil",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/LED/LED3",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value"
+        },
+        {
+            "Address": 1,
+            "Type": "In_Coil",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/LED/LED2",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value"
+        },
+        {
+            "Address": 2,
+            "Type": "In_Coil",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/LED/LED1",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value"
+        },
+        {
+            "Address": 3,
+            "Type": "In_Coil",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/LED/LED4",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value"
+        },
+        {
+            "Address": 4,
+            "Type": "In_Coil",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/LED/LED5",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value"
+        },
+        {
+            "Address": 5,
+            "Type": "In_Coil",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/LED/LED6",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value"
+        },
+        {
+            "Address": 0,
+            "Type": "Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/Pump/PumpPwm1",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16
+        },
+        {
+            "Address": 1,
+            "Type": "Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/Pump/PumpPwm2",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16
+        },
+        {
+            "Address": 2,
+            "Type": "Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/Pump/PumpPwm3",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16
+        },
+        {
+            "Address": 3,
+            "Type": "Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/FanWall/LV1_2",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16
+        },
+        {
+            "Address": 4,
+            "Type": "Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/FanWall/LV3_5",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16
+        },
+        {
+            "Address": 0,
+            "Type": "In_Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/PT100/Temperature",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16,
+            "IsSigned": true,
+            "ReadingScale": 0.01
+        },
+        {
+            "Address": 1,
+            "Type": "In_Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/ADC/Temperature1",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16,
+            "IsSigned": true,
+            "ReadingScale": 0.01
+        },
+        {
+            "Address": 2,
+            "Type": "In_Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/ADC/Temperature3",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16,
+            "IsSigned": true,
+            "ReadingScale": 0.01
+        },
+        {
+            "Address": 3,
+            "Type": "In_Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/ADC/Temperature2",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16,
+            "IsSigned": true,
+            "ReadingScale": 0.01
+        },
+        {
+            "Address": 4,
+            "Type": "In_Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/SystemInfo/SysBoardTemperature",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16,
+            "IsSigned": true,
+            "ReadingScale": 0.01
+        },
+        {
+            "Address": 5,
+            "Type": "In_Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/ADC/PressureDrop",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16,
+            "IsSigned": true
+        },
+        {
+            "Address": 6,
+            "Type": "In_Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/ADC/Pressure1",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16,
+            "IsSigned": true
+        },
+        {
+            "Address": 7,
+            "Type": "In_Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/ADC/Pressure2",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16,
+            "IsSigned": true
+        },
+        {
+            "Address": 8,
+            "Type": "In_Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/ADC/Pressure3",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16,
+            "IsSigned": true
+        },
+        {
+            "Address": 9,
+            "Type": "In_Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/ADC/Flow1",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16,
+            "ReadingScale": 0.01
+        },
+        {
+            "Address": 10,
+            "Type": "In_Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/ADC/Flow2",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16,
+            "ReadingScale": 0.01
+        },
+        {
+            "Address": 11,
+            "Type": "In_Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/Pump/PumpSpeed1",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16
+        },
+        {
+            "Address": 12,
+            "Type": "In_Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/Pump/PumpSpeed2",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16
+        },
+        {
+            "Address": 13,
+            "Type": "In_Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/Pump/PumpSpeed3",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16
+        },
+        {
+            "Address": 14,
+            "Type": "In_Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/PSU1/TotalPower",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16
+        },
+        {
+            "Address": 15,
+            "Type": "In_Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/PSU2/TotalPower",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16
+        },
+        {
+            "Address": 16,
+            "Type": "In_Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/PSU1/Voltage",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16
+        },
+        {
+            "Address": 17,
+            "Type": "In_Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/PSU2/Voltage",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16
+        },
+        {
+            "Address": 18,
+            "Type": "In_Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/PSU1/Current",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16
+        },
+        {
+            "Address": 19,
+            "Type": "In_Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/PSU2/Current",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16
+        },
+        {
+            "Address": 20,
+            "Type": "In_Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/GPIO/LV1",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16
+        },
+        {
+            "Address": 21,
+            "Type": "In_Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/FanWall/Speed01",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16
+        },
+        {
+            "Address": 22,
+            "Type": "In_Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/FanWall/Speed02",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16
+        },
+        {
+            "Address": 23,
+            "Type": "In_Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/FanWall/Speed03",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16
+        },
+        {
+            "Address": 24,
+            "Type": "In_Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/FanWall/Speed04",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16
+        },
+        {
+            "Address": 25,
+            "Type": "In_Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/FanWall/Speed05",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16
+        },
+        {
+            "Address": 26,
+            "Type": "In_Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/FanWall/Pt100",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16,
+            "IsSigned": true,
+            "ReadingScale": 0.01
+        },
+        {
+            "Address": 27,
+            "Type": "In_Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/FanWall/Status01",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16
+        },
+        {
+            "Address": 28,
+            "Type": "In_Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/FanWall/Status02",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16
+        },
+        {
+            "Address": 29,
+            "Type": "In_Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/FanWall/Status03",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16
+        },
+        {
+            "Address": 30,
+            "Type": "In_Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/FanWall/Status04",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16
+        },
+        {
+            "Address": 31,
+            "Type": "In_Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/FanWall/Status05",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16
+        },
+        {
+            "Address": 32,
+            "Type": "In_Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/FanWall/AirFlow01",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16,
+            "ReadingScale": 0.01
+        },
+        {
+            "Address": 33,
+            "Type": "In_Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/FanWall/AirFlow02",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16,
+            "ReadingScale": 0.01
+        },
+        {
+            "Address": 34,
+            "Type": "In_Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/FanWall/AirFlow03",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16,
+            "ReadingScale": 0.01
+        },
+        {
+            "Address": 35,
+            "Type": "In_Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/FanWall/AirFlow04",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16,
+            "ReadingScale": 0.01
+        },
+        {
+            "Address": 36,
+            "Type": "In_Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/FanWall/AirFlow05",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16,
+            "ReadingScale": 0.01
+        },
+        {
+            "Address": 37,
+            "Type": "In_Register",
+            "Service": "xyz.openbmc_project.stm32io.service",
+            "Object": "/xyz/openbmc_project/stm32io/0/FanWall/TotalAirFlow",
+            "Interface": "xyz.openbmc_project.stm32io.UART",
+            "Property": "Value",
+            "Length": 16,
+            "ReadingScale": 0.01
+        }
+    ]
+}

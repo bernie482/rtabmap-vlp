@@ -1,0 +1,134 @@
+From 756038b96cc0c20785cb1ee63e80ffecc895e96e Mon Sep 17 00:00:00 2001
+From: Godspeed Tzeng <godspeed.tzeng@insyde.com>
+Date: Wed, 6 Sep 2023 22:47:24 +0800
+Subject: [PATCH 1/2] Add description for fan status
+
+Issue#: IB17580000
+Severity: Normal
+Category: platform
+Symptom: N/A
+RootCause: N/A
+Description: As title.
+Solution: N/A
+SolutionDependency: no dependency
+Reviewer: gerrit
+
+Signed-off-by: Godspeed Tzeng <godspeed.tzeng@insyde.com>
+---
+ redfish-core/lib/sensors.hpp                | 20 ++++++++
+ static/redfish/v1/$metadata/index.xml       |  4 ++
+ static/redfish/v1/schema/AurasSensor_v1.xml | 56 +++++++++++++++++++++
+ 3 files changed, 80 insertions(+)
+ create mode 100644 static/redfish/v1/schema/AurasSensor_v1.xml
+
+diff --git a/redfish-core/lib/sensors.hpp b/redfish-core/lib/sensors.hpp
+index 0f944316..10628abf 100644
+--- a/redfish-core/lib/sensors.hpp
++++ b/redfish-core/lib/sensors.hpp
+@@ -1214,6 +1214,26 @@ inline void objectInterfacesToJson(
+                 {
+                     sensorJson[key] = temp;
+                 }
++
++                if ((sensorType == "pump_fan_state") && (key == "/Reading"))
++                {
++                    sensorJson["Status"]["Oem"]["StatusDescription"]["@odata.type"] = "#AurasSensor.v1_0_0.StatusDescription";
++                    sensorJson["Status"]["Oem"]["StatusDescription"]["Id"] = "StatusDescription";
++                    sensorJson["Status"]["Oem"]["StatusDescription"]["Name"] = "StatusDescription";
++                    if (static_cast<int64_t>(temp) == 0)
++                    {
++                        sensorJson["Status"]["Oem"]["StatusDescription"]["Description"] = "Device is off";
++                    } else if (static_cast<int64_t>(temp) == 1)
++                    {
++                        sensorJson["Status"]["Oem"]["StatusDescription"]["Description"] = "Device is on";
++                    } else if (static_cast<int64_t>(temp) == 2)
++                    {
++                        sensorJson["Status"]["Oem"]["StatusDescription"]["Description"] = "Device is abnormal";
++                    } else
++                    {
++                        sensorJson["Status"]["Oem"]["StatusDescription"]["Description"] = "Device is abnormal";
++                    }
++                }
+             }
+         }
+     }
+diff --git a/static/redfish/v1/$metadata/index.xml b/static/redfish/v1/$metadata/index.xml
+index a2cb3ba7..681541cd 100644
+--- a/static/redfish/v1/$metadata/index.xml
++++ b/static/redfish/v1/$metadata/index.xml
+@@ -2618,6 +2618,10 @@
+         <edmx:Include Namespace="AurasCoolingModules"/>
+         <edmx:Include Namespace="AurasCoolingModules.v1_0_0"/>
+     </edmx:Reference>
++    <edmx:Reference Uri="/redfish/v1/schema/AurasSensor_v1.xml">
++        <edmx:Include Namespace="AurasSensor"/>
++        <edmx:Include Namespace="AurasSensor.v1_0_0"/>
++    </edmx:Reference>
+     <edmx:Reference Uri="/redfish/v1/schema/InsydeStorageControllerEvent_v1.xml">
+         <edmx:Include Namespace="InsydeStorageControllerEvent"/>
+         <edmx:Include Namespace="InsydeStorageControllerEvent.v1_0_0"/>
+diff --git a/static/redfish/v1/schema/AurasSensor_v1.xml b/static/redfish/v1/schema/AurasSensor_v1.xml
+new file mode 100644
+index 00000000..49d61bfb
+--- /dev/null
++++ b/static/redfish/v1/schema/AurasSensor_v1.xml
+@@ -0,0 +1,56 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
++
++  <edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Core.V1.xml">
++    <edmx:Include Namespace="Org.OData.Core.V1" Alias="OData"/>
++  </edmx:Reference>
++  <edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Measures.V1.xml">
++    <edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures"/>
++  </edmx:Reference>
++  <edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/RedfishExtensions_v1.xml">
++    <edmx:Include Namespace="RedfishExtensions.v1_0_0" Alias="Redfish"/>
++  </edmx:Reference>
++  <edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/Resource_v1.xml">
++    <edmx:Include Namespace="Resource"/>
++    <edmx:Include Namespace="Resource.v1_0_0"/>
++  </edmx:Reference>
++
++  <edmx:DataServices>
++
++    <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="AurasSensor">
++      <Annotation Term="Redfish.OwningEntity" String="Insyde"/>
++
++      <ComplexType Name="StatusDescription" BaseType="Resource.v1_0_0.Resource" Abstract="true">
++        <Annotation Term="OData.AdditionalProperties" Bool="true"/>
++        <Annotation Term="OData.Description" String="To provide Human-readable description for device status."/>
++        <Annotation Term="OData.LongDescription" String="To provide Human-readable description for device status."/>
++        <Annotation Term="Capabilities.InsertRestrictions">
++          <Record>
++            <PropertyValue Property="Insertable" Bool="false"/>
++          </Record>
++        </Annotation>
++        <Annotation Term="Capabilities.UpdateRestrictions">
++          <Record>
++            <PropertyValue Property="Updatable" Bool="false"/>
++          </Record>
++        </Annotation>
++        <Annotation Term="Capabilities.DeleteRestrictions">
++          <Record>
++            <PropertyValue Property="Deletable" Bool="false"/>
++          </Record>
++        </Annotation>
++      </ComplexType>
++    </Schema>
++
++    <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="AurasSensor.v1_0_0">
++      <Annotation Term="Redfish.OwningEntity" String="Insyde"/>
++      <ComplexType Name="StatusDescription" BaseType="AurasSensor.StatusDescription">
++        <Property Name="Description" Type="Edm.String" Nullable="false">
++          <Annotation Term="OData.Description" String="Human-readable description for device status."/>
++          <Annotation Term="OData.LongDescription" String="Human-readable description for device status."/>
++        </Property>
++      </ComplexType>
++    </Schema>
++
++  </edmx:DataServices>
++</edmx:Edmx>
+-- 
+2.17.1
+

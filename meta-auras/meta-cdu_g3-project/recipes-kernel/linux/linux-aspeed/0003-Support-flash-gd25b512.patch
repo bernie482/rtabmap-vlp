@@ -1,0 +1,37 @@
+From 7f79a3a94ed0fd8cd8b864e703502269f5eb0cf2 Mon Sep 17 00:00:00 2001
+From: Godspeed Tzeng <godspeed.tzeng@insyde.com>
+Date: Tue, 23 Apr 2024 10:51:43 +0800
+Subject: [PATCH] Support flash gd25b512
+
+Issue#: IB17580000
+Severity: Normal
+Category: platform
+Symptom: N/A
+RootCause: N/A
+Description: As title.
+Solution: N/A
+SolutionDependency: no dependency
+Reviewer: gerrit
+
+Signed-off-by: Godspeed Tzeng <godspeed.tzeng@insyde.com>
+---
+ drivers/mtd/spi-nor/gigadevice.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/drivers/mtd/spi-nor/gigadevice.c b/drivers/mtd/spi-nor/gigadevice.c
+index 447d84bb2128..5dbbb0eda407 100644
+--- a/drivers/mtd/spi-nor/gigadevice.c
++++ b/drivers/mtd/spi-nor/gigadevice.c
+@@ -50,6 +50,9 @@ static const struct flash_info gigadevice_parts[] = {
+ 			   SPI_NOR_4B_OPCODES | SPI_NOR_HAS_LOCK |
+ 			   SPI_NOR_HAS_TB | SPI_NOR_TB_SR_BIT6)
+ 		.fixups = &gd25q256_fixups },
++	{ "gd25b512", INFO(0xc8471A, 0, 64 * 1024, 1024,
++				SECT_4K | SPI_NOR_QUAD_READ | SPI_NOR_HAS_LOCK |
++				SPI_NOR_4B_OPCODES)},
+ };
+ 
+ const struct spi_nor_manufacturer spi_nor_gigadevice = {
+-- 
+2.25.1
+

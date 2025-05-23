@@ -1,0 +1,17 @@
+--- a/arch/arm/boot/dts/aspeed-bmc-intel-ast2600-acm.dts
++++ b/arch/arm/boot/dts/aspeed-bmc-intel-ast2600-acm.dts
+@@ -4,13 +4,12 @@
+ 
+ &mac3 {
+ 	status = "okay";
+-	use-ncsi;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_rmii4_default>;
+ 	clocks = <&syscon ASPEED_CLK_GATE_MAC4CLK>,
+ 		 <&syscon ASPEED_CLK_MAC4RCLK>;
+ 	clock-names = "MACCLK", "RCLK";
+-	phy-mode = "rmii";
++	phy-mode = "rgmii";
+ 	phy-handle = <&ethphy2>;
+ };
+ 

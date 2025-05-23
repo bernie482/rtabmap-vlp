@@ -1,0 +1,38 @@
+From 5fa804ba6a35400dae41e077f8634b691f95cb7f Mon Sep 17 00:00:00 2001
+From: Godspeed Tzeng <godspeed.tzeng@insyde.com>
+Date: Wed, 6 Sep 2023 22:48:14 +0800
+Subject: [PATCH 2/2] WORKAROUND: Hide the storage service
+
+Issue#: IB17580000
+Severity: Normal
+Category: platform
+Symptom: N/A
+RootCause: N/A
+Description: To avoid the redfish validator report the error.
+Solution: N/A
+SolutionDependency: no dependency
+Reviewer: gerrit
+
+Signed-off-by: Godspeed Tzeng <godspeed.tzeng@insyde.com>
+---
+ redfish-core/lib/service_root.hpp | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/redfish-core/lib/service_root.hpp b/redfish-core/lib/service_root.hpp
+index c5ec0d29..2531be13 100644
+--- a/redfish-core/lib/service_root.hpp
++++ b/redfish-core/lib/service_root.hpp
+@@ -67,8 +67,8 @@ inline void
+     asyncResp->res.jsonValue["Oem"]["OpenBmc"]["CupsService"] = {
+         {"@odata.id", "/redfish/v1/CupsService"}};
+ #ifdef SPF_REDFISH
+-    asyncResp->res.jsonValue["StorageServices"] = {
+-        {"@odata.id", "/redfish/v1/StorageServices"}};
++    // asyncResp->res.jsonValue["StorageServices"] = {
++    //     {"@odata.id", "/redfish/v1/StorageServices"}};
+ #endif
+ }
+ 
+-- 
+2.17.1
+

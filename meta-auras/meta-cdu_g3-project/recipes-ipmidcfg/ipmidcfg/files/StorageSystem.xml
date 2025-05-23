@@ -1,0 +1,19 @@
+<StorageSystem>
+    <Storage Id="1" Name="Storage System" Description="Storage System" GeneratorId="0x41"
+        PCIeI2CLogicalChannelList="4,5,6,7,8,9" DefaultI2CSlaveAddrList="0x2,0xDE,0xA" />
+        <Controller Index="1" NumberOfSlots="8" StartingSensorNumber="0x5e" />
+        <Controller Index="2" NumberOfSlots="8" StartingSensorNumber="0x66" />
+
+        <!--Event Code="PD_INSERTED" Dir="ASSERT" Severity="Non_Critical" LED="Blink_Green" /-->
+        <!--Event Code="PD_REMOVED" Dir="DEASSERT" Severity="Critical" LED="Blink_Amber" /-->
+        <!--Event Code="PD_REBUILD_IN_PROG" Dir="ASSERT" Severity="Critical" LED="Blink_Amber" /-->
+        <!--Event Code="PD_REBUILD_ABORT" Dir="DEASSERT" Severity="Non_Critical" LED="Blink_Green" /-->
+        <!--Event Code="PD_REBUILD_DONE" Dir="ASSERT" Severity="Non_Critical" LED="Blink_Green" /-->
+        <!--Event Code="LD_DEGRADED" Dir="ASSERT" Severity="Critical" LED="Blink_Amber" /-->
+        <!--Event Code="PD_ERR" Dir="ASSERT" Severity="Critical" LED="Blink_Amber" /-->
+        <!--Event Code="PD_UNUSABLE" Dir="ASSERT" Severity="Critical" LED="Blink_Amber" /-->
+        <!--Event Code="PD_SPARE_DEDICATED_CREATED" Dir="ASSERT" Severity="Non_Critical" LED="Blink_Amber" /-->
+        <!--Event Code="PD_SPARE_DEDICATED_DISABLED" Dir="DEASSERT" Severity="Non_Critical" LED="Blink_Amber" /-->
+        <!--Event Code="PD_SPARE_GLOBAL_CREATED" Dir="ASSERT" Severity="Non_Critical" LED="Blink_Amber" /-->
+        <!--Event Code="PD_SPARE_GLOBAL_DISABLED" Dir="DEASSERT" Severity="Non_Critical" LED="Blink_Amber" /-->
+</StorageSystem>

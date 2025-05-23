@@ -1,0 +1,52 @@
+MACHINE ??= "auras-cdu_g3-project-cdu_g3_intel-ast2600-evb"
+DISTRO ?= "openbmc-phosphor"
+PACKAGE_CLASSES ?= "package_rpm"
+SANITY_TESTED_DISTROS:append ?= " RedHatEnterpriseWorkstation-6.*"
+EXTRA_IMAGE_FEATURES = "validation-unsecure"
+# Uncomment the following line to enable debug features / default user account.
+EXTRA_IMAGE_FEATURES += "debug-tweaks"
+USER_CLASSES ?= "buildstats"
+PATCHRESOLVE = "noop"
+
+# PFR image Build
+#IMAGE_FSTYPES += "intel-pfr"
+
+TARGET_ID = "ast2600evb"
+
+# Add license files to rootfs (/usr/share/common-licenses):
+COPY_LIC_MANIFEST = "1"
+COPY_LIC_DIRS = "1"
+
+BB_DISKMON_DIRS ??= "\
+    STOPTASKS,${TMPDIR},1G,100K \
+    STOPTASKS,${DL_DIR},1G,100K \
+    STOPTASKS,${SSTATE_DIR},1G,100K \
+    STOPTASKS,/tmp,100M,100K \
+    ABORT,${TMPDIR},100M,1K \
+    ABORT,${DL_DIR},100M,1K \
+    ABORT,${SSTATE_DIR},100M,1K \
+    ABORT,/tmp,10M,1K"
+CONF_VERSION = "4"
+BB_NUMBER_THREADS = "10"
+PARALLEL_MAKE = "-j 10"
+
+FULL_OPTIMIZATION = "-Os -pipe ${DEBUG_FLAGS}"
+#SSTATE_DIR="~/.yocto/sstate"
+#DL_DIR="~/.yocto/download"
+
+# The following class prints the SRC_URI of each recipe in the build
+# Once enabled, run 'bitbake intel-platforms --runonly print_src'
+# on a clean workspace to get the output
+#INHERIT += "print-src"
+
+BB_GENERATE_MIRROR_TARBALLS = "1"
+
+export SPF_VERSION = "5.0"
+
+IMAGE_INSTALL:remove = " mctpd phosphor-ipmi-ipmb phosphor-node-manager-proxy at-scale-debug"
+
+PREMIRRORS:prepend = "\
+    git://.*/.*    file://${COREBASE}/meta-insyde/meta-intel/downloads/ \n \
+    git://github.com/Intel-BMC/    git://git@github.com/Intel-BMC/;protocol=ssh \n \
+"
+LICENSE_FLAGS_WHITELIST += " InsydeOpfRestrictedLicense "

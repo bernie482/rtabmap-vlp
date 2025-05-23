@@ -1,0 +1,1009 @@
+From 5bbb56bf77c9c3fc28397cdae44a0f05352762e1 Mon Sep 17 00:00:00 2001
+From: Godspeed Tzeng <godspeed.tzeng@insyde.com>
+Date: Fri, 1 Sep 2023 14:30:24 +0800
+Subject: [PATCH 2/2] [RM#86790][LED] LED automatic mechanism
+
+Issue#: IB17580000
+Severity: Normal
+Category: platform
+Symptom: N/A
+RootCause: N/A
+Description: Sync RPU code.
+Solution: N/A
+SolutionDependency: no dependency
+Reviewer: gerrit
+
+Signed-off-by: Godspeed Tzeng <godspeed.tzeng@insyde.com>
+---
+ redfish-core/include/error_messages.hpp       |  27 +
+ redfish-core/include/redfish.hpp              |   2 +
+ .../registries/base_message_registry.hpp      |  36 +-
+ .../include/registries/privilege_registry.hpp |   3 +
+ redfish-core/lib/systems.hpp                  | 609 +++++++++++++++++-
+ redfish-core/src/error_messages.cpp           |  59 ++
+ .../v1/schema/AurasCoolingModules_v1.xml      |  81 +++
+ .../v1/schema/InsydeOEMExtensions_v1.xml      |  17 +-
+ 8 files changed, 830 insertions(+), 4 deletions(-)
+ create mode 100644 static/redfish/v1/schema/AurasCoolingModules_v1.xml
+
+diff --git a/redfish-core/include/error_messages.hpp b/redfish-core/include/error_messages.hpp
+index ae755218..42e19b92 100644
+--- a/redfish-core/include/error_messages.hpp
++++ b/redfish-core/include/error_messages.hpp
+@@ -249,6 +249,21 @@ nlohmann::json propertyValueNotInList(const std::string& arg1,
+ void propertyValueNotInList(crow::Response& res, const std::string& arg1,
+                             const std::string& arg2);
+ 
++/**
++ * @brief Formats PropertyValueOutOfRange message into JSON
++ * Message body: "The value '<Arg1>' for the property <Arg2> is not in the supported
++ * range of acceptable values."
++ *
++ * @param[in] arg1 Parameter of message that will replace %1 in its body.
++ * @param[in] arg2 Parameter of message that will replace %2 in its body.
++ *
++ * @returns Message PropertyValueOutOfRange formatted to JSON */
++nlohmann::json propertyValueOutOfRange(const std::string& arg1,
++                                        const std::string& arg2);
++
++void propertyValueOutOfRange(crow::Response& res, const std::string& arg1,
++                            const std::string& arg2);
++
+ /**
+  * @brief Formats ResourceAtUriInUnknownFormat message into JSON
+  * Message body: "The resource at <arg1> is in a format not recognized by the
+@@ -907,6 +922,18 @@ nlohmann::json propertyMissing(const std::string& arg1);
+ 
+ void propertyMissing(crow::Response& res, const std::string& arg1);
+ 
++/**
++ * @brief Formats PropertyNotUpdated message into JSON
++ * Message body: "The property <Arg1> was not updated due to an internal
++ * service error. The service is still operational."
++ *
++ * @param[in] arg1 Parameter of message that will replace %1 in its body.
++ *
++ * @returns Message PropertyNotUpdated formatted to JSON */
++nlohmann::json propertyNotUpdated(const std::string& arg1);
++
++void propertyNotUpdated(crow::Response& res, const std::string& arg1);
++
+ /**
+  * @brief Formats ResourceExhaustion message into JSON
+  * Message body: "The resource <arg1> was unable to satisfy the request due to
+diff --git a/redfish-core/include/redfish.hpp b/redfish-core/include/redfish.hpp
+index 97b12c00..6a7bc9a3 100644
+--- a/redfish-core/include/redfish.hpp
++++ b/redfish-core/include/redfish.hpp
+@@ -159,6 +159,8 @@ class RedfishService
+         requestRoutesMemoryCollection(app);
+         requestRoutesMemory(app);
+ 
++        handleGetCoolingModule(app);
++        handlePatchCoolingModule(app);
+         requestRoutesSystemsCollection(app);
+         requestRoutesSystems(app);
+         requestRoutesSystemActionsReset(app);
+diff --git a/redfish-core/include/registries/base_message_registry.hpp b/redfish-core/include/registries/base_message_registry.hpp
+index 193df16d..3c37e440 100644
+--- a/redfish-core/include/registries/base_message_registry.hpp
++++ b/redfish-core/include/registries/base_message_registry.hpp
+@@ -22,7 +22,7 @@ const Header header = {
+ constexpr const char* url =
+     "https://redfish.dmtf.org/registries/Base.1.11.0.json";
+ 
+-constexpr std::array<MessageEntry, 94> registry = {
++constexpr std::array<MessageEntry, 96> registry = {
+     MessageEntry{
+         "AccessDenied",
+         {
+@@ -677,6 +677,22 @@ constexpr std::array<MessageEntry, 94> registry = {
+             "Ensure that the property is in the request body and has a valid "
+             "value and resubmit the request if the operation failed.",
+         }},
++    MessageEntry{
++        "PropertyNotUpdated",
++        {
++            "Indicates that a property was not updated due to an internal "
++            "service error, but the service is still functional.",
++            "The property %1 was not updated due to an internal service "
++            "error. The service is still operational.",
++            "Critical",
++            "Critical",
++            1,
++            {
++                "string",
++            },
++            "Resubmit the request. If the problem persists, check for "
++            "additional messages and consider resetting the service.",
++        }},
+     MessageEntry{"PropertyNotWritable",
+                  {
+                      "Indicates that a property was given a value in the "
+@@ -852,6 +868,24 @@ constexpr std::array<MessageEntry, 94> registry = {
+             "Choose a value from the enumeration list that the implementation "
+             "can support and resubmit the request if the operation failed.",
+         }},
++    MessageEntry{
++        "propertyValueOutOfRange",
++        {
++            "Indicates that a property was given the correct value type but the "
++            "value of that property is outside the supported range.",
++            "The value '%1' for the property %2 is not in the supported "
++            "range of acceptable values."
++            "acceptable values.",
++            "Warning",
++            "Warning",
++            2,
++            {
++                "string",
++                "string",
++            },
++            "Correct the value for the property in the request body and resubmit "
++            "the request if the operation failed.",
++        }},
+     MessageEntry{"PropertyValueResourceConflict",
+                  {
+                      "Indicates that the requested write of a property value "
+diff --git a/redfish-core/include/registries/privilege_registry.hpp b/redfish-core/include/registries/privilege_registry.hpp
+index e95a314d..33bd737b 100644
+--- a/redfish-core/include/registries/privilege_registry.hpp
++++ b/redfish-core/include/registries/privilege_registry.hpp
+@@ -36,6 +36,9 @@ const std::array<Privileges, 2> privilegeSetLoginOrNoAuth = {{
+ }};
+ // clang-format on
+ 
++const static auto& getCoolingModules = privilegeSetLogin;
++const static auto& patchCoolingModules = privilegeSetConfigureManager;
++
+ // AccelerationFunction
+ const static auto& getAccelerationFunction = privilegeSetLogin;
+ const static auto& headAccelerationFunction = privilegeSetLogin;
+diff --git a/redfish-core/lib/systems.hpp b/redfish-core/lib/systems.hpp
+index 7ae82607..584caa1c 100644
+--- a/redfish-core/lib/systems.hpp
++++ b/redfish-core/lib/systems.hpp
+@@ -32,6 +32,7 @@
+ #include <insyde/system_function.hpp>
+ #endif
+ 
++#define HAS_FAN_WALL                   1
+ namespace redfish
+ {
+ 
+@@ -917,6 +918,17 @@ inline void getBootProgress(const std::shared_ptr<bmcweb::AsyncResp>& aResp)
+         "xyz.openbmc_project.State.Boot.Progress", "BootProgress");
+ }
+ 
++inline bool compareStr(const std::string& str1, const std::string& str2)
++{
++    std::string str1Copy = str1;
++    std::string str2Copy = str2;
++
++    std::transform(str1Copy.begin(), str1Copy.end(), str1Copy.begin(), ::tolower);
++    std::transform(str2Copy.begin(), str2Copy.end(), str2Copy.begin(), ::tolower);
++
++    return (str1Copy == str2Copy);
++}
++
+ /**
+  * @brief Retrieves boot override type over DBUS and fills out the response
+  *
+@@ -2351,12 +2363,17 @@ inline void
+ inline void
+     getSPFOemInfo(const std::shared_ptr<bmcweb::AsyncResp>& aResp)
+ {
+-    aResp->res.jsonValue["Oem"]["InsydeSMBIOS"]["@odata.type"] = "#InsydeOEMExtensions.SMBIOS";
++    aResp->res.jsonValue["Oem"]["AurasCoolingModules"]["@odata.type"] = "#InsydeOEMExtensions.v1_0_0.CoolingModules";
++    aResp->res.jsonValue["Oem"]["AurasCoolingModules"]["CoolingModules"] =
++        {{"@odata.id",
++            "/redfish/v1/Systems/system/Oem/Auras/CoolingModules"}};
++
++    aResp->res.jsonValue["Oem"]["InsydeSMBIOS"]["@odata.type"] = "#InsydeOEMExtensions.v1_0_0.SMBIOS";
+     aResp->res.jsonValue["Oem"]["InsydeSMBIOS"]["SMBIOS"] =
+         {{"@odata.id",
+           "/redfish/v1/Systems/system/Oem/Insyde/SMBIOS"}};
+ 
+-    aResp->res.jsonValue["Oem"]["InsydePostCode"]["@odata.type"] = "#InsydeOEMExtensions.PostCode";
++    aResp->res.jsonValue["Oem"]["InsydePostCode"]["@odata.type"] = "#InsydeOEMExtensions.v1_0_0.PostCode";
+     aResp->res.jsonValue["Oem"]["InsydePostCode"]["PostCode"] =
+         {{"@odata.id",
+           "/redfish/v1/Systems/system/Oem/Insyde/PostCode"}};
+@@ -2732,6 +2749,594 @@ inline void requestRoutesSystemsCollection(App& app)
+             });
+ }
+ 
++
++#define LED_AUTO_OFFSET                                         0x3
++#define LED_STATE_MASK                                          0x3
++inline void handleGetCoolingModule(App& app)
++{
++    BMCWEB_ROUTE(app, "/redfish/v1/Systems/system/Oem/Auras/CoolingModules/")
++        .privileges(redfish::privileges::getCoolingModules)
++        .methods(boost::beast::http::verb::get) (
++            [](const crow::Request& /*req*/,
++                    const std::shared_ptr<bmcweb::AsyncResp>& asyncResp) {
++                int i, ledRed, ledGreen;
++                std::string objPath;
++                asyncResp->res.jsonValue["@odata.type"] =
++                    "#AurasCoolingModules.v1_0_0.AurasCoolingModules";
++
++                asyncResp->res.jsonValue["@odata.id"] = "/redfish/v1/Systems/system/Oem/Auras/CoolingModules";
++                asyncResp->res.jsonValue["Name"] = "Auras Cooling Modules";
++                asyncResp->res.jsonValue["Id"] = "CoolingModules";
++                asyncResp->res.jsonValue["Modules"] = nlohmann::json::array();
++
++                // LED
++                for (i = 1; i <= 3; i++)
++                {
++                    switch (i)
++                    {
++                        // PSU1
++                        case 1:
++                            ledRed = 3;
++                            ledGreen = 2;
++                            break;
++                        // PSU2
++                        case 2:
++                            ledRed = 1;
++                            ledGreen = 4;
++                            break;
++                        // PSU3
++                        case 3:
++                            ledRed = 5;
++                            ledGreen = 6;
++                            break;
++                    }
++
++                    // Red LED
++                    objPath = "/xyz/openbmc_project/stm32io/0/LED/LED" + std::to_string(ledRed);
++                    crow::connections::systemBus->async_method_call (
++                        [asyncResp, i](boost::system::error_code ec, const std::variant<int> responseVariant) {
++                            nlohmann::json tmpJson;
++                            tmpJson["Device"] = "P" + std::to_string(i) + "_LED_R";
++                            if (ec)
++                            {
++                                tmpJson["Value"] = "N/A";
++                            }
++                            else
++                            {
++                                if ((std::get<int>(responseVariant) & LED_STATE_MASK) == 0)
++                                {
++                                    if (((std::get<int>(responseVariant)) & (1 << LED_AUTO_OFFSET)) == 0)
++                                    {
++                                        tmpJson["Value"] = "Off(manual)";
++                                    }
++                                    else
++                                    {
++                                        tmpJson["Value"] = "Off";
++                                    }
++                                }
++                                else if ((std::get<int>(responseVariant) & LED_STATE_MASK) == 1)
++                                {
++                                    if (((std::get<int>(responseVariant)) & (1 << LED_AUTO_OFFSET)) == 0)
++                                    {
++                                        tmpJson["Value"] = "On(manual)";
++                                    }
++                                    else
++                                    {
++                                        tmpJson["Value"] = "On";
++                                    }
++                                }
++                                else if ((std::get<int>(responseVariant) & LED_STATE_MASK) == 2)
++                                {
++                                    if (((std::get<int>(responseVariant)) & (1 << LED_AUTO_OFFSET)) == 0)
++                                    {
++                                        tmpJson["Value"] = "Blink(manual)";
++                                    }
++                                    else
++                                    {
++                                        tmpJson["Value"] = "Blink";
++                                    }
++                                }
++                                else
++                                {
++                                    tmpJson["Value"] = "N/A";
++                                }
++                            }
++                            asyncResp->res.jsonValue["Modules"].push_back(tmpJson);
++                        },
++                        "xyz.openbmc_project.stm32io.service",
++                        objPath,
++                        "org.freedesktop.DBus.Properties",
++                        "Get",
++                        "xyz.openbmc_project.stm32io.UART",
++                        "Value"
++                    );
++
++                    // Green LED
++                    objPath = "/xyz/openbmc_project/stm32io/0/LED/LED" + std::to_string(ledGreen);
++                    crow::connections::systemBus->async_method_call (
++                        [asyncResp, i](boost::system::error_code ec, const std::variant<int> responseVariant) {
++                            nlohmann::json tmpJson;
++                            tmpJson["Device"] = "P" + std::to_string(i) + "_LED_G";
++                            if (ec)
++                            {
++                                tmpJson["Value"] = "N/A";
++                            }
++                            else
++                            {
++                                if ((std::get<int>(responseVariant) & LED_STATE_MASK) == 0)
++                                {
++                                    if (((std::get<int>(responseVariant)) & (1 << LED_AUTO_OFFSET)) == 0)
++                                    {
++                                        tmpJson["Value"] = "Off(manual)";
++                                    }
++                                    else
++                                    {
++                                        tmpJson["Value"] = "Off";
++                                    }
++                                }
++                                else if ((std::get<int>(responseVariant) & LED_STATE_MASK) == 1)
++                                {
++                                    if (((std::get<int>(responseVariant)) & (1 << LED_AUTO_OFFSET)) == 0)
++                                    {
++                                        tmpJson["Value"] = "On(manual)";
++                                    }
++                                    else
++                                    {
++                                        tmpJson["Value"] = "On";
++                                    }
++                                }
++                                else if ((std::get<int>(responseVariant) & LED_STATE_MASK) == 2)
++                                {
++                                    if (((std::get<int>(responseVariant)) & (1 << LED_AUTO_OFFSET)) == 0)
++                                    {
++                                        tmpJson["Value"] = "Blink(manual)";
++                                    }
++                                    else
++                                    {
++                                        tmpJson["Value"] = "Blink";
++                                    }
++                                }
++                                else
++                                {
++                                    tmpJson["Value"] = "N/A";
++                                }
++                            }
++                            asyncResp->res.jsonValue["Modules"].push_back(tmpJson);
++                        },
++                        "xyz.openbmc_project.stm32io.service",
++                        objPath,
++                        "org.freedesktop.DBus.Properties",
++                        "Get",
++                        "xyz.openbmc_project.stm32io.UART",
++                        "Value"
++                    );
++                }
++
++                // Not in SOW
++                // objPath = "/xyz/openbmc_project/stm32io/0/DAC/mVol";
++                // crow::connections::systemBus->async_method_call (
++                //     [asyncResp](boost::system::error_code ec, const std::variant<int> responseVariant) {
++                //         nlohmann::json tmpJson;
++                //         tmpJson["Device"] = "Gate";
++                //         if (ec)
++                //         {
++                //             tmpJson["Value"] = "N/A";
++                //         }
++                //         else
++                //         {
++                //             if (std::get<int>(responseVariant) == 0)
++                //             {
++                //                 tmpJson["Value"] = "Disabled";
++                //             }
++                //             else if (std::get<int>(responseVariant) == 1)
++                //             {
++                //                 tmpJson["Value"] = "Enabled";
++                //             }
++                //             else
++                //             {
++                //                 tmpJson["Value"] = "N/A";
++                //             }
++                //         }
++                //         asyncResp->res.jsonValue["Modules"].push_back(tmpJson);
++                //     },
++                //     "xyz.openbmc_project.stm32io.service",
++                //     objPath,
++                //     "org.freedesktop.DBus.Properties",
++                //     "Get",
++                //     "xyz.openbmc_project.stm32io.UART",
++                //     "Value"
++                // );
++
++                // Pump PWM
++                for (i = 1; i <= 3; i++)
++                {
++                    objPath = "/xyz/openbmc_project/stm32io/0/Pump/PumpPwm" + std::to_string(i);
++                    crow::connections::systemBus->async_method_call (
++                        [asyncResp, i](boost::system::error_code ec, const std::variant<int> responseVariant) {
++                            nlohmann::json tmpJson;
++                            tmpJson["Device"] = "P" + std::to_string(i) + "_PWM";
++                            if (ec)
++                            {
++                                tmpJson["Value"] = "N/A";
++                            }
++                            else
++                            {
++                                tmpJson["Value"] = std::get<int>(responseVariant);
++                            }
++                            asyncResp->res.jsonValue["Modules"].push_back(tmpJson);
++                        },
++                        "xyz.openbmc_project.stm32io.service",
++                        objPath,
++                        "org.freedesktop.DBus.Properties",
++                        "Get",
++                        "xyz.openbmc_project.stm32io.UART",
++                        "Value"
++                    );
++                }
++
++#if HAS_FAN_WALL
++                // Fan wall PWM
++                objPath = "/xyz/openbmc_project/stm32io/0/FanWall/LV1_2";
++                crow::connections::systemBus->async_method_call (
++                    [asyncResp, i](boost::system::error_code ec, const std::variant<int> responseVariant) {
++                        nlohmann::json tmpJson;
++                        tmpJson["Device"] = "Fan1_2_PWM";
++                        if (ec)
++                        {
++                            tmpJson["Value"] = "N/A";
++                        }
++                        else
++                        {
++                            tmpJson["Value"] = std::get<int>(responseVariant);
++                        }
++                        asyncResp->res.jsonValue["Modules"].push_back(tmpJson);
++                    },
++                    "xyz.openbmc_project.stm32io.service",
++                    objPath,
++                    "org.freedesktop.DBus.Properties",
++                    "Get",
++                    "xyz.openbmc_project.stm32io.UART",
++                    "Value"
++                );
++
++                objPath = "/xyz/openbmc_project/stm32io/0/FanWall/LV3_5";
++                crow::connections::systemBus->async_method_call (
++                    [asyncResp, i](boost::system::error_code ec, const std::variant<int> responseVariant) {
++                        nlohmann::json tmpJson;
++                        tmpJson["Device"] = "Fan3_5_PWM";
++                        if (ec)
++                        {
++                            tmpJson["Value"] = "N/A";
++                        }
++                        else
++                        {
++                            tmpJson["Value"] = std::get<int>(responseVariant);
++                        }
++                        asyncResp->res.jsonValue["Modules"].push_back(tmpJson);
++                    },
++                    "xyz.openbmc_project.stm32io.service",
++                    objPath,
++                    "org.freedesktop.DBus.Properties",
++                    "Get",
++                    "xyz.openbmc_project.stm32io.UART",
++                    "Value"
++                );
++#endif
++
++            });
++}
++
++inline void handlePatchCoolingModule(App& app)
++{
++    BMCWEB_ROUTE(app, "/redfish/v1/Systems/system/Oem/Auras/CoolingModules/")
++        .privileges(redfish::privileges::patchCoolingModules)
++        .methods(boost::beast::http::verb::patch) (
++            [](const crow::Request& req,
++                    const std::shared_ptr<bmcweb::AsyncResp>& asyncResp) {
++                std::string number_str, device, objPath, strValueIt;
++                int devIndex, new_value, intValueIt;
++
++                auto json = nlohmann::json::parse(req.body, nullptr, false);
++                if (json.is_discarded())
++                {
++                    BMCWEB_LOG_DEBUG << "Malformed JSON detected";
++                    messages::internalError(asyncResp->res);
++                    return;
++                }
++
++                auto modulesIt = json.find("Modules");
++                if (modulesIt == json.end() || !modulesIt->is_array())
++                {
++                    BMCWEB_LOG_DEBUG << "Missing or invalid Modules in request";
++                    messages::internalError(asyncResp->res);
++                    return;
++                }
++
++                for (const auto& module : *modulesIt)
++                {
++                    auto deviceIt = module.find("Device");
++                    auto valueIt = module.find("Value");
++
++                    if (deviceIt == module.end() || valueIt == module.end())
++                    {
++                        BMCWEB_LOG_DEBUG << "Missing Device or Value in module";
++                        messages::internalError(asyncResp->res);
++                        return;
++                    }
++
++                    device = *deviceIt;
++                    if (device == "P1_LED_R" || device == "P1_LED_G" || device == "P2_LED_R" || device == "P2_LED_G" || device == "P3_LED_R" || device == "P3_LED_G")
++                    {
++                        if (valueIt->is_string())
++                        {
++                            strValueIt = valueIt->get<std::string>();
++                        }
++                        else
++                        {
++                            messages::propertyValueTypeError(asyncResp->res, valueIt->dump(), device);
++                            continue;
++                        }
++
++                        if (device == "P1_LED_R")
++                        {
++                            devIndex = 3;
++                        }
++                        else if (device == "P1_LED_G")
++                        {
++                            devIndex = 2;
++                        }
++                        else if (device == "P2_LED_R")
++                        {
++                            devIndex = 1;
++                        }
++                        else if (device == "P2_LED_G")
++                        {
++                            devIndex = 4;
++                        }
++                        else if (device == "P3_LED_R")
++                        {
++                            devIndex = 5;
++                        }
++                        else if (device == "P3_LED_G")
++                        {
++                            devIndex = 6;
++                        }
++                        else
++                        {
++                            messages::propertyUnknown(asyncResp->res, device);
++                            continue;
++                        }
++
++                        if (compareStr(strValueIt, "On"))
++                        {
++                            new_value = 1;
++                        }
++                        else if (compareStr(strValueIt, "Off"))
++                        {
++                            new_value = 0;
++                        }
++                        else if (compareStr(strValueIt, "Blink"))
++                        {
++                            new_value = 2;
++                        }
++                        else if (compareStr(strValueIt, "Automatic"))
++                        {
++                            new_value = (1 << LED_AUTO_OFFSET);
++                        }
++                        else
++                        {
++                            messages::propertyValueNotInList(asyncResp->res, strValueIt, device);
++                            continue;
++                        }
++
++                        objPath = "/xyz/openbmc_project/stm32io/0/LED/LED" + std::to_string(devIndex);
++                        crow::connections::systemBus->async_method_call(
++                            [asyncResp, device](boost::system::error_code ec) {
++                                if (ec)
++                                {
++                                    messages::propertyNotUpdated(asyncResp->res, device);
++                                    return;
++                                }
++                                else
++                                {
++                                    // messages::propertyValueModified(asyncResp->res, device, valueIt->dump());
++                                    return;
++                                }
++                            },
++                            "xyz.openbmc_project.stm32io.service",
++                            objPath,
++                            "org.freedesktop.DBus.Properties",
++                            "Set",
++                            "xyz.openbmc_project.stm32io.UART",
++                            "Value",
++                            std::variant<int>{new_value}
++                        );
++                    }
++                    // Not in SOW
++                    // else if (device == "Gate")
++                    // {
++                    //     if (valueIt->is_string())
++                    //     {
++                    //         strValueIt = valueIt->get<std::string>();
++                    //     }
++                    //     else
++                    //     {
++                    //         messages::propertyValueTypeError(asyncResp->res, valueIt->dump(), device);
++                    //         continue;
++                    //     }
++
++                    //     if (compareStr(strValueIt, "Enabled"))
++                    //     {
++                    //         new_value = 1;
++                    //     }
++                    //     else if (compareStr(strValueIt, "Disabled"))
++                    //     {
++                    //         new_value = 0;
++                    //     }
++                    //     else
++                    //     {
++                    //         messages::propertyValueNotInList(asyncResp->res, strValueIt, device);
++                    //         continue;
++                    //     }
++
++                    //     objPath = "/xyz/openbmc_project/stm32io/0/DAC/Enable";
++                    //     crow::connections::systemBus->async_method_call(
++                    //         [asyncResp, device](boost::system::error_code ec) {
++                    //             if (ec)
++                    //             {
++                    //                 messages::propertyNotUpdated(asyncResp->res, device);
++                    //                 return;
++                    //             }
++                    //             else
++                    //             {
++                    //                 // messages::propertyValueModified(asyncResp->res, device, valueIt->dump());
++                    //                 return;
++                    //             }
++                    //         },
++                    //         "xyz.openbmc_project.stm32io.service",
++                    //         objPath,
++                    //         "org.freedesktop.DBus.Properties",
++                    //         "Set",
++                    //         "xyz.openbmc_project.stm32io.UART",
++                    //         "Value",
++                    //         std::variant<int>{new_value}
++                    //     );
++                    // }
++                    else if (device == "P1_PWM" || device == "P2_PWM" || device == "P3_PWM")
++                    {
++                        if (valueIt->is_number())
++                        {
++                            intValueIt = valueIt->get<int>();
++                        }
++                        else
++                        {
++                            messages::propertyValueTypeError(asyncResp->res, valueIt->get<std::string>(), device);
++                            continue;
++                        }
++
++                        if (0 <= intValueIt && intValueIt <= 100)
++                        {
++                            new_value = intValueIt;
++                        }
++                        else
++                        {
++                            messages::propertyValueOutOfRange(asyncResp->res, valueIt->dump(), device);
++                            continue;
++                        }
++
++                        if (device == "P1_PWM")
++                        {
++                            devIndex = 1;
++                        }
++                        else if (device == "P2_PWM")
++                        {
++                            devIndex = 2;
++                        }
++                        else if (device == "P3_PWM")
++                        {
++                            devIndex = 3;
++                        }
++                        else
++                        {
++                            messages::propertyUnknown(asyncResp->res, device);
++                            continue;
++                        }
++
++                        objPath = "/xyz/openbmc_project/stm32io/0/Pump/PumpPwm" + std::to_string(devIndex);
++                        crow::connections::systemBus->async_method_call(
++                            [asyncResp, device](boost::system::error_code ec) {
++                                if (ec)
++                                {
++                                    messages::propertyNotUpdated(asyncResp->res, device);
++                                    return;
++                                }
++                                else
++                                {
++                                    // messages::propertyValueModified(asyncResp->res, device, valueIt->dump());
++                                    return;
++                                }
++                            },
++                            "xyz.openbmc_project.stm32io.service",
++                            objPath,
++                            "org.freedesktop.DBus.Properties",
++                            "Set",
++                            "xyz.openbmc_project.stm32io.UART",
++                            "Value",
++                            std::variant<int>{new_value}
++                        );
++                    }
++#if HAS_FAN_WALL
++                    else if (device == "Fan1_2_PWM" || device == "Fan3_5_PWM")
++                    {
++                        if (valueIt->is_number())
++                        {
++                            intValueIt = valueIt->get<int>();
++                        }
++                        else
++                        {
++                            messages::propertyValueTypeError(asyncResp->res, valueIt->get<std::string>(), device);
++                            continue;
++                        }
++
++                        if (0 <= intValueIt && intValueIt <= 100)
++                        {
++                            new_value = intValueIt;
++                        }
++                        else
++                        {
++                            messages::propertyValueOutOfRange(asyncResp->res, valueIt->dump(), device);
++                            continue;
++                        }
++
++                        if (device == "Fan1_2_PWM")
++                        {
++                            objPath = "/xyz/openbmc_project/stm32io/0/FanWall/LV1_2";
++                        }
++                        else if (device == "Fan3_5_PWM")
++                        {
++                            objPath = "/xyz/openbmc_project/stm32io/0/FanWall/LV3_5";
++                        }
++                        else
++                        {
++                            messages::propertyUnknown(asyncResp->res, device);
++                            continue;
++                        }
++
++                        crow::connections::systemBus->async_method_call(
++                            [asyncResp, device](boost::system::error_code ec) {
++                                if (ec)
++                                {
++                                    messages::propertyNotUpdated(asyncResp->res, device);
++                                    return;
++                                }
++                                else
++                                {
++                                    // messages::propertyValueModified(asyncResp->res, device, valueIt->dump());
++                                    return;
++                                }
++                            },
++                            "xyz.openbmc_project.stm32io.service",
++                            objPath,
++                            "org.freedesktop.DBus.Properties",
++                            "Set",
++                            "xyz.openbmc_project.stm32io.UART",
++                            "Value",
++                            std::variant<int>{new_value}
++                        );
++                    }
++#endif
++                    else
++                    {
++                        messages::propertyUnknown(asyncResp->res, device);
++                        continue;
++                    }
++                }
++
++                messages::success(asyncResp->res);
++
++            });
++}
++
+ /**
+  * Function transceives data with dbus directly.
+  */
+diff --git a/redfish-core/src/error_messages.cpp b/redfish-core/src/error_messages.cpp
+index d26d09c8..d5d55407 100644
+--- a/redfish-core/src/error_messages.cpp
++++ b/redfish-core/src/error_messages.cpp
+@@ -572,6 +572,36 @@ void propertyValueNotInList(crow::Response& res, const std::string& arg1,
+     addMessageToJson(res.jsonValue, propertyValueNotInList(arg1, arg2), arg2);
+ }
+ 
++/**
++ * @internal
++ * @brief Formats PropertyValueOutOfRange message into JSON for the specified
++ * property
++ *
++ * See header file for more information
++ * @endinternal
++ */
++nlohmann::json propertyValueOutOfRange(const std::string& arg1,
++                                        const std::string& arg2)
++{
++    return nlohmann::json{
++        {"@odata.type", "#Message.v1_1_1.Message"},
++        {"MessageId", "Base.1.8.1.PropertyValueOutOfRange"},
++        {"Message", "The value " + arg1 + " for the property " + arg2 +
++                        " is not in the supported range of acceptable values."},
++        {"MessageArgs", {arg1, arg2}},
++        {"MessageSeverity", "Warning"},
++        {"Resolution", "Correct the value for the property in the request "
++                        "body and resubmit the request if the operation failed."
++                        "can support and resubmit the request if the "}};
++}
++
++void propertyValueOutOfRange(crow::Response& res, const std::string& arg1,
++                            const std::string& arg2)
++{
++    res.result(boost::beast::http::status::bad_request);
++    addMessageToJson(res.jsonValue, propertyValueOutOfRange(arg1, arg2), arg2);
++}
++
+ /**
+  * @internal
+  * @brief Formats ResourceAtUriInUnknownFormat message into JSON
+@@ -2037,6 +2067,35 @@ void propertyMissing(crow::Response& res, const std::string& arg1)
+     addMessageToJson(res.jsonValue, propertyMissing(arg1), arg1);
+ }
+ 
++/**
++ * @internal
++ * @brief Formats PropertyNotUpdated message into JSON for the specified
++ * property
++ *
++ * See header file for more information
++ * @endinternal
++ */
++nlohmann::json propertyNotUpdated(const std::string& arg1)
++{
++    return nlohmann::json{
++        {"@odata.type", "#Message.v1_1_1.Message"},
++        {"MessageId", "Base.1.8.1.PropertyNotUpdated"},
++        {"Message", "The property " + arg1 +
++                        " was not updated due to an internal service error. "
++                        "The service is still operational."},
++        {"MessageArgs", {arg1}},
++        {"MessageSeverity", "Critical"},
++        {"Resolution",
++            "Resubmit the request. If the problem persists, "
++            "check for additional messages and consider resetting the service."}};
++}
++
++void propertyNotUpdated(crow::Response& res, const std::string& arg1)
++{
++    res.result(boost::beast::http::status::bad_request);
++    addMessageToJson(res.jsonValue, propertyNotUpdated(arg1), arg1);
++}
++
+ /**
+  * @internal
+  * @brief Formats ResourceExhaustion message into JSON
+diff --git a/static/redfish/v1/schema/AurasCoolingModules_v1.xml b/static/redfish/v1/schema/AurasCoolingModules_v1.xml
+new file mode 100644
+index 00000000..e8e956ea
+--- /dev/null
++++ b/static/redfish/v1/schema/AurasCoolingModules_v1.xml
+@@ -0,0 +1,81 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!---->
++<!--################################################################################       -->
++<!--# InsydeOem Schema:  AurasCoolingModules  v1.0.0                                              -->
++<!--#                                                                                      -->
++<!--#  @section LICENSE                                                                    -->
++<!--#                                                                                      -->
++<!--# Copyright (c) 2003-2023, Insyde Software Corp. All Rights Reserved.                  -->
++<!--#                                                                                      -->
++<!--# You may not reproduce, distribute, publish, display, perform, modify, adapt,         -->
++<!--# transmit, broadcast, present, recite, release, license or otherwise exploit          -->
++<!--# any part of this publication in any form, by any means, without the prior            -->
++<!--# written permission of Insyde Software Corp.                                          -->
++<!--################################################################################       -->
++<!---->
++<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
++
++  <edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Core.V1.xml">
++    <edmx:Include Namespace="Org.OData.Core.V1" Alias="OData"/>
++  </edmx:Reference>
++  <edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Capabilities.V1.xml">
++    <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
++  </edmx:Reference>
++  <edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/RedfishExtensions_v1.xml">
++    <edmx:Include Namespace="RedfishExtensions.v1_0_0" Alias="Redfish"/>
++  </edmx:Reference>
++  <edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/Resource_v1.xml">
++    <edmx:Include Namespace="Resource.v1_0_0"/>
++  </edmx:Reference>
++
++  <edmx:DataServices>
++
++    <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="AurasCoolingModules">
++      <Annotation Term="Redfish.OwningEntity" String="Insyde"/>
++
++      <EntityType Name="AurasCoolingModules" BaseType="Resource.v1_0_0.Resource" Abstract="true">
++        <Annotation Term="OData.AdditionalProperties" Bool="true"/>
++        <Annotation Term="OData.Description" String="The cooling modules schema contains properties related to the cooling modules Attribute."/>
++        <Annotation Term="OData.LongDescription" String="This resource shall be used to represent cooling modules attributes for a Redfish implementation."/>
++        <Annotation Term="Capabilities.InsertRestrictions">
++          <Record>
++            <PropertyValue Property="Insertable" Bool="false"/>
++          </Record>
++        </Annotation>
++        <Annotation Term="Capabilities.UpdateRestrictions">
++          <Record>
++            <PropertyValue Property="Updatable" Bool="true"/>
++            <Annotation Term="OData.Description" String="The cooling modules resource can be updated to change the value of the writable cooling modules properties."/>
++          </Record>
++        </Annotation>
++        <Annotation Term="Capabilities.DeleteRestrictions">
++          <Record>
++            <PropertyValue Property="Deletable" Bool="false"/>
++          </Record>
++        </Annotation>
++      </EntityType>
++
++    </Schema>
++
++    <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="AurasCoolingModules.v1_0_0">
++      <Annotation Term="Redfish.OwningEntity" String="Insyde"/>
++      <EntityType Name="AurasCoolingModules" BaseType="AurasCoolingModules.AurasCoolingModules">
++        <Property Name="Modules" Type="AurasCoolingModules.v1_0_0.Modules" Nullable="false">
++          <Annotation Term="OData.Description" String="The list of cooling modules specific to the manufacturer or provider."/>
++          <Annotation Term="OData.LongDescription" String="The configuration values of the cooling module appear as additional properties in this object."/>
++        </Property>
++      </EntityType>
++
++      <ComplexType Name="Modules">
++        <Annotation Term="OData.AdditionalProperties" Bool="false"/>
++        <Annotation Term="OData.Description" String="The manufacturer/provider-specific list of SMBIOS attributes."/>
++        <Annotation Term="OData.LongDescription" String="This type shall describe SMBIOS Attribute settings as additional properties in this object."/>
++        <Property Name="Device" Type="Edm.String" Nullable="false"/>
++        <Property Name="Value" Type="Edm.Primitive" Nullable="false"/>
++      </ComplexType>
++
++    </Schema>
++
++  </edmx:DataServices>
++</edmx:Edmx>
++
+diff --git a/static/redfish/v1/schema/InsydeOEMExtensions_v1.xml b/static/redfish/v1/schema/InsydeOEMExtensions_v1.xml
+index 3c07ac86..5909b89d 100644
+--- a/static/redfish/v1/schema/InsydeOEMExtensions_v1.xml
++++ b/static/redfish/v1/schema/InsydeOEMExtensions_v1.xml
+@@ -32,6 +32,10 @@
+     <edmx:Include Namespace="ManagerNetworkProtocol.v1_0_0"/>
+     <edmx:Include Namespace="ManagerNetworkProtocol.v1_2_0"/>
+   </edmx:Reference>
++  <edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/AurasCoolingModules_v1.xml">
++    <edmx:Include Namespace="AurasCoolingModules"/>
++    <edmx:Include Namespace="AurasCoolingModules.v1_0_0"/>
++  </edmx:Reference>
+   <edmx:Reference Uri="http://redfish.dmtf.org/schemas/v1/InsydeSMBIOS_v1.xml">
+     <edmx:Include Namespace="InsydeSMBIOS"/>
+     <edmx:Include Namespace="InsydeSMBIOS.v1_0_0"/>
+@@ -91,8 +95,19 @@
+             <Parameter Name="TransferProtocol" Type="UpdateService.v1_0_0.TransferProtocolType"/>
+           </Action>
+ 
++          <ComplexType Name="CoolingModules">
++            <Annotation Term="OData.Description" String="This type contains cooling module devices."/>
++            <Annotation Term="OData.LongDescription" String="This type will provide information related to the components of cooling modules and offer methods to configure these components."/>
++            <NavigationProperty Name="CoolingModules" Type="AurasCoolingModules.AurasCoolingModules" Nullable="false">
++              <Annotation Term="OData.Permissions" EnumMember="OData.Permission/ReadWrite"/>
++              <Annotation Term="OData.Description" String="A reference to the CoolingModules settings associated with this system."/>
++              <Annotation Term="OData.LongDescription" String="The value of this property shall be a link to a resource of type CoolingModules that lists the cooling modules devices for this system."/>
++              <Annotation Term="OData.AutoExpandReferences"/>
++            </NavigationProperty>
++          </ComplexType>
++
+           <ComplexType Name="SMBIOS">
+-            <Annotation Term="OData.Description" String="This type contains SMBIOS settomgs."/>
++            <Annotation Term="OData.Description" String="This type contains SMBIOS settings."/>
+             <Annotation Term="OData.LongDescription" String="This type shall contain properties which describe SMBIOS settings."/>
+             <NavigationProperty Name="SMBIOS" Type="InsydeSMBIOS.InsydeSMBIOS" Nullable="false">
+               <Annotation Term="OData.Permissions" EnumMember="OData.Permission/Read"/>
+-- 
+2.17.1
+

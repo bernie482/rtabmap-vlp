@@ -1,0 +1,31 @@
+--- a/board/aspeed/ast2600_intel/intel.c
++++ b/board/aspeed/ast2600_intel/intel.c
+@@ -286,6 +286,8 @@ static void sgpio_init(void)
+ #define GPIO_074		0x074 /* GPIO I/J/K/L Direction */
+ #define GPIO_080		0x080 /* GPIO Q/R/S/T Value */
+ #define GPIO_084		0x084 /* GPIO Q/R/S/T Direction */
++#define GPIO_1E0		0x1E0/*  GPIO Y/Z Data Value Register */
++#define GPIO_1E4		0x1E4/*  GPIO Y/Z Direction Register */
+ 
+ static void set_gpio_default_state(void)
+ {
+@@ -345,6 +347,16 @@ static void set_gpio_default_state(void)
+ 	       AST_GPIO_BASE + GPIO_084);
+ 	writel(readl(AST_GPIO_BASE + GPIO_080) | GPIO_S3,
+ 	       AST_GPIO_BASE + GPIO_080);
++
++	/*
++	 * Set GPIOY0 as an output, explicitly set to high,
++	 * to prevent STM32 from being reset.
++	*/
++#define GPIO_Y0			BIT(0)
++	writel(readl(AST_GPIO_BASE + GPIO_1E0) | GPIO_Y0,
++	       AST_GPIO_BASE + GPIO_1E0);
++	writel(readl(AST_GPIO_BASE + GPIO_1E4) | GPIO_Y0,
++	       AST_GPIO_BASE + GPIO_1E4);
+ }
+ 
+ void enable_onboard_tpm(void)
+-- 
+2.17.1
+

@@ -1,0 +1,48 @@
+From 5b489a19786bd6a23ad67f23557decbe3c00dd55 Mon Sep 17 00:00:00 2001
+From: Godspeed Tzeng <godspeed.tzeng@insyde.com>
+Date: Mon, 13 Nov 2023 19:19:14 +0800
+Subject: [PATCH] Add air flow sensor unit
+
+Issue#: IB17580000
+Severity: Normal
+Category: platform
+Symptom: N/A
+RootCause: N/A
+Description: As title.
+Solution: N/A
+SolutionDependency: no dependency
+Reviewer: gerrit
+
+Signed-off-by: Godspeed Tzeng <godspeed.tzeng@insyde.com>
+---
+ include/storagecommands.hpp | 1 +
+ src/sensorcommands.cpp      | 1 +
+ 2 files changed, 2 insertions(+)
+
+diff --git a/include/storagecommands.hpp b/include/storagecommands.hpp
+index 060593e..85c30a2 100644
+--- a/include/storagecommands.hpp
++++ b/include/storagecommands.hpp
+@@ -75,6 +75,7 @@ enum class SensorUnits : uint8_t
+     amps = 0x5,
+     watts = 0x6,
+     kPA = 0xE,
++    cfm = 0x11,
+     rpm = 0x12,
+ };
+ 
+diff --git a/src/sensorcommands.cpp b/src/sensorcommands.cpp
+index 33188f7..11af363 100644
+--- a/src/sensorcommands.cpp
++++ b/src/sensorcommands.cpp
+@@ -212,6 +212,7 @@ const static boost::container::flat_map<const char*, SensorUnits, CmpStr>
+                     {"voltage", SensorUnits::volts},
+                     {"current", SensorUnits::amps},
+                     {"milli_current", SensorUnits::unspecified},
++                    {"airflow", SensorUnits::cfm},
+                     {"fan_tach", SensorUnits::rpm},
+                     {"power", SensorUnits::watts},
+                     {"milli_power", SensorUnits::unspecified},
+-- 
+2.17.1
+

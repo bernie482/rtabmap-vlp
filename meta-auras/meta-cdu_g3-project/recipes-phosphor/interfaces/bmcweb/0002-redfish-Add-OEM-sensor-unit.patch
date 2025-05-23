@@ -1,0 +1,151 @@
+diff --git a/redfish-core/lib/sensors.hpp b/redfish-core/lib/sensors.hpp
+index 86d8c8e9..0f944316 100644
+--- a/redfish-core/lib/sensors.hpp
++++ b/redfish-core/lib/sensors.hpp
+@@ -88,14 +88,30 @@ inline const char* toReadingType(const std::string& sensorType)
+     {
+         return "Voltage";
+     }
+-    if (sensorType == "power")
++    if (sensorType == "power" || sensorType == "milli_power")
+     {
+         return "Power";
+     }
+-    if (sensorType == "current")
++    if (sensorType == "current" || sensorType == "milli_current")
+     {
+         return "Current";
+     }
++    if (sensorType == "pressure")
++    {
++        return "Pressure";
++    }
++    if (sensorType == "flowrate")
++    {
++        return "LiquidFlow";
++    }
++    if (sensorType == "level")
++    {
++        return "Level";
++    }
++    if (sensorType == "state")
++    {
++        return "";
++    }
+     if (sensorType == "fan_tach")
+     {
+         return "Rotational";
+@@ -133,10 +149,30 @@ inline const char* toReadingUnits(const std::string& sensorType)
+     {
+         return "W";
+     }
++    if (sensorType == "milli_power")
++    {
++        return "mW";
++    }
++    if (sensorType == "pressure")
++    {
++        return "kPA";
++    }
++    if (sensorType == "flowrate")
++    {
++        return "LPM";
++    }
++    if (sensorType == "level")
++    {
++        return "Percent";
++    }
+     if (sensorType == "current")
+     {
+         return "A";
+     }
++    if (sensorType == "milli_current")
++    {
++        return "mA";
++    }
+     if (sensorType == "fan_tach")
+     {
+         return "RPM";
+@@ -950,7 +986,7 @@ inline void objectInterfacesToJson(
+         sensorJson["Id"] = sensorName;
+         sensorJson["Name"] = boost::replace_all_copy(sensorName, "_", " ");
+     }
+-    else if (sensorType != "power")
++    else if (sensorType != "power" && sensorType != "milli_power")
+     {
+         // Set MemberId and Name for non-power sensors.  For PowerSupplies and
+         // PowerControl, those properties have more general values because
+@@ -1039,7 +1075,7 @@ inline void objectInterfacesToJson(
+         unit = "/ReadingVolts"_json_pointer;
+         sensorJson["@odata.type"] = "#Power.v1_0_0.Voltage";
+     }
+-    else if (sensorType == "power")
++    else if (sensorType == "power" || sensorType == "milli_power")
+     {
+         std::string sensorNameLower =
+             boost::algorithm::to_lower_copy(sensorName);
+@@ -1090,7 +1126,7 @@ inline void objectInterfacesToJson(
+             "xyz.openbmc_project.Sensor.Threshold.Critical", "CriticalLow",
+             "/Thresholds/LowerCritical/Reading"_json_pointer);
+     }
+-    else if (sensorType != "power")
++    else if (sensorType != "power" && sensorType != "milli_power")
+     {
+         properties.emplace_back("xyz.openbmc_project.Sensor.Threshold.Warning",
+                                 "WarningHigh",
+@@ -1122,7 +1158,7 @@ inline void objectInterfacesToJson(
+         properties.emplace_back("xyz.openbmc_project.Sensor.Value", "MaxValue",
+                                 "/MaxReadingRangeTemp"_json_pointer);
+     }
+-    else if (sensorType != "power")
++    else if (sensorType != "power" && sensorType != "milli_power")
+     {
+         properties.emplace_back("xyz.openbmc_project.Sensor.Value", "MinValue",
+                                 "/MinReadingRange"_json_pointer);
+@@ -2661,7 +2697,7 @@ inline void getSensorData(
+                     {
+                         fieldName = "Voltages";
+                     }
+-                    else if (sensorType == "power")
++                    else if (sensorType == "power" || sensorType == "milli_power")
+                     {
+                         if (!sensorName.compare("total_power"))
+                         {
+diff --git a/static/redfish/v1/$metadata/index.xml b/static/redfish/v1/$metadata/index.xml
+index 01b2de0d..a2cb3ba7 100644
+--- a/static/redfish/v1/$metadata/index.xml
++++ b/static/redfish/v1/$metadata/index.xml
+@@ -1532,6 +1532,9 @@
+     <edmx:Reference Uri="/redfish/v1/schema/PCIeFunctionCollection_v1.xml">
+         <edmx:Include Namespace="PCIeFunctionCollection"/>
+     </edmx:Reference>
++    <edmx:Reference Uri="/redfish/v1/schema/PhysicalContext_v1.xml">
++        <edmx:Include Namespace="PhysicalContext"/>
++    </edmx:Reference>
+     <edmx:Reference Uri="/redfish/v1/schema/Power_v1.xml">
+         <edmx:Include Namespace="Power"/>
+         <edmx:Include Namespace="Power.v1_0_0"/>
+@@ -1614,6 +1617,20 @@
+         <edmx:Include Namespace="Privileges.v1_0_4"/>
+         <edmx:Include Namespace="Privileges.v1_0_5"/>
+     </edmx:Reference>
++    <edmx:Reference Uri="/redfish/v1/schema/PrivilegeRegistry_v1.xml">
++        <edmx:Include Namespace="PrivilegeRegistry"/>
++        <edmx:Include Namespace="PrivilegeRegistry.v1_0_0"/>
++        <edmx:Include Namespace="PrivilegeRegistry.v1_0_1"/>
++        <edmx:Include Namespace="PrivilegeRegistry.v1_0_2"/>
++        <edmx:Include Namespace="PrivilegeRegistry.v1_0_3"/>
++        <edmx:Include Namespace="PrivilegeRegistry.v1_0_4"/>
++        <edmx:Include Namespace="PrivilegeRegistry.v1_0_5"/>
++        <edmx:Include Namespace="PrivilegeRegistry.v1_1_0"/>
++        <edmx:Include Namespace="PrivilegeRegistry.v1_1_1"/>
++        <edmx:Include Namespace="PrivilegeRegistry.v1_1_2"/>
++        <edmx:Include Namespace="PrivilegeRegistry.v1_1_3"/>
++        <edmx:Include Namespace="PrivilegeRegistry.v1_1_4"/>
++    </edmx:Reference>
+     <edmx:Reference Uri="/redfish/v1/schema/Processor_v1.xml">
+         <edmx:Include Namespace="Processor"/>
+         <edmx:Include Namespace="Processor.v1_0_0"/>
+-- 
+2.17.1
+

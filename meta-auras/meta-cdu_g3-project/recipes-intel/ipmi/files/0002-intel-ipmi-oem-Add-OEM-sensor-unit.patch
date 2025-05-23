@@ -1,0 +1,43 @@
+diff --git a/include/sdrutils.hpp b/include/sdrutils.hpp
+index ab1bd35..829d67e 100644
+--- a/include/sdrutils.hpp
++++ b/include/sdrutils.hpp
+@@ -413,12 +413,15 @@ const static boost::container::flat_map<const char*, SensorTypeCodes, CmpStr>
+     sensorTypes{{{"temperature", SensorTypeCodes::temperature},
+                     {"voltage", SensorTypeCodes::voltage},
+                     {"current", SensorTypeCodes::current},
++                    {"milli_current", SensorTypeCodes::other},
+                     {"fan_tach", SensorTypeCodes::fan},
+                     {"fan_pwm", SensorTypeCodes::fan},
+                     {"power", SensorTypeCodes::other},
++                    {"milli_power", SensorTypeCodes::other},
+                     {"pressure", SensorTypeCodes::other},
+                     {"flowrate", SensorTypeCodes::other},
+                     {"state", SensorTypeCodes::other},
++                    {"level", SensorTypeCodes::other},
+                 }};
+ 
+ inline static std::string getSensorTypeStringFromPath(const std::string& path)
+diff --git a/src/sensorcommands.cpp b/src/sensorcommands.cpp
+index 1f106b7..41d5685 100644
+--- a/src/sensorcommands.cpp
++++ b/src/sensorcommands.cpp
+@@ -211,11 +211,14 @@ const static boost::container::flat_map<const char*, SensorUnits, CmpStr>
+     sensorUnits{{{"temperature", SensorUnits::degreesC},
+                     {"voltage", SensorUnits::volts},
+                     {"current", SensorUnits::amps},
++                    {"milli_current", SensorUnits::unspecified},
+                     {"fan_tach", SensorUnits::rpm},
+                     {"power", SensorUnits::watts},
++                    {"milli_power", SensorUnits::unspecified},
+                     {"pressure", SensorUnits::kPA},
+                     {"flowrate", SensorUnits::unspecified},
+-                    {"state", SensorUnits::unspecified}
++                    {"state", SensorUnits::unspecified},
++                    {"level", SensorUnits::unspecified},
+                 }};
+ 
+ void registerSensorFunctions() __attribute__((constructor));
+-- 
+2.17.1
+
