@@ -1,0 +1,871 @@
+{
+    "overview":
+    {
+        "index": 1,
+        "label": "appNavigation.overview",
+        "route": "/",
+        "component": "@/views/Overview",
+        "icon": "iconOverview",
+        "depends": [
+            "CONFIG_OFD_PAGE_OVERVIEW"
+        ]
+
+    },
+    "dashboard":
+    {
+        "index": 2,
+        "label": "appNavigation.dashboard",
+        "route": "/dashboard",
+        "component": "@/env/insyde/views/Dashboard",
+        "icon": "iconOverview",
+        "view": [4],
+        "change": [4],
+        "depends": [
+            "CONFIG_WEB_PAGE_CFG_SYSTEM_DASHBOARD"
+        ]
+    },
+    "logs":
+    {
+        "index": 3,
+        "label": "appNavigation.logs",
+        "icon": "iconLogs",
+        "children":
+        {
+            "event-logs":
+            {
+                "index": 1,
+                "label": "appNavigation.eventLogs",
+                "route": "/logs/event-logs",
+                "component": "@/views/Logs/EventLogs",
+                "depends": [
+                    "CONFIG_OFD_PAGE_EVENT_LOGS"
+                ]
+            },
+            "sel":
+            {
+                "index": 2,
+                "label": "appNavigation.sel",
+                "route": "/logs/sel",
+                "component": "@/env/insyde/views/SEL",
+                "view": [2, 3, 4],
+                "change": [3, 4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_SERVER_H_SEL"
+                ]
+            },
+            "post-code-logs":
+            {
+                "index": 3,
+                "label": "appNavigation.postCodeLogs",
+                "route": "/logs/post-code-logs",
+                "component": "@/views/Logs/PostCodeLogs",
+                "depends": [
+                    "CONFIG_OFD_PAGE_POST"
+                ]
+            },
+            "insyde-post-code":
+            {
+                "index": 4,
+                "label": "appNavigation.insydePostCode",
+                "route": "/logs/insyde-post-code",
+                "component": "@/env/insyde/views/PostCode",
+                "view": [3, 4],
+                "change": [3, 4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_POST"
+                ]
+            },
+            "sol-log":
+            {
+                "index": 5,
+                "label": "appNavigation.solLog",
+                "route": "/logs/sol-log",
+                "component": "@/env/insyde/views/SolLog",
+                "view": [3, 4],
+                "change": [3, 4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_SOL_LOG"
+                ]
+            },
+            "bios-log":
+            {
+                "index": 6,
+                "label": "appNavigation.biosLog",
+                "route": "/logs/bios-log",
+                "component": "@/env/insyde/views/BiosLog",
+                "view": [2, 3, 4],
+                "change": [],
+                "depends": [
+                    "CONFIG_INSYDE_BIOS_JOINT_FEATURE_BIOS_DEBUG_LOG",
+                    "CONFIG_WEB_PAGE_CFG_BIOS_DBG_LOG"
+                ]
+            },
+            "video-log":
+            {
+                "index": 7,
+                "label": "appNavigation.videoLog",
+                "route": "/logs/video-log",
+                "component": "@/env/insyde/views/VideoLog",
+                "view": [4],
+                "change": [4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_CRASH_VIDEO_CAPTURE"
+                ]
+            },
+            "system-diagnostics":
+            {
+                "index": 8,
+                "label": "appNavigation.systemDiagnostics",
+                "route": "/logs/system-diagnostics",
+                "component": "@/env/insyde/views/SystemDiagnostics",
+                "view": [3, 4],
+                "change": [3, 4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_SYSTEM_DIAG"
+                ]
+            }
+        }
+    },
+    "hardware-status":
+    {
+        "index": 4,
+        "label": "appNavigation.hardwareStatus",
+        "icon": "iconHealth",
+        "children":
+        {
+            "sysinfo":
+            {
+                "index": 1,
+                "label": "appNavigation.sysinfo",
+                "route": "/hardware-status/sysinfo",
+                "component": "@/env/insyde/views/Sysinfo",
+                "view": [2, 3, 4],
+                "change": [4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_SYSTEM_INFO"
+                ]
+            },
+            "fruinfo":
+            {
+                "index": 2,
+                "label": "appNavigation.fruinfo",
+                "route": "/hardware-status/fruinfo",
+                "component": "@/env/insyde/views/Fruinfo",
+                "view": [2, 3, 4],
+                "change": [],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_SYSTEM_FRU"
+                ]
+            },
+            "cpuinfo":
+            {
+                "index": 3,
+                "label": "appNavigation.cpuinfo",
+                "route": "/hardware-status/cpuinfo",
+                "component": "@/env/insyde/views/Cpuinfo",
+                "view": [2, 3, 4],
+                "change": [],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_SYSTEM_CPU",
+                    "CONFIG_INSYDE_BIOS_JOINT_FEATURE_SMBIOS"
+                ]
+            },
+            "dimm":
+            {
+                "index": 4,
+                "label": "appNavigation.dimm",
+                "route": "/hardware-status/dimm",
+                "component": "@/env/insyde/views/Dimm",
+                "view": [2, 3, 4],
+                "change": [],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_SYSTEM_DIMM",
+                    "CONFIG_INSYDE_BIOS_JOINT_FEATURE_SMBIOS"
+                ]
+            },
+            "pfrinfo":
+            {
+                "index": 5,
+                "label": "appNavigation.pfrinfo",
+                "route": "/hardware-status/pfrinfo",
+                "component": "@/env/insyde/views/Pfrinfo",
+                "view": [2, 3, 4],
+                "change": [],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_SYSTEM_PFR",
+                    "CONFIG_PFR_IMG"
+                ]
+            },
+            "inventory":
+            {
+                "index": 6,
+                "label": "appNavigation.inventory",
+                "route": "/hardware-status/inventory",
+                "component": "@/views/HardwareStatus/Inventory",
+                "depends": [
+                    "CONFIG_OFD_PAGE_INVENTORY"
+                ]
+            },
+            "sensors":
+            {
+                "index": 7,
+                "label": "appNavigation.sensors",
+                "route": "/hardware-status/sensors",
+                "component": "@/views/HardwareStatus/Sensors",
+                "depends": [
+                    "CONFIG_OFD_PAGE_SENSORS"
+                ]
+            },
+            "sensoreadings":
+            {
+                "index": 8,
+                "label": "appNavigation.sensoreadings",
+                "route": "/hardware-status/sensoreadings",
+                "component": "@/env/insyde/views/SensorReadings",
+                "view": [2, 3, 4],
+                "change": [],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_SERVER_H_SENSOR"
+                ]
+            },
+            "nic-information":
+            {
+                "index": 9,
+                "label": "appNavigation.nicInformation",
+                "route": "/hardware-status/nic-information",
+                "component": "@/env/insyde/views/NicInformation",
+                "view": [4],
+                "change": [4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_SYSTEM_NIC"
+                ]
+            },
+            "nvme":
+            {
+                "index": 10,
+                "label": "appNavigation.nvme",
+                "route": "/hardware-status/nvme",
+                "component": "@/env/insyde/views/Nvme",
+                "view": [2, 3, 4],
+                "change": [4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_SYSTEM_NVME"
+                ]
+            },
+            "system-component":
+            {
+                "index": 11,
+                "label": "appNavigation.systemComponent",
+                "route": "/hardware-status/system-component",
+                "component": "@/env/insyde/views/SystemComponent",
+                "view": [2, 3, 4],
+                "change": [4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_SYSTEM_COMPONENT"
+                ]
+            },
+            "memory-fp":
+            {
+                "index": 13,
+                "label": "appNavigation.memoryFP",
+                "route": "/hardware-status/memory-fp",
+                "component": "@/env/insyde/views/MemoryFP",
+                "view": [2, 3, 4],
+                "change": [],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_SERVER_H_MFP"
+                ]
+            }
+        }
+    },
+    "operations":
+    {
+        "index": 5,
+        "label": "appNavigation.operations",
+        "icon": "iconControl",
+        "children":
+        {
+            "cooling-module":
+            {
+                "index": 1,
+                "label": "appNavigation.coolingModule",
+                "route": "/operations/cooling-module",
+                "component": "@/env/insyde/views/CoolingModule",
+                "depends": []
+            },
+            "factory-reset":
+            {
+                "index": 2,
+                "label": "appNavigation.factoryReset",
+                "route": "/operations/factory-reset",
+                "component": "@/views/Operations/FactoryReset",
+                "depends": [
+                    "CONFIG_OFD_PAGE_FACTORY_RESET"
+                ]
+            },
+            "insyde-factory-reset":
+            {
+                "index": 3,
+                "label": "appNavigation.insydeFactoryReset",
+                "route": "/operations/insyde-factory-reset",
+                "component": "@/env/insyde/views/FactoryReset",
+                "view": [4],
+                "change": [4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_SYSTEM_DEFAULT"
+                ]
+            },
+            "kvm":
+            {
+                "index": 4,
+                "label": "appNavigation.kvm",
+                "route": "/operations/kvm",
+                "component": "@/views/Operations/Kvm",
+                "depends": [
+                    "CONFIG_OFD_PAGE_KVM"
+                ]
+            },
+            "firmware":
+            {
+                "index": 5,
+                "label": "appNavigation.firmware",
+                "route": "/operations/firmware",
+                "component": "@/views/Operations/Firmware",
+                "depends": [
+                    "CONFIG_OFD_PAGE_FIRMWARE"
+                ]
+            },
+            "amd-firmware":
+            {
+                "index": 7,
+                "label": "appNavigation.amdFirmware",
+                "route": "/operations/amd-firmware",
+                "component": "@/env/insyde/views/AMDFirmware",
+                "view": [4],
+                "change": [4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_CONFIG_FW_UPD"
+                ]
+            },
+            "pld-firmware":
+            {
+                "index": 8,
+                "label": "appNavigation.pldFirmware",
+                "route": "/operations/pld-firmware",
+                "component": "@/env/insyde/views/PLDFirmware",
+                "view": [4],
+                "change": [4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_CONFIG_FW_UPD"
+                ]
+            },
+            "reboot-bmc":
+            {
+                "index": 9,
+                "label": "appNavigation.rebootBmc",
+                "route": "/operations/reboot-bmc",
+                "component": "@/views/Operations/RebootBmc",
+                "depends": [
+                    "CONFIG_OFD_PAGE_REBOOT"
+                ]
+            },
+            "unit-reset":
+            {
+                "index": 10,
+                "label": "appNavigation.unitReset",
+                "route": "/operations/unit-reset",
+                "component": "@/env/insyde/views/UnitReset",
+                "view": [4],
+                "change": [4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_UNIT_RESET"
+                ]
+            },
+            "serial-over-lan":
+            {
+                "index": 11,
+                "label": "appNavigation.serialOverLan",
+                "route": "/operations/serial-over-lan",
+                "component": "@/views/Operations/SerialOverLan",
+                "depends": [
+                    "CONFIG_OFD_PAGE_SOL"
+                ]
+            },
+            "sol":
+            {
+                "index": 12,
+                "label": "appNavigation.sol",
+                "route": "/operations/sol",
+                "component": "@/env/insyde/views/Sol",
+                "view": [4],
+                "change": [4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_SOL"
+                ]
+            },
+            "server-power-operations":
+            {
+                "index": 13,
+                "label": "appNavigation.serverPowerOperations",
+                "route": "/operations/server-power-operations",
+                "component": "@/views/Operations/ServerPowerOperations",
+                "depends": [
+                    "CONFIG_OFD_PAGE_POWER_OP"
+                ]
+            },
+            "virtual-front-panel":
+            {
+                "index": 14,
+                "label": "appNavigation.virtualFrontPanel",
+                "route": "/operations/virtual-front-panel",
+                "component": "@/env/insyde/views/VirtualFrontPanel",
+                "view": [2, 3, 4],
+                "change": [3, 4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_VIRTUAL_FRONT_PANEL"
+                ]
+            },
+            "virtual-media":
+            {
+                "index": 15,
+                "label": "appNavigation.virtualMedia",
+                "route": "/operations/virtual-media",
+                "component": "@/views/Operations/VirtualMedia",
+                "depends": [
+                    "CONFIG_OFD_PAGE_VM"
+                ]
+            },
+            "boot-configuration":
+            {
+                "index": 17,
+                "label": "appNavigation.bootConfiguration",
+                "route": "/operations/boot-configuration",
+                "component": "@/env/insyde/views/BootConfiguration",
+                "view": [4],
+                "change": [4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_CONFIG_BOOT",
+                    "CONFIG_INSYDE_BIOS_JOINT_FEATURE_BIOS_CONFIG"
+                ]
+            }
+        }
+    },
+    "settings":
+    {
+        "index": 6,
+        "label": "appNavigation.settings",
+        "icon": "iconSettings",
+        "children":
+        {
+            "alerts":
+            {
+                "index": 1,
+                "label": "appNavigation.alerts",
+                "route": "/settings/alerts",
+                "component": "@/env/insyde/views/Alerts",
+                "view": [3, 4],
+                "change": [4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_CONFIG_ALERTS"
+                ]
+            },
+            "alert-policies":
+            {
+                "index": 2,
+                "label": "appNavigation.alertPolicies",
+                "route": "/settings/alert-policies",
+                "component": "@/env/insyde/views/AlertPolicies",
+                "view": [3, 4],
+                "change": [4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_CONFIG_ALERT_POLICY"
+                ]
+            },
+            "alert-email":
+            {
+                "index": 3,
+                "label": "appNavigation.alertEmail",
+                "route": "/settings/alert-email",
+                "component": "@/env/insyde/views/AlertEmail",
+                "view": [2, 3, 4],
+                "change": [4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_CONFIG_ALERT_EMAIL"
+                ]
+            },
+            "date-time":
+            {
+                "index": 4,
+                "label": "appNavigation.dateTime",
+                "route": "/settings/date-time",
+                "component": "@/views/Settings/DateTime",
+                "depends": [
+                    "CONFIG_OFD_PAGE_DATETIME"
+                ]
+            },
+            "date-time-insyde":
+            {
+                "index": 5,
+                "label": "appNavigation.dateTimeInsyde",
+                "route": "/settings/date-time-insyde",
+                "component": "@/env/insyde/views/DateTime",
+                "view": [2, 3, 4],
+                "change": [3, 4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_CONFIG_DATETIME"
+                ]
+            },
+            "network":
+            {
+                "index": 6,
+                "label": "appNavigation.network",
+                "route": "/settings/network",
+                "component": "@/views/Settings/Network",
+                "depends": [
+                    "CONFIG_OFD_PAGE_NETWORK"
+                ]
+            },
+            "networks":
+            {
+                "index": 7,
+                "label": "appNavigation.networks",
+                "route": "/settings/networks",
+                "component": "@/env/insyde/views/Networks",
+                "view": [3, 4],
+                "change": [4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_CONFIG_NETWORKS"
+                ]
+            },
+            "vlan":
+            {
+                "index": 8,
+                "label": "appNavigation.vlan",
+                "route": "/settings/vlan",
+                "component": "@/env/insyde/views/VLAN",
+                "view": [3, 4],
+                "change": [4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_CONFIG_VLAN"
+                ]
+            },
+            "sol-smash":
+            {
+                "index": 9,
+                "label": "appNavigation.solSmash",
+                "route": "/settings/sol-smash",
+                "component": "@/env/insyde/views/ConfigSolSmash",
+                "view": [2, 3, 4],
+                "change": [4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_CONFIG_SOL_SMASH"
+                ]
+            },
+            "ddns":
+            {
+                "index": 11,
+                "label": "appNavigation.ddns",
+                "route": "/settings/ddns",
+                "component": "@/env/insyde/views/DDNS",
+                "view": [3, 4],
+                "change": [4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_CONFIG_DDNS"
+                ]
+            },
+            "syslog-settings":
+            {
+                "index": 12,
+                "label": "appNavigation.syslogSettings",
+                "route": "/settings/syslog-settings",
+                "component": "@/env/insyde/views/Syslog",
+                "view": [3, 4],
+                "change": [3, 4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_SYSLOG_SETTINGS"
+                ]
+            },
+            "backup-restore":
+            {
+                "index": 13,
+                "label": "appNavigation.backupRestore",
+                "route": "/settings/backup-restore",
+                "component": "@/env/insyde/views/BackupRestore",
+                "view": [4],
+                "change": [4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_IPMI_CFG"
+                ]
+            },
+            "power-restore-policy":
+            {
+                "index": 14,
+                "label": "appNavigation.powerRestorePolicy",
+                "route": "/settings/power-restore-policy",
+                "component": "@/views/Settings/PowerRestorePolicy",
+                "depends": [
+                    "CONFIG_OFD_PAGE_POWER_RESTORE"
+                ]
+            }
+        }
+    },
+    "security-and-access":
+    {
+        "index": 7,
+        "label": "appNavigation.securityAndAccess",
+        "icon": "iconSecurityAndAccess",
+        "children":
+        {
+            "sessions":
+            {
+                "index": 1,
+                "label": "appNavigation.sessions",
+                "route": "/security-and-access/sessions",
+                "component": "@/views/SecurityAndAccess/Sessions",
+                "depends": [
+                    "CONFIG_OFD_PAGE_SESSIONS"
+                ]
+            },
+            "current-users":
+            {
+                "index": 2,
+                "label": "appNavigation.currentUsers",
+                "route": "/security-and-access/current-users",
+                "component": "@/env/insyde/views/CurrentUsers",
+                "view": [4],
+                "change": [4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_SYSTEM_USER"
+                ]
+            },
+            "ldap":
+            {
+                "index": 3,
+                "label": "appNavigation.ldap",
+                "route": "/security-and-access/ldap",
+                "component": "@/views/SecurityAndAccess/Ldap",
+                "depends": [
+                    "CONFIG_OFD_PAGE_LDAP"
+                ]
+            },
+            "ldap-insyde":
+            {
+                "index": 4,
+                "label": "appNavigation.ldapInsyde",
+                "route": "/security-and-access/ldap-insyde",
+                "component": "@/env/insyde/views/Ldap",
+                "view": [2, 3, 4],
+                "change": [4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_CONFIG_LDAP"
+                ]
+            },
+            "activeDirectory":
+            {
+                "index": 5,
+                "label": "appNavigation.activeDirectory",
+                "route": "/security-and-access/activeDirectory",
+                "component": "@/env/insyde/views/AD",
+                "view": [2, 3, 4],
+                "change": [4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_CONFIG_AD"
+                ]
+            },
+            "radius":
+            {
+                "index": 6,
+                "label": "appNavigation.radius",
+                "route": "/security-and-access/radius",
+                "component": "@/env/insyde/views/RADIUS",
+                "view": [2, 3, 4],
+                "change": [4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_CONFIG_RADIUS"
+                ]
+            },
+            "tacacs":
+            {
+                "index": 7,
+                "label": "appNavigation.tacacs",
+                "route": "/security-and-access/tacacs",
+                "component": "@/env/insyde/views/TACACS",
+                "view": [2, 3, 4],
+                "change": [4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_CONFIG_TACACS"
+                ]
+            },
+            "user-management":
+            {
+                "index": 8,
+                "label": "appNavigation.userManagement",
+                "route": "/security-and-access/user-management",
+                "component": "@/views/SecurityAndAccess/UserManagement",
+                "depends": [
+                    "CONFIG_OFD_PAGE_USER"
+                ]
+            },
+            "users":
+            {
+                "index": 9,
+                "label": "appNavigation.users",
+                "route": "/security-and-access/users",
+                "component": "@/env/insyde/views/Users",
+                "view": [3, 4],
+                "change": [4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_CONFIG_USERS"
+                ]
+            },
+            "policies":
+            {
+                "index": 10,
+                "label": "appNavigation.policies",
+                "route": "/security-and-access/policies",
+                "component": "@/views/SecurityAndAccess/Policies",
+                "depends": [
+                    "CONFIG_OFD_PAGE_POLICIES"
+                ]
+            },
+            "certificates":
+            {
+                "index": 11,
+                "label": "appNavigation.certificates",
+                "route": "/security-and-access/certificates",
+                "component": "@/views/SecurityAndAccess/Certificates",
+                "depends": [
+                    "CONFIG_OFD_PAGE_CERTIFICATES"
+                ]
+            },
+            "ssl-certification":
+            {
+                "index": 12,
+                "label": "appNavigation.sslCertification",
+                "route": "/security-and-access/ssl-certification",
+                "component": "@/env/insyde/views/CERT",
+                "view": [2, 3, 4],
+                "change": [4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_CONFIG_SSL_CERT"
+                ]
+            },
+            "krb-auth":
+            {
+                "index": 13,
+                "label": "appNavigation.krbAuth",
+                "route": "/security-and-access/krb-auth",
+                "component": "@/env/insyde/views/krbAuth",
+                "view": [2, 3, 4],
+                "change": [4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_CONFIG_KERBEROS"
+                ]
+            },
+            "security-settins":
+            {
+                "index": 14,
+                "label": "appNavigation.securitySettings",
+                "route": "/security-and-access/security-settings",
+                "component": "@/env/insyde/views/SecuritySettings",
+                "view": [3, 4],
+                "change": [4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_CONFIG_SEC_SETTINGS"
+                ]
+            },
+            "ipAccessControl":
+            {
+                "index": 15,
+                "label": "appNavigation.ipAccessControl",
+                "route": "/security-and-access/ipAccessControl",
+                "component": "@/env/insyde/views/IpAccessControl",
+                "view": [3, 4],
+                "change": [4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_CONFIG_IP_ACCESS_CONTROL"
+                ]
+            }
+        }
+    },
+    "resource-management":
+    {
+        "index": 8,
+        "label": "appNavigation.resourceManagement",
+        "icon": "iconResourceManagement",
+        "children":
+        {
+            "power":
+            {
+                "index": 1,
+                "label": "appNavigation.power",
+                "route": "/resource-management/power",
+                "component": "@/views/ResourceManagement/Power",
+                "depends": [
+                    "CONFIG_OFD_PAGE_POWER_CAP"
+                ]
+            },
+            "powercapping":
+            {
+                "index": 2,
+                "label": "appNavigation.powerCapping",
+                "route": "/resource-management/powercapping",
+                "component": "@/env/insyde/views/PowerCapping",
+                "view": [4],
+                "change": [4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_POWER_POLICY"
+                ]
+            },
+            "powerStatistics":
+            {
+                "index": 3,
+                "label": "appNavigation.powerStatistics",
+                "route": "/resource-management/powerStatistics",
+                "component": "@/env/insyde/views/PowerStatistics",
+                "view": [4],
+                "change": [4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_POWER_STATISTICS"
+                ]
+            },
+            "powertelemetry":
+            {
+                "index": 4,
+                "label": "appNavigation.powerTelemetry",
+                "route": "/resource-management/powertelemetry",
+                "component": "@/env/insyde/views/PowerTelemetry",
+                "view": [3, 4],
+                "change": [3, 4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_POWER_TELEMETRY"
+                ]
+            },
+            "powerSchedule":
+            {
+                "index": 5,
+                "label": "appNavigation.powerSchedule",
+                "route": "/resource-management/powerSchedule",
+                "component": "@/env/insyde/views/PowerSchedule",
+                "view": [2, 3, 4],
+                "change": [3, 4],
+                "depends": [
+                    "CONFIG_WEB_PAGE_CFG_POWER_SCHEDULE"
+                ]
+            }
+        }
+    },
+    "bios":
+    {
+        "index": 9,
+        "label": "appNavigation.bios",
+        "icon": "iconTools",
+        "route": "/bios/:menu",
+        "component": "@/env/insyde/views/Bios",
+        "view": [4],
+        "change": [4],
+        "depends": [
+            "CONFIG_WEB_PAGE_CFG_BIOS_CONFIGURATION"
+        ]
+    }
+}

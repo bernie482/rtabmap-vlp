@@ -1,0 +1,75 @@
+
+/** led
+---------------------------------------------------------*/
+.led {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgb(200, 200, 200);
+  background: linear-gradient(
+    45deg,
+    rgba(185, 185, 185, 1) 0%,
+    rgba(200, 200, 200, 1) 28%,
+    rgb(230, 230, 230) 75%
+  );
+}
+
+.led-gray {
+  background: rgb(200, 200, 200);
+  background: linear-gradient(
+    45deg,
+    rgba(185, 185, 185, 1) 0%,
+    rgba(200, 200, 200, 1) 28%,
+    rgb(230, 230, 230) 75%
+  );
+}
+
+.led-green {
+  background: rgb(7, 23, 0);
+  background: linear-gradient(
+    45deg,
+    rgba(68, 148, 2, 1) 0%,
+    rgba(91, 209, 2, 1) 30%,
+    rgba(99, 244, 3, 1) 70%
+  );
+}
+
+.led-amber {
+  background: rgb(231, 203, 2);
+  background: linear-gradient(
+    45deg,
+    rgba(231, 203, 2, 1) 0%,
+    rgba(235, 212, 0, 1) 30%,
+    rgba(238, 246, 40, 1) 70%
+  );
+}
+
+.led-blue {
+  background: rgb(14, 121, 222);
+  background: linear-gradient(
+    45deg,
+    rgba(14, 121, 222, 1) 0%,
+    rgba(0, 165, 254, 1) 30%,
+    rgba(3, 205, 251, 1) 70%
+  );
+}
+
+.led-blink {
+  animation-name: blink;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes blink {
+  100% {
+    background: rgb(200, 200, 200);
+    background: linear-gradient(
+      45deg,
+      rgba(185, 185, 185, 1) 0%,
+      rgba(200, 200, 200, 1) 28%,
+      rgb(230, 230, 230) 75%
+    );
+  }
+}

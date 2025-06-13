@@ -1,0 +1,11 @@
+.card {
+  .bg-success {
+    background-color: theme-color-light('success')!important;
+  }
+}
+.card-sub {
+  .bg-success {
+    background-color: theme-color-light('success')!important;
+  }
+  padding: 0.75rem 2.25rem;
+}

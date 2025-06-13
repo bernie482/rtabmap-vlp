@@ -1,0 +1,1026 @@
+[
+  {
+   "code": "0x00",
+   "decode": "Clear POST Code"
+  },
+  {
+   "code": "0x01",
+   "decode": "CPU reset"
+  },
+  {
+   "code": "0x02",
+   "decode": "Microcode load begin"
+  },
+  {
+   "code": "0x03",
+   "decode": "CRAM init begin"
+  },
+  {
+   "code": "0x04",
+   "decode": "PEI cache disabled"
+  },
+  {
+   "code": "0x05",
+   "decode": "SEC core power-on begin"
+  },
+  {
+   "code": "0x06",
+   "decode": "Early CPU init (Sec. phase)"
+  },
+  {
+   "code": "0x07",
+   "decode": "Early SB init (Sec. phase)"
+  },
+  {
+   "code": "0x08",
+   "decode": "Early NB init (Sec. phase)"
+  },
+  {
+   "code": "0x09",
+   "decode": "End second phase"
+  },
+  {
+   "code": "0x0A",
+   "decode": ""
+  },
+  {
+   "code": "0x0B",
+   "decode": ""
+  },
+  {
+   "code": "0x0C",
+   "decode": ""
+  },
+  {
+   "code": "0x0D",
+   "decode": ""
+  },
+  {
+   "code": "0x0E",
+   "decode": "Microcode not found"
+  },
+  {
+   "code": "0x0F",
+   "decode": "Microcode not loaded"
+  },
+  {
+   "code": "0x10",
+   "decode": "Enter BDS entry"
+  },
+  {
+   "code": "0x11",
+   "decode": "Install Hotkey service"
+  },
+  {
+   "code": "0x12",
+   "decode": "ASF Initial"
+  },
+  {
+   "code": "0x13",
+   "decode": "PCI enumeration"
+  },
+  {
+   "code": "0x14",
+   "decode": ""
+  },
+  {
+   "code": "0x15",
+   "decode": "PCI enumeration complete"
+  },
+  {
+   "code": "0x16",
+   "decode": "Keyboard Controller, Keyboard and Moust initial"
+  },
+  {
+   "code": "0x17",
+   "decode": "Video device initial"
+  },
+  {
+   "code": "0x18",
+   "decode": "Error report device initial"
+  },
+  {
+   "code": "0x19",
+   "decode": "SB PEIM"
+  },
+  {
+   "code": "0x1A",
+   "decode": "USB BUS driver initial"
+  },
+  {
+   "code": "0x1B",
+   "decode": "USB device driver initial"
+  },
+  {
+   "code": "0x1C",
+   "decode": "Console device initial fail"
+  },
+  {
+   "code": "0x1D",
+   "decode": "Display logo or system information"
+  },
+  {
+   "code": "0x1E",
+   "decode": ""
+  },
+  {
+   "code": "0x1F",
+   "decode": ""
+  },
+  {
+   "code": "0x20",
+   "decode": "SIO controller initial"
+  },
+  {
+   "code": "0x21",
+   "decode": ""
+  },
+  {
+   "code": "0x22",
+   "decode": ""
+  },
+  {
+   "code": "0x23",
+   "decode": ""
+  },
+  {
+   "code": "0x24",
+   "decode": ""
+  },
+  {
+   "code": "0x25",
+   "decode": ""
+  },
+  {
+   "code": "0x26",
+   "decode": "Dispatch option ROMs"
+  },
+  {
+   "code": "0x27",
+   "decode": "Get boot device information"
+  },
+  {
+   "code": "0x28",
+   "decode": "End of boot selection"
+  },
+  {
+   "code": "0x29",
+   "decode": "Enter Setup Menu"
+  },
+  {
+   "code": "0x2A",
+   "decode": ""
+  },
+  {
+   "code": "0x2B",
+   "decode": "Try to boot system to OS"
+  },
+  {
+   "code": "0x2C",
+   "decode": "Shadow Misc Option ROM"
+  },
+  {
+   "code": "0x2D",
+   "decode": ""
+  },
+  {
+   "code": "0x2E",
+   "decode": "Last Chipset initial before boot to OS"
+  },
+  {
+   "code": "0x2F",
+   "decode": "Start to boot Legacy OS"
+  },
+  {
+   "code": "0x30",
+   "decode": "Start to boot UEFI OS"
+  },
+  {
+   "code": "0x31",
+   "decode": "Prepare to Boot to Legacy OS"
+  },
+  {
+   "code": "0x32",
+   "decode": "CPU PEIM (CPU Init)"
+  },
+  {
+   "code": "0x33",
+   "decode": "Last Chipset initial before boot to Legacy OS"
+  },
+  {
+   "code": "0x34",
+   "decode": "Ready to Boot Legacy OS"
+  },
+  {
+   "code": "0x35",
+   "decode": "Fast recovery start flash"
+  },
+  {
+   "code": "0x36",
+   "decode": ""
+  },
+  {
+   "code": "0x37",
+   "decode": ""
+  },
+  {
+   "code": "0x38",
+   "decode": ""
+  },
+  {
+   "code": "0x39",
+   "decode": "Enter firmware UI"
+  },
+  {
+   "code": "0x3A",
+   "decode": ""
+  },
+  {
+   "code": "0x3B",
+   "decode": ""
+  },
+  {
+   "code": "0x3C",
+   "decode": ""
+  },
+  {
+   "code": "0x3D",
+   "decode": ""
+  },
+  {
+   "code": "0x3E",
+   "decode": ""
+  },
+  {
+   "code": "0x3F",
+   "decode": ""
+  },
+  {
+   "code": "0x40",
+   "decode": "TPM initial in DXE"
+  },
+  {
+   "code": "0x41",
+   "decode": "South bridge SPI initial"
+  },
+  {
+   "code": "0x42",
+   "decode": "S3 Resume PEIM (S3 video repost)"
+  },
+  {
+   "code": "0x43",
+   "decode": "S3 Resume PEIM (S3 OS wake)"
+  },
+  {
+   "code": "0x44",
+   "decode": ""
+  },
+  {
+   "code": "0x45",
+   "decode": ""
+  },
+  {
+   "code": "0x46",
+   "decode": "PEIM detected forced recovery condition"
+  },
+  {
+   "code": "0x47",
+   "decode": "PEIM detected user recovery condition"
+  },
+  {
+   "code": "0x48",
+   "decode": "Recovery PEIM (recovery started)"
+  },
+  {
+   "code": "0x49",
+   "decode": "Recovery PEIM (capsule found)"
+  },
+  {
+   "code": "0x4A",
+   "decode": "Recovery PEIM (capsule loaded)"
+  },
+  {
+   "code": "0x4B",
+   "decode": "Variable Service Initial"
+  },
+  {
+   "code": "0x4C",
+   "decode": "Fail to initial Variable Service"
+  },
+  {
+   "code": "0x4D",
+   "decode": "MTC Initial"
+  },
+  {
+   "code": "0x4E",
+   "decode": "CPU Middle Initial"
+  },
+  {
+   "code": "0x4F",
+   "decode": "DXE IPL Started"
+  },
+  {
+   "code": "0x50",
+   "decode": ""
+  },
+  {
+   "code": "0x51",
+   "decode": "Prepare to enter S1"
+  },
+  {
+   "code": "0x52",
+   "decode": "RTC Initial"
+  },
+  {
+   "code": "0x53",
+   "decode": "Prepare to enter S3"
+  },
+  {
+   "code": "0x54",
+   "decode": "Prepare to enter S4"
+  },
+  {
+   "code": "0x55",
+   "decode": "Prepare to enter S5"
+  },
+  {
+   "code": "0x56",
+   "decode": ""
+  },
+  {
+   "code": "0x57",
+   "decode": ""
+  },
+  {
+   "code": "0x58",
+   "decode": ""
+  },
+  {
+   "code": "0x59",
+   "decode": "Legacy BIOS initial"
+  },
+  {
+   "code": "0x5A",
+   "decode": "Legacy interrupt function initial"
+  },
+  {
+   "code": "0x5B",
+   "decode": ""
+  },
+  {
+   "code": "0x5C",
+   "decode": ""
+  },
+  {
+   "code": "0x5D",
+   "decode": ""
+  },
+  {
+   "code": "0x5E",
+   "decode": ""
+  },
+  {
+   "code": "0x5F",
+   "decode": ""
+  },
+  {
+   "code": "0x60",
+   "decode": "DXE core started"
+  },
+  {
+   "code": "0x61",
+   "decode": "Variable store garbage collection and reclaim operation"
+  },
+  {
+   "code": "0x62",
+   "decode": "DXE Setup Init"
+  },
+  {
+   "code": "0x63",
+   "decode": "DXE CPU Init"
+  },
+  {
+   "code": "0x64",
+   "decode": ""
+  },
+  {
+   "code": "0x65",
+   "decode": "DXE CPU BSP Select"
+  },
+  {
+   "code": "0x66",
+   "decode": "DXE CPU AP Init"
+  },
+  {
+   "code": "0x67",
+   "decode": ""
+  },
+  {
+   "code": "0x68",
+   "decode": "DXE PCI Host Bridge Init"
+  },
+  {
+   "code": "0x69",
+   "decode": "DXE NB Init"
+  },
+  {
+   "code": "0x6A",
+   "decode": "DXE NB SMM Init"
+  },
+  {
+   "code": "0x6B",
+   "decode": ""
+  },
+  {
+   "code": "0x6C",
+   "decode": ""
+  },
+  {
+   "code": "0x6D",
+   "decode": ""
+  },
+  {
+   "code": "0x6E",
+   "decode": ""
+  },
+  {
+   "code": "0x6F",
+   "decode": ""
+  },
+  {
+   "code": "0x70",
+   "decode": "Super I/O initial"
+  },
+  {
+   "code": "0x71",
+   "decode": "DXE SB SMM Init"
+  },
+  {
+   "code": "0x72",
+   "decode": "Multi-processor Early initial"
+  },
+  {
+   "code": "0x73",
+   "decode": ""
+  },
+  {
+   "code": "0x74",
+   "decode": "PCIE MMIO BAR Initial"
+  },
+  {
+   "code": "0x75",
+   "decode": ""
+  },
+  {
+   "code": "0x76",
+   "decode": "South Bridge Early Initial"
+  },
+  {
+   "code": "0x77",
+   "decode": ""
+  },
+  {
+   "code": "0x78",
+   "decode": "DXE ACPI Init"
+  },
+  {
+   "code": "0x79",
+   "decode": "DXE CSM Init"
+  },
+  {
+   "code": "0x7A",
+   "decode": ""
+  },
+  {
+   "code": "0x7B",
+   "decode": ""
+  },
+  {
+   "code": "0x7C",
+   "decode": "HECI Initial"
+  },
+  {
+   "code": "0x7D",
+   "decode": ""
+  },
+  {
+   "code": "0x7E",
+   "decode": "Memory Initial for Normal boot"
+  },
+  {
+   "code": "0x7F",
+   "decode": ""
+  },
+  {
+   "code": "0x80",
+   "decode": "DXE BDS Started"
+  },
+  {
+   "code": "0x81",
+   "decode": "DXE BDS connect drivers"
+  },
+  {
+   "code": "0x82",
+   "decode": "DXE PCI Bus begin"
+  },
+  {
+   "code": "0x83",
+   "decode": "Set cache for physical memory"
+  },
+  {
+   "code": "0x84",
+   "decode": "Recovery device initial"
+  },
+  {
+   "code": "0x85",
+   "decode": "Found Recovery image"
+  },
+  {
+   "code": "0x86",
+   "decode": "Recovery image not found"
+  },
+  {
+   "code": "0x87",
+   "decode": "Load Recovery Image complete"
+  },
+  {
+   "code": "0x88",
+   "decode": "DXE CON_IN connect"
+  },
+  {
+   "code": "0x89",
+   "decode": "DXE SIO Init"
+  },
+  {
+   "code": "0x8A",
+   "decode": "DXE USB start"
+  },
+  {
+   "code": "0x8B",
+   "decode": "DXE USB reset"
+  },
+  {
+   "code": "0x8C",
+   "decode": "DXE USB detect"
+  },
+  {
+   "code": "0x8D",
+   "decode": "DXE USB enable"
+  },
+  {
+   "code": "0x8E",
+   "decode": ""
+  },
+  {
+   "code": "0x8F",
+   "decode": ""
+  },
+  {
+   "code": "0x90",
+   "decode": ""
+  },
+  {
+   "code": "0x91",
+   "decode": "DXE IDE begin"
+  },
+  {
+   "code": "0x92",
+   "decode": "DXE IDE reset"
+  },
+  {
+   "code": "0x93",
+   "decode": "DXE IDE detect"
+  },
+  {
+   "code": "0x94",
+   "decode": "DXE IDE enable"
+  },
+  {
+   "code": "0x95",
+   "decode": "DXE SCSI begin"
+  },
+  {
+   "code": "0x96",
+   "decode": "DXE SCSI reset"
+  },
+  {
+   "code": "0x97",
+   "decode": "DXE SCSI detect"
+  },
+  {
+   "code": "0x98",
+   "decode": "DXE SCSI enable"
+  },
+  {
+   "code": "0x99",
+   "decode": "DXE verifying setup password"
+  },
+  {
+   "code": "0x9A",
+   "decode": ""
+  },
+  {
+   "code": "0x9B",
+   "decode": "DXE setup start"
+  },
+  {
+   "code": "0x9C",
+   "decode": "DXE setup input wait"
+  },
+  {
+   "code": "0x9D",
+   "decode": "DXE ready to boot"
+  },
+  {
+   "code": "0x9E",
+   "decode": "DXE legacy boot"
+  },
+  {
+   "code": "0x9F",
+   "decode": "DXE exit boot services"
+  },
+  {
+   "code": "A0",
+   "decode": "Identify Flash device in SMM"
+  },
+  {
+   "code": "A1",
+   "decode": "Enter S1"
+  },
+  {
+   "code": "A2",
+   "decode": "SMM service initial"
+  },
+  {
+   "code": "A3",
+   "decode": "Enter S3"
+  },
+  {
+   "code": "A4",
+   "decode": "Enter S4"
+  },
+  {
+   "code": "A5",
+   "decode": "Enter S5"
+  },
+  {
+   "code": "A6",
+   "decode": "OS call ACPI enable function"
+  },
+  {
+   "code": "A7",
+   "decode": "ACPI enable function complete"
+  },
+  {
+   "code": "A8",
+   "decode": "OS call ACPI disable function"
+  },
+  {
+   "code": "A9",
+   "decode": "ACPI disable function complete"
+  },
+  {
+   "code": "AA",
+   "decode": "Protocol layer and other uncore settings"
+  },
+  {
+   "code": "AB",
+   "decode": "Transition links to full speed operation"
+  },
+  {
+   "code": "AC",
+   "decode": "Phy layer settings"
+  },
+  {
+   "code": "AD",
+   "decode": "Link layer settings"
+  },
+  {
+   "code": "AE",
+   "decode": "Coherency settings"
+  },
+  {
+   "code": "AF",
+   "decode": "QPI init done"
+  },
+  {
+   "code": "B0",
+   "decode": "Detect DIMM population"
+  },
+  {
+   "code": "B1",
+   "decode": "Set DDR4 frequency"
+  },
+  {
+   "code": "B2",
+   "decode": "Gather remaining SPD data"
+  },
+  {
+   "code": "B3",
+   "decode": "Program registers on the memory controller level"
+  },
+  {
+   "code": "B4",
+   "decode": "Evaluate RAS modes and save rank information"
+  },
+  {
+   "code": "B5",
+   "decode": "Program registers on the channel level"
+  },
+  {
+   "code": "B6",
+   "decode": "Perform the JEDEC defined init sequence"
+  },
+  {
+   "code": "B7",
+   "decode": "Train DDR4 ranks"
+  },
+  {
+   "code": "B8",
+   "decode": "Initialize CLTT/OLTT"
+  },
+  {
+   "code": "B9",
+   "decode": "Hardware memory test and init"
+  },
+  {
+   "code": "BA",
+   "decode": "Execute software memory init"
+  },
+  {
+   "code": "BB",
+   "decode": "Program memory map and interleaving"
+  },
+  {
+   "code": "BC",
+   "decode": "Program RAS configuration"
+  },
+  {
+   "code": "BD",
+   "decode": ""
+  },
+  {
+   "code": "BE",
+   "decode": ""
+  },
+  {
+   "code": "BF",
+   "decode": "MRC done"
+  },
+  {
+   "code": "C0",
+   "decode": "RT set virtual address map begin"
+  },
+  {
+   "code": "C1",
+   "decode": ""
+  },
+  {
+   "code": "C2",
+   "decode": "DXE Legacy Option ROM Init"
+  },
+  {
+   "code": "C3",
+   "decode": "Set cache for physical memory during S3 resume"
+  },
+  {
+   "code": "C4",
+   "decode": "DXE USB Hot Plug"
+  },
+  {
+   "code": "C5",
+   "decode": "DXE PCI Bus hot plug"
+  },
+  {
+   "code": "C6",
+   "decode": "DXE NVRAM cleanup"
+  },
+  {
+   "code": "C7",
+   "decode": "DXE ACPI enable"
+  },
+  {
+   "code": "C8",
+   "decode": ""
+  },
+  {
+   "code": "C9",
+   "decode": ""
+  },
+  {
+   "code": "CA",
+   "decode": ""
+  },
+  {
+   "code": "CB",
+   "decode": ""
+  },
+  {
+   "code": "CC",
+   "decode": ""
+  },
+  {
+   "code": "CD",
+   "decode": ""
+  },
+  {
+   "code": "CE",
+   "decode": ""
+  },
+  {
+   "code": "CF",
+   "decode": ""
+  },
+  {
+   "code": "D0",
+   "decode": ""
+  },
+  {
+   "code": "D1",
+   "decode": ""
+  },
+  {
+   "code": "D2",
+   "decode": ""
+  },
+  {
+   "code": "D3",
+   "decode": ""
+  },
+  {
+   "code": "D4",
+   "decode": ""
+  },
+  {
+   "code": "D5",
+   "decode": ""
+  },
+  {
+   "code": "D6",
+   "decode": ""
+  },
+  {
+   "code": "D7",
+   "decode": ""
+  },
+  {
+   "code": "D8",
+   "decode": ""
+  },
+  {
+   "code": "D9",
+   "decode": ""
+  },
+  {
+   "code": "DA",
+   "decode": ""
+  },
+  {
+   "code": "DB",
+   "decode": ""
+  },
+  {
+   "code": "DC",
+   "decode": ""
+  },
+  {
+   "code": "DD",
+   "decode": ""
+  },
+  {
+   "code": "DE",
+   "decode": ""
+  },
+  {
+   "code": "DF",
+   "decode": ""
+  },
+  {
+   "code": "E0",
+   "decode": ""
+  },
+  {
+   "code": "E1",
+   "decode": "System wakeup from S1"
+  },
+  {
+   "code": "E2",
+   "decode": ""
+  },
+  {
+   "code": "E3",
+   "decode": "System wakeup from S3"
+  },
+  {
+   "code": "E4",
+   "decode": "System wakeup from S4"
+  },
+  {
+   "code": "E5",
+   "decode": "System wakeup from S5"
+  },
+  {
+   "code": "E6",
+   "decode": ""
+  },
+  {
+   "code": "E7",
+   "decode": ""
+  },
+  {
+   "code": "E8",
+   "decode": ""
+  },
+  {
+   "code": "E9",
+   "decode": ""
+  },
+  {
+   "code": "EA",
+   "decode": ""
+  },
+  {
+   "code": "EB",
+   "decode": ""
+  },
+  {
+   "code": "EC",
+   "decode": ""
+  },
+  {
+   "code": "ED",
+   "decode": ""
+  },
+  {
+   "code": "EE",
+   "decode": ""
+  },
+  {
+   "code": "EF",
+   "decode": ""
+  },
+  {
+   "code": "F0",
+   "decode": ""
+  },
+  {
+   "code": "F1",
+   "decode": ""
+  },
+  {
+   "code": "F2",
+   "decode": ""
+  },
+  {
+   "code": "F3",
+   "decode": ""
+  },
+  {
+   "code": "F4",
+   "decode": ""
+  },
+  {
+   "code": "F5",
+   "decode": ""
+  },
+  {
+   "code": "F6",
+   "decode": ""
+  },
+  {
+   "code": "F7",
+   "decode": ""
+  },
+  {
+   "code": "F8",
+   "decode": ""
+  },
+  {
+   "code": "F9",
+   "decode": "No Boot Device, PostBDS_NO_BOOT_DEVICE"
+  },
+  {
+   "code": "FA",
+   "decode": ""
+  },
+  {
+   "code": "FB",
+   "decode": "UEFI Boot Start Image, PostBDS_START_IMAGE"
+  },
+  {
+   "code": "FC",
+   "decode": ""
+  },
+  {
+   "code": "FD",
+   "decode": ""
+  },
+  {
+   "code": "FE",
+   "decode": ""
+  },
+  {
+   "code": "FF",
+   "decode": ""
+  }
+]

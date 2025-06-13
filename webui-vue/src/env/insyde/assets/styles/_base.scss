@@ -1,0 +1,46 @@
+
+
+/* col width */
+.flex-w05 {
+    flex-grow: 0.5; /* width ratio in half,  0.5:1 */
+  }
+  .flex-w10 {
+    flex-grow: 1; /* width ratio in half,  0.5:1 */
+  }
+  .flex-w20 {
+    flex-grow: 2; /* width ratio in half,  0.5:1 */
+  }
+  
+  
+  /* text style */
+  .title {
+    font-weight: bold;
+  }
+  .tip-hint {
+    font-style: italic;
+  }
+  .tip-success {
+    color: rgb(36, 189, 98);
+  }
+  .tip-error {
+    color: red;
+  }
+  
+  .spacing {
+    margin: 4px;
+  }
+  
+  /* others */
+  .dashboard-refresh {
+    position: relative;
+    margin-top: -60px;
+    margin-left: 92%;
+  }
+  .dashboard-info {
+    position: relative;
+    margin-top: 30px;
+  }
+  
+  .pointer {
+    cursor: pointer;
+  }

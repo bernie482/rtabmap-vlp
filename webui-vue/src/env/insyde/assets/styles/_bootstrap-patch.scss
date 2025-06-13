@@ -1,0 +1,61 @@
+$max: 10;
+@for $i from 6 through $max {
+  /* m{direction}-{size} padding */
+  .mb-#{$i} {
+    margin-bottom: ($i - 3) * 1.5rem !important;
+  }
+  .mt-#{$i} {
+    margin-top: ($i - 3) * 1.5rem !important;
+  }
+  .ml-#{$i} {
+    margin-left: ($i - 3) * 1.5rem !important;
+  }
+  .mr-#{$i} {
+    margin-right: ($i - 3) * 1.5rem !important;
+  }
+  .mx-#{$i} {
+    margin-left: ($i - 3) * 1.5rem !important;
+    margin-right: ($i - 3) * 1.5rem !important;
+  }
+  .my-#{$i} {
+    margin-top: ($i - 3) * 1.5rem !important;
+    margin-bottom: ($i - 3) * 1.5rem !important;
+  }
+
+  /* p{direction}-{size} padding */
+  .pb-#{$i} {
+    padding-bottom: ($i - 3) * 1.5rem !important;
+  }
+  .pt-#{$i} {
+    padding-top: ($i - 3) * 1.5rem !important;
+  }
+  .pl-#{$i} {
+    padding-left: ($i - 3) * 1.5rem !important;
+  }
+  .pr-#{$i} {
+    padding-right: ($i - 3) * 1.5rem !important;
+  }
+  .px-#{$i} {
+    padding-left: ($i - 3) * 1.5rem !important;
+    padding-right: ($i - 3) * 1.5rem !important;
+  }
+  .py-#{$i} {
+    padding-top: ($i - 3) * 1.5rem !important;
+    padding-bottom: ($i - 3) * 1.5rem !important;
+  }
+}
+
+/* REF: docs/customisztion/readme.md */
+/* PATCH: button color, recovery back to bootstrap-vue style */
+//$info: #17a2b8;
+$blue-600: #1E88E5;
+$info: $blue-600;
+.btn-info {
+  color: $white;
+  fill: currentColor;
+  &:focus,
+  &:not(:disabled):not(.disabled):active:focus {
+    border-color: $white;
+    box-shadow: inset 0 0 0 3px theme-color('info'), inset 0 0 0 5px $white;
+  }
+}

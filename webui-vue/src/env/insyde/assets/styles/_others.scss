@@ -1,0 +1,27 @@
+$nav-bg-gradient: true;
+@mixin nav-bg-gradient-color {
+  @include gradient-x(#00608c,#41a2e2);
+}
+
+$nav-link-custom-style: true;
+@mixin nav-link-custom-style {
+  border-bottom: 1px solid #ccc;
+  transition: all 600ms;
+  user-select: none;
+}
+
+$nav-link-font-weight: lighter;
+$nav-curr-link-font-weight: bold;
+
+$dark-blue: #005278;
+
+$nav-link-font-family: Arial, Helvetica, "Microsoft YaHei", "Microsoft JhengHei", sans-serif;
+$nav-link-color: white;
+$nav-link-hover-bg-color: $dark-blue;
+$nav-link-hover-color: white;
+$nav-link-focus-bg-color: $dark-blue;
+$nav-link-focus-color: white;
+$nav-curr-link-bg-color: $dark-blue;
+$nav-curr-link-hover-bg-color: $dark-blue;
+$nav-curr-link-focus-bg-color: $dark-blue;
+
